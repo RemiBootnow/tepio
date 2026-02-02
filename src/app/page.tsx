@@ -1,65 +1,261 @@
-import Image from "next/image";
+import Link from "next/link";
+import { Metadata } from "next";
+import { generatePageMetadata } from "@/lib/seo/metadata";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { siteConfig } from "@/config/site";
+import {
+  ArrowRight,
+  Phone,
+  Thermometer,
+  Flame,
+  Wind,
+  CheckCircle,
+  Euro,
+} from "lucide-react";
 
-export default function Home() {
+export const metadata: Metadata = generatePageMetadata({
+  title: "MonExpertRenov",
+  description:
+    "Experts en rénovation énergétique : pompes à chaleur, poêles à bois et granulés, climatisation. Devis gratuit et accompagnement personnalisé.",
+  keywords: [
+    "rénovation énergétique",
+    "pompe à chaleur",
+    "poêle à bois",
+    "poêle à granulés",
+    "climatisation",
+    "MaPrimeRénov",
+    "CEE",
+    "devis gratuit",
+  ],
+});
+
+export default function HomePage() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <>
+      {/* Hero Section - Placeholder for custom Hero block */}
+      <section className="relative py-20 lg:py-32 bg-linear-to-b from-slate-50 to-white">
+        <div className="container">
+          <div className="max-w-3xl mx-auto text-center">
+            <Badge className="mb-4" variant="secondary">
+              Artisans RGE certifiés
+            </Badge>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6">
+              Votre projet de rénovation énergétique commence ici
+            </h1>
+            <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
+              Pompes à chaleur, poêles à bois et granulés, climatisation.
+              Obtenez un devis gratuit et bénéficiez des aides MaPrimeRénov&apos;.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button size="lg" className="bg-green-600 hover:bg-green-700" asChild>
+                <Link href="/devis-gratuit">
+                  Demander un devis gratuit
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
+              </Button>
+              <Button size="lg" variant="outline" asChild>
+                <a href={`tel:${siteConfig.business.phone.replace(/\s/g, "")}`}>
+                  <Phone className="mr-2 h-5 w-5" />
+                  {siteConfig.business.phone}
+                </a>
+              </Button>
+            </div>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      {/* Services Section - Placeholder for custom Services block */}
+      <section className="py-20">
+        <div className="container">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-heading font-bold mb-4">
+              Nos Solutions de Chauffage
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Des solutions adaptées à votre logement et votre budget, installées
+              par des artisans RGE qualifiés.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Pompe à Chaleur */}
+            <Card className="hover:shadow-lg transition-shadow">
+              <CardContent className="pt-6">
+                <div className="w-12 h-12 rounded-lg bg-blue-100 flex items-center justify-center mb-4">
+                  <Thermometer className="h-6 w-6 text-blue-600" />
+                </div>
+                <h3 className="font-heading font-semibold text-lg mb-2">
+                  Pompe à Chaleur
+                </h3>
+                <p className="text-muted-foreground text-sm mb-4">
+                  Air-air ou air-eau, économisez jusqu&apos;à 70% sur votre
+                  facture de chauffage.
+                </p>
+                <Button variant="ghost" className="p-0 h-auto text-primary" asChild>
+                  <Link href="/pompe-a-chaleur">
+                    En savoir plus
+                    <ArrowRight className="ml-1 h-4 w-4" />
+                  </Link>
+                </Button>
+              </CardContent>
+            </Card>
+
+            {/* Poêle à Bois */}
+            <Card className="hover:shadow-lg transition-shadow">
+              <CardContent className="pt-6">
+                <div className="w-12 h-12 rounded-lg bg-orange-100 flex items-center justify-center mb-4">
+                  <Flame className="h-6 w-6 text-orange-600" />
+                </div>
+                <h3 className="font-heading font-semibold text-lg mb-2">
+                  Poêle à Bois
+                </h3>
+                <p className="text-muted-foreground text-sm mb-4">
+                  Chauffage économique et écologique avec une ambiance
+                  chaleureuse.
+                </p>
+                <Button variant="ghost" className="p-0 h-auto text-primary" asChild>
+                  <Link href="/poele-a-bois">
+                    En savoir plus
+                    <ArrowRight className="ml-1 h-4 w-4" />
+                  </Link>
+                </Button>
+              </CardContent>
+            </Card>
+
+            {/* Poêle à Granulés */}
+            <Card className="hover:shadow-lg transition-shadow">
+              <CardContent className="pt-6">
+                <div className="w-12 h-12 rounded-lg bg-amber-100 flex items-center justify-center mb-4">
+                  <Flame className="h-6 w-6 text-amber-600" />
+                </div>
+                <h3 className="font-heading font-semibold text-lg mb-2">
+                  Poêle à Granulés
+                </h3>
+                <p className="text-muted-foreground text-sm mb-4">
+                  Automatique et performant, le confort du bois sans
+                  contraintes.
+                </p>
+                <Button variant="ghost" className="p-0 h-auto text-primary" asChild>
+                  <Link href="/poele-a-granules">
+                    En savoir plus
+                    <ArrowRight className="ml-1 h-4 w-4" />
+                  </Link>
+                </Button>
+              </CardContent>
+            </Card>
+
+            {/* Climatisation */}
+            <Card className="hover:shadow-lg transition-shadow">
+              <CardContent className="pt-6">
+                <div className="w-12 h-12 rounded-lg bg-cyan-100 flex items-center justify-center mb-4">
+                  <Wind className="h-6 w-6 text-cyan-600" />
+                </div>
+                <h3 className="font-heading font-semibold text-lg mb-2">
+                  Climatisation
+                </h3>
+                <p className="text-muted-foreground text-sm mb-4">
+                  Systèmes réversibles pour votre confort été comme hiver.
+                </p>
+                <Button variant="ghost" className="p-0 h-auto text-primary" asChild>
+                  <Link href="/climatisation">
+                    En savoir plus
+                    <ArrowRight className="ml-1 h-4 w-4" />
+                  </Link>
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* Benefits Section - Placeholder for custom Benefits block */}
+      <section className="py-20 bg-slate-50">
+        <div className="container">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-heading font-bold mb-4">
+              Pourquoi choisir MonExpertRenov ?
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Un accompagnement complet pour votre projet de rénovation
+              énergétique.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="flex flex-col items-center text-center p-6">
+              <CheckCircle className="h-12 w-12 text-green-600 mb-4" />
+              <h3 className="font-heading font-semibold mb-2">Artisans RGE</h3>
+              <p className="text-muted-foreground text-sm">
+                Tous nos installateurs sont certifiés RGE pour garantir la
+                qualité.
+              </p>
+            </div>
+            <div className="flex flex-col items-center text-center p-6">
+              <Euro className="h-12 w-12 text-green-600 mb-4" />
+              <h3 className="font-heading font-semibold mb-2">
+                Aides financières
+              </h3>
+              <p className="text-muted-foreground text-sm">
+                Accompagnement pour MaPrimeRénov&apos;, CEE et autres
+                subventions.
+              </p>
+            </div>
+            <div className="flex flex-col items-center text-center p-6">
+              <CheckCircle className="h-12 w-12 text-green-600 mb-4" />
+              <h3 className="font-heading font-semibold mb-2">Devis gratuit</h3>
+              <p className="text-muted-foreground text-sm">
+                Étude personnalisée sans engagement en moins de 48h.
+              </p>
+            </div>
+            <div className="flex flex-col items-center text-center p-6">
+              <CheckCircle className="h-12 w-12 text-green-600 mb-4" />
+              <h3 className="font-heading font-semibold mb-2">Garantie 10 ans</h3>
+              <p className="text-muted-foreground text-sm">
+                Tranquillité d&apos;esprit avec notre garantie décennale.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section - Placeholder for custom CTA block */}
+      <section className="py-20 bg-primary text-primary-foreground">
+        <div className="container">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-3xl font-heading font-bold mb-4">
+              Prêt à réduire votre facture énergétique ?
+            </h2>
+            <p className="text-lg opacity-90 mb-8">
+              Obtenez un devis gratuit en 2 minutes et découvrez les aides
+              auxquelles vous avez droit.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button
+                size="lg"
+                variant="secondary"
+                className="bg-white text-primary hover:bg-white/90"
+                asChild
+              >
+                <Link href="/devis-gratuit">
+                  Demander un devis gratuit
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
+              </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-white text-white hover:bg-white/10"
+                asChild
+              >
+                <a href={`tel:${siteConfig.business.phone.replace(/\s/g, "")}`}>
+                  <Phone className="mr-2 h-5 w-5" />
+                  Nous appeler
+                </a>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }
