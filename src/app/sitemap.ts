@@ -7,13 +7,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Static pages - add more as you create them
   const staticPages = [
     "",
-    "/design-system",
+    "/devis-gratuit",
     // Future pages:
     // "/pompe-a-chaleur",
     // "/poele-a-bois",
     // "/poele-a-granules",
     // "/climatisation",
-    // "/devis-gratuit",
   ];
 
   const staticEntries: MetadataRoute.Sitemap = staticPages.map((route) => ({

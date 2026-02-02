@@ -1,0 +1,9 @@
+{
+  "name": "MonExpertRenov",
+  "short_name": "MonExpertRenov",
+  "description": "Experts en rénovation énergétique : pompes à chaleur, poêles à bois et granulés, climatisation.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0f172a"
+}

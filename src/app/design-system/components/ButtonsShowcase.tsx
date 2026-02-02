@@ -144,28 +144,28 @@ export function ButtonsShowcase() {
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="flex flex-wrap gap-4">
-            <Button size="lg" className="bg-green-600 hover:bg-green-700">
+            <Button size="lg" className="bg-green-700 hover:bg-green-800">
               Demander un devis gratuit
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
             <Button
               size="lg"
               variant="outline"
-              className="border-green-600 text-green-600 hover:bg-green-50"
+              className="border-green-700 text-green-700 hover:bg-green-50"
             >
               <Phone className="mr-2 h-5 w-5" />
               01 23 45 67 89
             </Button>
           </div>
           <CodeBlock
-            code={`<Button size="lg" className="bg-green-600 hover:bg-green-700">
+            code={`<Button size="lg" className="bg-green-700 hover:bg-green-800">
   Demander un devis gratuit
   <ArrowRight className="ml-2 h-5 w-5" />
 </Button>
 <Button
   size="lg"
   variant="outline"
-  className="border-green-600 text-green-600 hover:bg-green-50"
+  className="border-green-700 text-green-700 hover:bg-green-50"
 >
   <Phone className="mr-2 h-5 w-5" />
   01 23 45 67 89
