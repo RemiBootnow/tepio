@@ -1,11 +1,41 @@
-import { Figtree } from "next/font/google";
+import localFont from "next/font/local";
 
-// Figtree font for all text (body and headings)
-export const fontSans = Figtree({
-  subsets: ["latin"],
-  variable: "--font-figtree",
+// Mabry Pro font for all text
+export const fontSans = localFont({
+  src: [
+    {
+      path: "../../public/font/MabryPro-Regular.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../../public/font/MabryPro-Italic.woff2",
+      weight: "400",
+      style: "italic",
+    },
+    {
+      path: "../../public/font/MabryPro-Medium.woff2",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../../public/font/MabryPro-MediumItalic.woff2",
+      weight: "500",
+      style: "italic",
+    },
+    {
+      path: "../../public/font/MabryPro-Bold.woff2",
+      weight: "700",
+      style: "normal",
+    },
+    {
+      path: "../../public/font/MabryPro-BoldItalic.woff2",
+      weight: "700",
+      style: "italic",
+    },
+  ],
+  variable: "--font-mabry",
   display: "swap",
-  weight: ["400", "500", "600", "700"],
 });
 
 // Use same font for headings

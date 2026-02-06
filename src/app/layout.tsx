@@ -7,8 +7,6 @@ import {
   getLocalBusinessSchema,
   getWebSiteSchema,
 } from "@/lib/seo/schemas";
-import { Header } from "@/components/layout/Header";
-import { Footer } from "@/components/layout/Footer";
 import { cn } from "@/lib/utils";
 import { Agentation } from "agentation";
 import "./globals.css";
@@ -49,11 +47,7 @@ export default function RootLayout({
           fontHeading.variable
         )}
       >
-        <div className="relative flex min-h-screen flex-col">
-          <Header />
-          <main className="flex-1">{children}</main>
-          <Footer />
-        </div>
+        {children}
         {process.env.NODE_ENV === "development" && <Agentation />}
       </body>
     </html>
