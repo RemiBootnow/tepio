@@ -17,7 +17,7 @@ export default function DesignSystemPage() {
   return (
     <div className="container py-10">
       <div className="mb-10">
-        <h1 className="text-4xl font-heading font-bold mb-4">Design System</h1>
+        <h1 className="text-4xl font-heading font-medium mb-4">Design System</h1>
         <p className="text-lg text-muted-foreground max-w-2xl">
           Bibliothèque de composants réutilisables pour MonExpertRenov. Tous les
           composants sont construits avec shadcn/ui et Tailwind CSS.

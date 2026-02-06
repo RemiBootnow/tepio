@@ -20,13 +20,13 @@ export function TypographyShowcase() {
         </CardHeader>
         <CardContent className="space-y-6">
           <div className="space-y-4">
-            <h1 className="text-4xl font-heading font-bold">
+            <h1 className="text-4xl font-heading font-medium">
               Titre H1 - Installation Pompe à Chaleur
             </h1>
-            <h2 className="text-3xl font-heading font-semibold">
+            <h2 className="text-3xl font-heading font-medium">
               Titre H2 - Nos Services
             </h2>
-            <h3 className="text-2xl font-heading font-semibold">
+            <h3 className="text-2xl font-heading font-medium">
               Titre H3 - Avantages
             </h3>
             <h4 className="text-xl font-heading font-medium">
@@ -34,9 +34,9 @@ export function TypographyShowcase() {
             </h4>
           </div>
           <CodeBlock
-            code={`<h1 className="text-4xl font-heading font-bold">Titre H1</h1>
-<h2 className="text-3xl font-heading font-semibold">Titre H2</h2>
-<h3 className="text-2xl font-heading font-semibold">Titre H3</h3>
+            code={`<h1 className="text-4xl font-heading font-medium">Titre H1</h1>
+<h2 className="text-3xl font-heading font-medium">Titre H2</h2>
+<h3 className="text-2xl font-heading font-medium">Titre H3</h3>
 <h4 className="text-xl font-heading font-medium">Titre H4</h4>`}
           />
         </CardContent>

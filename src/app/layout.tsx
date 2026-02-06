@@ -10,6 +10,7 @@ import {
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { cn } from "@/lib/utils";
+import { Agentation } from "agentation";
 import "./globals.css";
 
 export const metadata: Metadata = defaultMetadata;
@@ -53,6 +54,7 @@ export default function RootLayout({
           <main className="flex-1">{children}</main>
           <Footer />
         </div>
+        {process.env.NODE_ENV === "development" && <Agentation />}
       </body>
     </html>
   );

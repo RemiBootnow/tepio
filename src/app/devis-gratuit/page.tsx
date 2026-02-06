@@ -24,7 +24,7 @@ export default function DevisGratuitPage() {
   return (
     <div className="container py-20">
       <div className="max-w-2xl mx-auto text-center">
-        <h1 className="text-4xl font-heading font-bold mb-6">
+        <h1 className="text-4xl font-heading font-medium mb-6">
           Demandez votre devis gratuit
         </h1>
         <p className="text-lg text-muted-foreground mb-8">

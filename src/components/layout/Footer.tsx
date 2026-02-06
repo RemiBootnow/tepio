@@ -10,7 +10,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="space-y-4">
-            <h3 className="font-heading font-semibold">{siteConfig.name}</h3>
+            <h3 className="font-heading font-medium">{siteConfig.name}</h3>
             <p className="text-sm text-muted-foreground">
               Experts en rénovation énergétique. Pompes à chaleur, poêles et
               climatisation.
@@ -35,7 +35,7 @@ export function Footer() {
 
           {/* Services - placeholder for future */}
           <div className="space-y-4">
-            <h3 className="font-heading font-semibold">Nos Services</h3>
+            <h3 className="font-heading font-medium">Nos Services</h3>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
                 <Link href="/pompe-a-chaleur" className="hover:text-primary">
@@ -62,7 +62,7 @@ export function Footer() {
 
           {/* Resources - placeholder for future */}
           <div className="space-y-4">
-            <h3 className="font-heading font-semibold">Ressources</h3>
+            <h3 className="font-heading font-medium">Ressources</h3>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
                 <Link href="/aides-financieres" className="hover:text-primary">
@@ -84,7 +84,7 @@ export function Footer() {
 
           {/* Legal */}
           <div className="space-y-4">
-            <h3 className="font-heading font-semibold">Informations</h3>
+            <h3 className="font-heading font-medium">Informations</h3>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
                 <Link href="/mentions-legales" className="hover:text-primary">

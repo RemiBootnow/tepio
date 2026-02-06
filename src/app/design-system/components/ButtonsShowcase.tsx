@@ -26,6 +26,8 @@ export function ButtonsShowcase() {
         <CardContent className="space-y-4">
           <div className="flex flex-wrap gap-4">
             <Button variant="default">Par défaut</Button>
+            <Button variant="primary">Primary</Button>
+            <Button variant="neutral">Neutral</Button>
             <Button variant="secondary">Secondaire</Button>
             <Button variant="destructive">Destructif</Button>
             <Button variant="outline">Contour</Button>
@@ -34,6 +36,8 @@ export function ButtonsShowcase() {
           </div>
           <CodeBlock
             code={`<Button variant="default">Par défaut</Button>
+<Button variant="primary">Primary</Button>
+<Button variant="neutral">Neutral</Button>
 <Button variant="secondary">Secondaire</Button>
 <Button variant="destructive">Destructif</Button>
 <Button variant="outline">Contour</Button>
@@ -144,28 +148,26 @@ export function ButtonsShowcase() {
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="flex flex-wrap gap-4">
-            <Button size="lg" className="bg-green-700 hover:bg-green-800">
+            <Button size="lg">
               Demander un devis gratuit
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
             <Button
               size="lg"
               variant="outline"
-              className="border-green-700 text-green-700 hover:bg-green-50"
             >
               <Phone className="mr-2 h-5 w-5" />
               01 23 45 67 89
             </Button>
           </div>
           <CodeBlock
-            code={`<Button size="lg" className="bg-green-700 hover:bg-green-800">
+            code={`<Button size="lg">
   Demander un devis gratuit
   <ArrowRight className="ml-2 h-5 w-5" />
 </Button>
 <Button
   size="lg"
   variant="outline"
-  className="border-green-700 text-green-700 hover:bg-green-50"
 >
   <Phone className="mr-2 h-5 w-5" />
   01 23 45 67 89
