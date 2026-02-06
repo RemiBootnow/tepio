@@ -1,0 +1,124 @@
+colors/App Background,r:255,g:255,b:255,a:255
+colors/Cards Background,r:255,g:255,b:255,a:255
+colors/Neutral/Text/Bold,r:24,g:70,b:71,a:255
+colors/Neutral/Text/Soft,r:24,g:70,b:71,a:255
+colors/Neutral/Text/Soft,r:255,g:255,b:255,a:102
+colors/Neutral/Text/Disabled,r:24,g:70,b:71,a:255
+colors/Neutral/Text/Disabled,r:255,g:255,b:255,a:178
+colors/Neutral/Text/Bold Inverse,r:255,g:255,b:255,a:255
+colors/Neutral/Text/Bold Inverse Stay,r:255,g:255,b:255,a:255
+colors/Neutral/Background/Bold,r:24,g:70,b:71,a:255
+colors/Neutral/Background/Soft,r:237,g:242,b:242,a:255
+colors/Neutral/Background/Subtle,r:237,g:242,b:242,a:255
+colors/Neutral/Background/Subtle,r:255,g:255,b:255,a:128
+colors/Neutral/Borders/Neutral Border Bold,r:237,g:242,b:242,a:255
+colors/Neutral/Borders/Neutral Border Bold,r:0,g:0,b:0,a:13
+colors/Neutral/Borders/Neutral Border Soft,r:237,g:242,b:242,a:255
+colors/Neutral/Borders/Neutral Border Soft,r:0,g:0,b:0,a:8
+colors/Neutral/States/Bold Hover,r:24,g:70,b:71,a:255
+colors/Neutral/States/Bold Hover,r:0,g:0,b:0,a:13
+colors/Neutral/States/Soft Hover,r:237,g:242,b:242,a:255
+colors/Neutral/States/Soft Hover,r:0,g:0,b:0,a:13
+colors/Neutral/States/Border Bold Hover,r:237,g:242,b:242,a:255
+colors/Neutral/States/Border Bold Hover,r:0,g:0,b:0,a:13
+colors/Neutral/States/Border Bold Hover,r:0,g:0,b:0,a:13
+colors/Neutral/States/Border Soft Hover,r:237,g:242,b:242,a:255
+colors/Neutral/States/Border Soft Hover,r:0,g:0,b:0,a:8
+colors/Neutral/States/Border Soft Hover,r:0,g:0,b:0,a:13
+colors/Accent/Text/Bold,r:184,g:234,b:151,a:255
+colors/Accent/Text/Bold,r:0,g:0,b:0,a:153
+colors/Accent/Text/Bold,r:255,g:255,b:255,a:51
+colors/Accent/Text/Soft,r:184,g:234,b:151,a:255
+colors/Accent/Text/Soft,r:0,g:0,b:0,a:153
+colors/Accent/Text/Soft,r:255,g:255,b:255,a:178
+colors/Accent/Background/Bold,r:184,g:234,b:151,a:255
+colors/Accent/Background/Soft,r:184,g:234,b:151,a:255
+colors/Accent/Background/Soft,r:255,g:255,b:255,a:204
+colors/Accent/Background/Subtle,r:184,g:234,b:151,a:255
+colors/Accent/Background/Subtle,r:255,g:255,b:255,a:229
+colors/Accent/Borders/Bold,r:184,g:234,b:151,a:255
+colors/Accent/Borders/Bold,r:255,g:255,b:255,a:102
+colors/Accent/Borders/Soft,r:184,g:234,b:151,a:255
+colors/Accent/Borders/Soft,r:255,g:255,b:255,a:128
+colors/Accent/States/Background Soft Hover,r:184,g:234,b:151,a:255
+colors/Accent/States/Background Soft Hover,r:255,g:255,b:255,a:204
+colors/Accent/States/Background Soft Hover,r:0,g:0,b:0,a:13
+colors/Accent/States/Background Bold Hover,r:184,g:234,b:151,a:255
+colors/Accent/States/Background Bold Hover,r:0,g:0,b:0,a:13
+colors/Accent/State/Border Bold Hover,r:184,g:234,b:151,a:255
+colors/Accent/State/Border Bold Hover,r:255,g:255,b:255,a:102
+colors/Accent/State/Border Bold Hover,r:0,g:0,b:0,a:13
+colors/Accent/State/Border Soft Hover,r:184,g:234,b:151,a:255
+colors/Accent/State/Border Soft Hover,r:255,g:255,b:255,a:128
+colors/Accent/State/Border Soft Hover,r:0,g:0,b:0,a:13
+colors/Danger/Text/Bold,r:255,g:88,b:100,a:255
+colors/Danger/Text/Bold,r:0,g:0,b:0,a:153
+colors/Danger/Text/Bold,r:255,g:255,b:255,a:51
+colors/Danger/Text/Soft,r:255,g:88,b:100,a:255
+colors/Danger/Text/Soft,r:0,g:0,b:0,a:153
+colors/Danger/Text/Soft,r:255,g:255,b:255,a:178
+colors/Danger/Background/Bold,r:255,g:88,b:100,a:255
+colors/Danger/Background/Soft,r:255,g:88,b:100,a:255
+colors/Danger/Background/Soft,r:255,g:255,b:255,a:204
+colors/Danger/Border/Bold,r:255,g:88,b:100,a:255
+colors/Danger/Border/Bold,r:255,g:255,b:255,a:102
+colors/Danger/Border/Soft,r:255,g:88,b:100,a:255
+colors/Danger/Border/Soft,r:255,g:255,b:255,a:128
+colors/Danger/States/Background Soft Hover,r:255,g:88,b:100,a:255
+colors/Danger/States/Background Soft Hover,r:255,g:255,b:255,a:204
+colors/Danger/States/Background Soft Hover,r:0,g:0,b:0,a:13
+colors/Danger/States/Accent Bold Hover,r:255,g:88,b:100,a:255
+colors/Danger/States/Accent Bold Hover,r:0,g:0,b:0,a:13
+colors/Success/Text/bold,r:51,g:176,b:111,a:255
+colors/Success/Text/bold,r:0,g:0,b:0,a:153
+colors/Success/Text/bold,r:255,g:255,b:255,a:51
+colors/Success/Text/Soft,r:51,g:176,b:111,a:255
+colors/Success/Text/Soft,r:0,g:0,b:0,a:153
+colors/Success/Text/Soft,r:255,g:255,b:255,a:178
+colors/Success/Background/Bold,r:51,g:176,b:111,a:255
+colors/Success/Background/Soft,r:51,g:176,b:111,a:255
+colors/Success/Background/Soft,r:255,g:255,b:255,a:204
+colors/Success/Border/Bold,r:51,g:176,b:111,a:255
+colors/Success/Border/Bold,r:255,g:255,b:255,a:102
+colors/Success/Border/Soft,r:51,g:176,b:111,a:255
+colors/Success/Border/Soft,r:255,g:255,b:255,a:128
+colors/Success/States/Background Soft Hover,r:51,g:176,b:111,a:255
+colors/Success/States/Background Soft Hover,r:255,g:255,b:255,a:204
+colors/Success/States/Background Soft Hover,r:0,g:0,b:0,a:13
+colors/Success/States/Background Bold Hover,r:51,g:176,b:111,a:255
+colors/Success/States/Background Bold Hover,r:0,g:0,b:0,a:13
+colors/Warning/Text/Bold,r:245,g:158,b:12,a:255
+colors/Warning/Text/Bold,r:0,g:0,b:0,a:153
+colors/Warning/Text/Bold,r:255,g:255,b:255,a:51
+colors/Warning/Text/Soft,r:245,g:158,b:12,a:255
+colors/Warning/Text/Soft,r:0,g:0,b:0,a:153
+colors/Warning/Text/Soft,r:255,g:255,b:255,a:178
+colors/Warning/Background/Bold,r:245,g:158,b:12,a:255
+colors/Warning/Background/Soft,r:245,g:158,b:12,a:255
+colors/Warning/Background/Soft,r:255,g:255,b:255,a:204
+colors/Warning/Border/Bold,r:245,g:158,b:12,a:255
+colors/Warning/Border/Bold,r:255,g:255,b:255,a:102
+colors/Warning/Border/Soft,r:245,g:158,b:12,a:255
+colors/Warning/Border/Soft,r:255,g:255,b:255,a:128
+colors/Warning/States/Background Soft Hover,r:245,g:158,b:12,a:255
+colors/Warning/States/Background Soft Hover,r:255,g:255,b:255,a:204
+colors/Warning/States/Background Soft Hover,r:0,g:0,b:0,a:13
+colors/Warning/States/Background Bold Hover,r:245,g:158,b:12,a:255
+colors/Warning/States/Background Bold Hover,r:0,g:0,b:0,a:13
+
+typography/Button,style:SemiBold,size:14,letterSpacing:-0.20000000298023224
+typography/Title Page,style:SemiBold,size:28,letterSpacing:-1
+typography/Title Section,style:SemiBold,size:22,letterSpacing:-0.5
+typography/Title Block,style:SemiBold,size:16,letterSpacing:-0.5
+typography/Title List,style:Medium,size:12,letterSpacing:0
+typography/Menu Item,style:Regular,size:14,letterSpacing:0
+typography/Subheadline,style:Medium,size:16,letterSpacing:0
+typography/Headline 1,style:Medium,size:40,letterSpacing:-1
+typography/Headline 2,style:Medium,size:32,letterSpacing:-1
+typography/Headline 3,style:Medium,size:20,letterSpacing:-0.5
+typography/Headline 4,style:Medium,size:20,letterSpacing:-0.5
+typography/Body/Large,style:Regular,size:16,letterSpacing:0
+typography/Body/Default,style:Regular,size:14,letterSpacing:0
+typography/Body/Small,style:Regular,size:12,letterSpacing:0
+typography/Body/Large & Emphasized,style:SemiBold,size:16,letterSpacing:0
+typography/Body/Default & Emphasized,style:Medium,size:14,letterSpacing:0
