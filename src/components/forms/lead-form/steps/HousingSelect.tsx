@@ -1,9 +1,11 @@
 "use client";
 
+import { useState } from "react";
 import { Home, Building2 } from "lucide-react";
 import { Heading } from "@/components/ui/typography";
 import { SelectOptionGroup } from "@/components/ui/select-option-group";
 import { HousingType } from "@/types/lead-form";
+import { DisqualificationModal } from "../DisqualificationModal";
 
 interface HousingSelectProps {
   value: HousingType | null;
@@ -22,28 +24,41 @@ export function HousingSelect({
   onNext,
   error,
 }: HousingSelectProps) {
+  const [showModal, setShowModal] = useState(false);
+
   const handleSelect = (value: HousingType) => {
     onChange(value);
-    setTimeout(() => onNext(), 150);
+    if (value === "appartement") {
+      setShowModal(true);
+    } else {
+      setTimeout(() => onNext(), 150);
+    }
   };
 
   return (
-    <div className="space-y-6">
-      <div className="text-center">
-        <Heading as="h2" className="mb-2">
-          Votre logement ?
-        </Heading>
-        <p className="text-muted-foreground">
-          Sélectionnez votre type de logement
-        </p>
+    <>
+      <div className="space-y-6">
+        <div className="text-center">
+          <Heading as="h2" className="mb-2">
+            Votre logement ?
+          </Heading>
+          <p className="text-muted-foreground">
+            Sélectionnez votre type de logement
+          </p>
+        </div>
+
+        <SelectOptionGroup
+          options={housingOptions}
+          value={null}
+          onSelect={handleSelect}
+          error={error}
+        />
       </div>
 
-      <SelectOptionGroup
-        options={housingOptions}
-        value={null}
-        onSelect={handleSelect}
-        error={error}
+      <DisqualificationModal
+        isOpen={showModal}
+        onClose={() => setShowModal(false)}
       />
-    </div>
+    </>
   );
 }
