@@ -39,6 +39,16 @@ export default function RootLayout({
             getWebSiteSchema(),
           ]}
         />
+        {/* Register smooth corners paint worklet for iOS-style squircles */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              if (typeof CSS !== 'undefined' && CSS.paintWorklet) {
+                CSS.paintWorklet.addModule('/smooth-corners.js');
+              }
+            `,
+          }}
+        />
       </head>
       <body
         className={cn(
