@@ -47,10 +47,6 @@ export function DisqualificationModal({
 
             {/* Content */}
             <div className="text-center">
-              <div className="mb-4 flex size-16 items-center justify-center rounded-full bg-primary/10">
-                <span className="text-3xl">🏠</span>
-              </div>
-
               <Heading as="h3" className="mb-3">
                 Propriétaires de maison uniquement
               </Heading>
