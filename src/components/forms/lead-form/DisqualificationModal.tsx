@@ -28,13 +28,13 @@ export function DisqualificationModal({
             onClick={onClose}
           />
 
-          {/* Modal */}
+          {/* Modal - Bottom sheet on mobile, centered on desktop */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            transition={{ duration: 0.2 }}
-            className="fixed left-1/2 top-1/2 z-50 w-[calc(100%-2rem)] max-w-md -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-background p-6 shadow-xl"
+            initial={{ opacity: 0, y: "100%" }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: "100%" }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="fixed inset-x-0 bottom-0 z-50 w-full rounded-t-2xl bg-background p-6 shadow-xl md:inset-auto md:left-1/2 md:top-1/2 md:w-full md:max-w-md md:-translate-x-1/2 md:-translate-y-1/2 md:rounded-2xl"
           >
             {/* Close button */}
             <button
