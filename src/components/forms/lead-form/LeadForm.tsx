@@ -238,7 +238,7 @@ export function LeadForm() {
   const canGoBack = currentStep > 1 && !(isValidService && currentStep === 2);
 
   return (
-    <div className="flex flex-col p-4 min-h-dvh">
+    <div className="flex flex-col px-3 pb-3 pt-4 md:p-4 min-h-dvh">
       {/* Header with logo and back button */}
       <header className="relative flex h-9 items-center justify-center mb-4 px-2 shrink-0">
         {canGoBack && (
