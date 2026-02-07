@@ -7,12 +7,14 @@ import {
   ServiceSelect,
   HousingSelect,
   OwnershipSelect,
+  HeatingSelect,
   ContactInfo,
 } from "./steps";
 import {
   ServiceType,
   HousingType,
   OwnershipType,
+  HeatingType,
   LeadFormData,
   initialContactInfo,
 } from "@/types/lead-form";
@@ -59,13 +61,14 @@ export function LeadForm() {
     service: isValidService ? initialService : null,
     housingType: null,
     ownershipType: null,
+    heatingType: null,
     contact: initialContactInfo,
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Total steps
-  const totalSteps = 4;
+  const totalSteps = 5;
 
   // Validation for contact step
   const validateContact = useCallback(() => {
@@ -162,6 +165,17 @@ export function LeadForm() {
           />
         );
       case 4:
+        return (
+          <HeatingSelect
+            value={formData.heatingType}
+            onChange={(heatingType: HeatingType) =>
+              setFormData({ ...formData, heatingType })
+            }
+            onNext={handleNext}
+            error={errors.heatingType}
+          />
+        );
+      case 5:
         return (
           <ContactInfo
             value={formData.contact}

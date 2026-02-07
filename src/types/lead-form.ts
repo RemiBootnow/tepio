@@ -5,6 +5,8 @@ export type HousingType = "maison" | "appartement";
 
 export type OwnershipType = "proprietaire" | "locataire";
 
+export type HeatingType = "electrique" | "gaz" | "fioul" | "bois" | "autre";
+
 // Form data structure
 export interface ContactInfo {
   firstName: string;
@@ -20,6 +22,7 @@ export interface LeadFormData {
   service: ServiceType | null;
   housingType: HousingType | null;
   ownershipType: OwnershipType | null;
+  heatingType: HeatingType | null;
   contact: ContactInfo;
 }
 
@@ -38,6 +41,7 @@ export const initialLeadFormData: LeadFormData = {
   service: null,
   housingType: null,
   ownershipType: null,
+  heatingType: null,
   contact: initialContactInfo,
 };
 
