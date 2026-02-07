@@ -3,6 +3,8 @@ export type ServiceType = "poele-insert" | "pompe-a-chaleur" | "climatisation";
 
 export type HousingType = "maison" | "appartement";
 
+export type HouseAgeType = "moins-2-ans" | "2-15-ans" | "plus-15-ans";
+
 export type OwnershipType = "proprietaire" | "locataire";
 
 export type HeatingType = "electrique" | "gaz" | "fioul" | "bois" | "autre";
@@ -23,6 +25,7 @@ export interface ContactInfo {
 export interface LeadFormData {
   service: ServiceType | null;
   housingType: HousingType | null;
+  houseAge: HouseAgeType | null;
   ownershipType: OwnershipType | null;
   heatingType: HeatingType | null;
   heatingBudget: HeatingBudgetType | null;
@@ -43,6 +46,7 @@ export const initialContactInfo: ContactInfo = {
 export const initialLeadFormData: LeadFormData = {
   service: null,
   housingType: null,
+  houseAge: null,
   ownershipType: null,
   heatingType: null,
   heatingBudget: null,

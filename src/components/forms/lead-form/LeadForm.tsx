@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import {
   ServiceSelect,
   HousingSelect,
+  HouseAgeSelect,
   OwnershipSelect,
   HeatingSelect,
   HeatingBudgetSelect,
@@ -14,6 +15,7 @@ import {
 import {
   ServiceType,
   HousingType,
+  HouseAgeType,
   OwnershipType,
   HeatingType,
   HeatingBudgetType,
@@ -62,6 +64,7 @@ export function LeadForm() {
   const [formData, setFormData] = useState<LeadFormData>({
     service: isValidService ? initialService : null,
     housingType: null,
+    houseAge: null,
     ownershipType: null,
     heatingType: null,
     heatingBudget: null,
@@ -70,8 +73,9 @@ export function LeadForm() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Total steps
-  const totalSteps = 6;
+  // Total steps depends on whether house age step is shown (only for maison)
+  const showHouseAgeStep = formData.housingType === "maison";
+  const totalSteps = showHouseAgeStep ? 7 : 6;
 
   // Validation for contact step
   const validateContact = useCallback(() => {
@@ -131,10 +135,25 @@ export function LeadForm() {
     }
   }, [validateContact, router]);
 
+  // Map step number to logical step based on whether house age is shown
+  // With house age: 1=service, 2=housing, 3=houseAge, 4=ownership, 5=heating, 6=budget, 7=contact
+  // Without house age: 1=service, 2=housing, 3=ownership, 4=heating, 5=budget, 6=contact
+  const getLogicalStep = (step: number): string => {
+    if (showHouseAgeStep) {
+      const steps = ["service", "housing", "houseAge", "ownership", "heating", "budget", "contact"];
+      return steps[step - 1] || "service";
+    } else {
+      const steps = ["service", "housing", "ownership", "heating", "budget", "contact"];
+      return steps[step - 1] || "service";
+    }
+  };
+
   // Render current step
   const renderStep = () => {
-    switch (currentStep) {
-      case 1:
+    const logicalStep = getLogicalStep(currentStep);
+
+    switch (logicalStep) {
+      case "service":
         return (
           <ServiceSelect
             value={formData.service}
@@ -145,7 +164,7 @@ export function LeadForm() {
             error={errors.service}
           />
         );
-      case 2:
+      case "housing":
         return (
           <HousingSelect
             value={formData.housingType}
@@ -156,7 +175,18 @@ export function LeadForm() {
             error={errors.housingType}
           />
         );
-      case 3:
+      case "houseAge":
+        return (
+          <HouseAgeSelect
+            value={formData.houseAge}
+            onChange={(houseAge: HouseAgeType) =>
+              setFormData({ ...formData, houseAge })
+            }
+            onNext={handleNext}
+            error={errors.houseAge}
+          />
+        );
+      case "ownership":
         return (
           <OwnershipSelect
             value={formData.ownershipType}
@@ -167,7 +197,7 @@ export function LeadForm() {
             error={errors.ownershipType}
           />
         );
-      case 4:
+      case "heating":
         return (
           <HeatingSelect
             value={formData.heatingType}
@@ -178,7 +208,7 @@ export function LeadForm() {
             error={errors.heatingType}
           />
         );
-      case 5:
+      case "budget":
         return (
           <HeatingBudgetSelect
             value={formData.heatingBudget}
@@ -189,7 +219,7 @@ export function LeadForm() {
             error={errors.heatingBudget}
           />
         );
-      case 6:
+      case "contact":
         return (
           <ContactInfo
             value={formData.contact}
