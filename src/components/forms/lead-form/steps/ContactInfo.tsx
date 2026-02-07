@@ -241,7 +241,7 @@ export function ContactInfo({
           onClick={onSubmit}
           disabled={isSubmitting}
         >
-          {isSubmitting ? "Envoi en cours..." : "Envoyer ma demande"}
+          {isSubmitting ? "Envoi en cours..." : "Voir mon estimation"}
         </Button>
       </div>
     </div>
