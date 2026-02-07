@@ -74,7 +74,6 @@ export function ContactInfo({
           <FormField
             label="Prénom"
             htmlFor="firstName"
-            required
             error={errors.firstName}
           >
             <Input
@@ -91,7 +90,6 @@ export function ContactInfo({
           <FormField
             label="Nom"
             htmlFor="lastName"
-            required
             error={errors.lastName}
           >
             <Input
@@ -110,7 +108,6 @@ export function ContactInfo({
         <FormField
           label="Email"
           htmlFor="email"
-          required
           error={errors.email}
         >
           <Input
@@ -128,7 +125,6 @@ export function ContactInfo({
         <FormField
           label="Téléphone"
           htmlFor="phone"
-          required
           error={errors.phone}
         >
           <Input
@@ -147,7 +143,6 @@ export function ContactInfo({
         <FormField
           label="Code postal"
           htmlFor="postalCode"
-          required
           error={errors.postalCode}
         >
           <Input
@@ -174,7 +169,6 @@ export function ContactInfo({
           <FormField
             label="Ville"
             htmlFor="city"
-            required
             error={errors.city}
           >
             {isLoadingCities ? (
@@ -224,7 +218,6 @@ export function ContactInfo({
             <span className="text-sm text-muted-foreground">
               J&apos;accepte que mes données soient utilisées pour être
               recontacté dans le cadre de mon projet de rénovation énergétique.
-              *
             </span>
           </label>
           {errors.consent && (

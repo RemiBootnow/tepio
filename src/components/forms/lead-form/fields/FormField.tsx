@@ -8,7 +8,7 @@ interface FormFieldProps {
   label: string;
   htmlFor: string;
   error?: string;
-  required?: boolean;
+  optional?: boolean;
   children: React.ReactNode;
   className?: string;
 }
@@ -17,7 +17,7 @@ export function FormField({
   label,
   htmlFor,
   error,
-  required = false,
+  optional = false,
   children,
   className,
 }: FormFieldProps) {
@@ -25,7 +25,7 @@ export function FormField({
     <div className={cn("space-y-2", className)}>
       <Label htmlFor={htmlFor}>
         {label}
-        {required && <span className="text-destructive ml-1">*</span>}
+        {optional && <span className="text-muted-foreground ml-1 font-normal">(optionnel)</span>}
       </Label>
       {children}
       {error && (
