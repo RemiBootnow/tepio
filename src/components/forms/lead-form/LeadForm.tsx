@@ -8,6 +8,7 @@ import {
   HousingSelect,
   OwnershipSelect,
   HeatingSelect,
+  HeatingBudgetSelect,
   ContactInfo,
 } from "./steps";
 import {
@@ -15,6 +16,7 @@ import {
   HousingType,
   OwnershipType,
   HeatingType,
+  HeatingBudgetType,
   LeadFormData,
   initialContactInfo,
 } from "@/types/lead-form";
@@ -33,12 +35,12 @@ const slideVariants = {
   animate: {
     x: 0,
     opacity: 1,
-    transition: { duration: 0.1, ease: "easeOut", delay: 0.02 },
+    transition: { duration: 0.1, ease: "easeOut" as const, delay: 0.02 },
   },
   exit: (direction: number) => ({
     x: -40 * direction,
     opacity: 0,
-    transition: { duration: 0.1, ease: "easeOut" },
+    transition: { duration: 0.1, ease: "easeOut" as const },
   }),
 };
 
@@ -62,13 +64,14 @@ export function LeadForm() {
     housingType: null,
     ownershipType: null,
     heatingType: null,
+    heatingBudget: null,
     contact: initialContactInfo,
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Total steps
-  const totalSteps = 5;
+  const totalSteps = 6;
 
   // Validation for contact step
   const validateContact = useCallback(() => {
@@ -176,6 +179,17 @@ export function LeadForm() {
           />
         );
       case 5:
+        return (
+          <HeatingBudgetSelect
+            value={formData.heatingBudget}
+            onChange={(heatingBudget: HeatingBudgetType) =>
+              setFormData({ ...formData, heatingBudget })
+            }
+            onNext={handleNext}
+            error={errors.heatingBudget}
+          />
+        );
+      case 6:
         return (
           <ContactInfo
             value={formData.contact}
