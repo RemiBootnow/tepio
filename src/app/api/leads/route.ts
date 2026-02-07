@@ -14,6 +14,29 @@ const supabase = supabaseUrl && supabaseKey
   ? createClient(supabaseUrl, supabaseKey)
   : null;
 
+// Strip HTML tags to prevent stored XSS
+const sanitize = (val: string) => val.replace(/<[^>]*>/g, "").trim();
+const safeString = (min: number, max: number) =>
+  z.string().min(min).max(max).transform(sanitize);
+
+// Rate limiting: simple in-memory store (per serverless instance)
+const rateLimit = new Map<string, { count: number; resetAt: number }>();
+const RATE_LIMIT_WINDOW = 60_000; // 1 minute
+const RATE_LIMIT_MAX = 5; // max 5 submissions per minute per IP
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now();
+  const entry = rateLimit.get(ip);
+
+  if (!entry || now > entry.resetAt) {
+    rateLimit.set(ip, { count: 1, resetAt: now + RATE_LIMIT_WINDOW });
+    return false;
+  }
+
+  entry.count++;
+  return entry.count > RATE_LIMIT_MAX;
+}
+
 // Validation schema for lead submission
 const leadSchema = z.object({
   service: z.enum(["poele-insert", "pompe-a-chaleur", "climatisation"]),
@@ -23,23 +46,32 @@ const leadSchema = z.object({
   heatingType: z.enum(["electrique", "gaz", "fioul", "bois", "autre"]),
   heatingBudget: z.enum(["moins-50", "50-80", "80-120", "120-plus"]),
   contact: z.object({
-    firstName: z.string().min(2),
-    lastName: z.string().min(2),
-    email: z.string().email(),
-    phone: z.string().min(10),
-    postalCode: z.string().length(5),
-    city: z.string().min(1),
+    firstName: safeString(2, 50),
+    lastName: safeString(2, 50),
+    email: z.string().email().max(254).transform(sanitize),
+    phone: z.string().min(10).max(15).regex(/^[\d\s+()-]+$/, "Numéro invalide"),
+    postalCode: z.string().regex(/^\d{5}$/, "Code postal invalide"),
+    city: safeString(1, 100),
     consent: z.literal(true),
   }),
   // Optional tracking fields
-  sourceUrl: z.string().optional(),
-  utmSource: z.string().optional(),
-  utmMedium: z.string().optional(),
-  utmCampaign: z.string().optional(),
+  sourceUrl: z.string().max(500).optional(),
+  utmSource: z.string().max(100).optional(),
+  utmMedium: z.string().max(100).optional(),
+  utmCampaign: z.string().max(100).optional(),
 });
 
 export async function POST(request: NextRequest) {
   try {
+    // Rate limiting
+    const ip = request.headers.get("x-forwarded-for")?.split(",")[0] ?? "unknown";
+    if (isRateLimited(ip)) {
+      return NextResponse.json(
+        { error: "Trop de demandes. Veuillez patienter." },
+        { status: 429 }
+      );
+    }
+
     const body = await request.json();
 
     // Validate input
