@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { notFound } from "next/navigation";
 import Link from "next/link";
 import { CheckCircle2, Phone, Mail, Home, Clock } from "lucide-react";
 import { generatePageMetadata } from "@/lib/seo/metadata";
@@ -7,32 +8,74 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Heading } from "@/components/ui/typography";
 import { siteConfig } from "@/config/site";
 import { APP_NAME } from "@/lib/constants";
+import { ServiceType, serviceLabels } from "@/types/lead-form";
 
-export const metadata: Metadata = generatePageMetadata({
-  title: "Demande Envoyée",
-  description: "Votre demande de devis a été envoyée avec succès.",
-  noIndex: true,
-});
+const validServices: ServiceType[] = [
+  "pompe-a-chaleur",
+  "poele-insert",
+  "climatisation",
+];
+
+function isValidService(service: string): service is ServiceType {
+  return validServices.includes(service as ServiceType);
+}
+
+interface ConfirmationPageProps {
+  params: Promise<{
+    service: string;
+  }>;
+}
+
+export async function generateMetadata({
+  params,
+}: ConfirmationPageProps): Promise<Metadata> {
+  const { service } = await params;
+
+  if (!isValidService(service)) {
+    return generatePageMetadata({
+      title: "Page non trouvée",
+      description: "Cette page n'existe pas.",
+      noIndex: true,
+    });
+  }
+
+  return generatePageMetadata({
+    title: `Demande Envoyée - ${serviceLabels[service]}`,
+    description: "Votre demande de devis a été envoyée avec succès.",
+    noIndex: true,
+  });
+}
 
 const nextSteps = [
   {
     icon: Clock,
     title: "Réponse sous 48h",
-    description: "Un conseiller analyse votre demande et prépare une réponse personnalisée.",
+    description:
+      "Un conseiller analyse votre demande et prépare une réponse personnalisée.",
   },
   {
     icon: Phone,
     title: "Appel de qualification",
-    description: "Nous vous appelons pour affiner votre projet et répondre à vos questions.",
+    description:
+      "Nous vous appelons pour affiner votre projet et répondre à vos questions.",
   },
   {
     icon: Home,
     title: "Visite technique",
-    description: "Un technicien se déplace gratuitement pour évaluer votre installation.",
+    description:
+      "Un technicien se déplace gratuitement pour évaluer votre installation.",
   },
 ];
 
-export default function ConfirmationPage() {
+export default async function ConfirmationPage({
+  params,
+}: ConfirmationPageProps) {
+  const { service } = await params;
+
+  if (!isValidService(service)) {
+    notFound();
+  }
+
   return (
     <section className="py-12 md:py-20">
       <div className="container">
@@ -46,8 +89,10 @@ export default function ConfirmationPage() {
               Demande envoyée avec succès !
             </Heading>
             <p className="text-lg text-muted-foreground">
-              Merci pour votre confiance. Votre demande a bien été enregistrée
-              et un conseiller {APP_NAME} vous contactera très prochainement.
+              Merci pour votre confiance. Votre demande de devis{" "}
+              <strong>{serviceLabels[service].toLowerCase()}</strong> a bien été
+              enregistrée et un conseiller {APP_NAME} vous contactera très
+              prochainement.
             </p>
           </div>
 
@@ -79,7 +124,9 @@ export default function ConfirmationPage() {
               <h2 className="font-medium text-lg mb-4">Une question urgente ?</h2>
               <div className="flex flex-col sm:flex-row gap-3">
                 <Button variant="outline" className="flex-1" asChild>
-                  <a href={`tel:${siteConfig.business.phone.replace(/\s/g, "")}`}>
+                  <a
+                    href={`tel:${siteConfig.business.phone.replace(/\s/g, "")}`}
+                  >
                     <Phone className="mr-2 h-4 w-4" />
                     {siteConfig.business.phone}
                   </a>
@@ -96,9 +143,7 @@ export default function ConfirmationPage() {
 
           {/* Back to home */}
           <Button size="lg" asChild>
-            <Link href="/">
-              Retour à l&apos;accueil
-            </Link>
+            <Link href="/">Retour à l&apos;accueil</Link>
           </Button>
         </div>
       </div>

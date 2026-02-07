@@ -59,7 +59,7 @@ export function Header() {
       <div className="flex items-center gap-3">
         {/* Estimer button - always neutral (dark) */}
         <Button variant="neutral" size="default" asChild>
-          <Link href="/devis-gratuit">Estimer</Link>
+          <Link href="/estimation">Estimer</Link>
         </Button>
 
         {/* Menu button - Mobile only */}

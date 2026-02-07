@@ -7,7 +7,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Static pages - add more as you create them
   const staticPages = [
     "",
-    "/devis-gratuit",
+    "/estimation",
     // Future pages:
     // "/pompe-a-chaleur",
     // "/poele-a-bois",

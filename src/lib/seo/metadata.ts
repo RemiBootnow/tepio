@@ -91,7 +91,7 @@ export function generatePageMetadata({
       title: fullTitle,
       description,
       images: [image],
-      creator: "@monexpertrenov",
+      creator: "@tepio",
     },
 
     // Verification (add your IDs via env vars)
@@ -167,6 +167,6 @@ export const defaultMetadata: Metadata = {
     title: siteConfig.name,
     description: siteConfig.description,
     images: [`${siteConfig.url}${siteConfig.ogImage}`],
-    creator: "@monexpertrenov",
+    creator: "@tepio",
   },
 };

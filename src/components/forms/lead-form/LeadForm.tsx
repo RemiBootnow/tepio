@@ -1,10 +1,9 @@
 "use client";
 
 import { useState, useCallback } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import {
-  ServiceSelect,
   HousingSelect,
   HouseAgeSelect,
   OwnershipSelect,
@@ -29,6 +28,10 @@ import { Button } from "@/components/ui/button";
 import { Logo } from "@/components/ui/logo";
 import { ArrowLeft } from "lucide-react";
 
+interface LeadFormProps {
+  service: ServiceType;
+}
+
 const slideVariants = {
   initial: (direction: number) => ({
     x: 40 * direction,
@@ -46,23 +49,14 @@ const slideVariants = {
   }),
 };
 
-export function LeadForm() {
+export function LeadForm({ service }: LeadFormProps) {
   const router = useRouter();
-  const searchParams = useSearchParams();
 
-  // Get initial service from URL params
-  const initialService = searchParams.get("service") as ServiceType | null;
-  const isValidService =
-    initialService &&
-    ["poele-insert", "pompe-a-chaleur", "climatisation"].includes(
-      initialService
-    );
-
-  // Form state
-  const [currentStep, setCurrentStep] = useState(isValidService ? 2 : 1);
+  // Form state - service is now passed as prop
+  const [currentStep, setCurrentStep] = useState(1);
   const [direction, setDirection] = useState(1); // 1 = forward, -1 = backward
   const [formData, setFormData] = useState<LeadFormData>({
-    service: isValidService ? initialService : null,
+    service,
     housingType: null,
     houseAge: null,
     ownershipType: null,
@@ -73,9 +67,8 @@ export function LeadForm() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Total steps depends on whether house age step is shown (only for maison)
-  const showHouseAgeStep = formData.housingType === "maison";
-  const totalSteps = showHouseAgeStep ? 7 : 6;
+  // Steps: 1=housing, 2=houseAge, 3=ownership, 4=heating, 5=budget, 6=contact
+  const totalSteps = 6;
 
   // Validation for contact step
   const validateContact = useCallback(() => {
@@ -106,15 +99,11 @@ export function LeadForm() {
 
   const handleBack = useCallback(() => {
     if (currentStep > 1) {
-      // Don't go back to step 1 if service was from URL
-      if (isValidService && currentStep === 2) {
-        return;
-      }
       setDirection(-1);
       setCurrentStep(currentStep - 1);
       setErrors({});
     }
-  }, [currentStep, isValidService]);
+  }, [currentStep]);
 
   const handleSubmit = useCallback(async () => {
     if (!validateContact()) return;
@@ -122,30 +111,39 @@ export function LeadForm() {
     setIsSubmitting(true);
 
     try {
-      // TODO: Submit to API
-      // For now, simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      const response = await fetch("/api/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          service: formData.service,
+          housingType: formData.housingType,
+          houseAge: formData.houseAge,
+          ownershipType: formData.ownershipType,
+          heatingType: formData.heatingType,
+          heatingBudget: formData.heatingBudget,
+          contact: formData.contact,
+          sourceUrl: typeof window !== "undefined" ? window.location.href : undefined,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to submit");
+      }
 
       // Redirect to confirmation page
-      router.push("/devis-gratuit/confirmation");
+      router.push(`/estimation/${service}/confirmation`);
     } catch {
       setErrors({ submit: "Une erreur est survenue. Veuillez réessayer." });
     } finally {
       setIsSubmitting(false);
     }
-  }, [validateContact, router]);
+  }, [validateContact, router, formData, service]);
 
-  // Map step number to logical step based on whether house age is shown
-  // With house age: 1=service, 2=housing, 3=houseAge, 4=ownership, 5=heating, 6=budget, 7=contact
-  // Without house age: 1=service, 2=housing, 3=ownership, 4=heating, 5=budget, 6=contact
+  // Map step number to logical step
+  // 1=housing, 2=houseAge, 3=ownership, 4=heating, 5=budget, 6=contact
+  const steps = ["housing", "houseAge", "ownership", "heating", "budget", "contact"];
   const getLogicalStep = (step: number): string => {
-    if (showHouseAgeStep) {
-      const steps = ["service", "housing", "houseAge", "ownership", "heating", "budget", "contact"];
-      return steps[step - 1] || "service";
-    } else {
-      const steps = ["service", "housing", "ownership", "heating", "budget", "contact"];
-      return steps[step - 1] || "service";
-    }
+    return steps[step - 1] || "housing";
   };
 
   // Render current step
@@ -153,17 +151,6 @@ export function LeadForm() {
     const logicalStep = getLogicalStep(currentStep);
 
     switch (logicalStep) {
-      case "service":
-        return (
-          <ServiceSelect
-            value={formData.service}
-            onChange={(service: ServiceType) =>
-              setFormData({ ...formData, service })
-            }
-            onNext={handleNext}
-            error={errors.service}
-          />
-        );
       case "housing":
         return (
           <HousingSelect
@@ -235,7 +222,7 @@ export function LeadForm() {
   };
 
   // Can we go back from current step?
-  const canGoBack = currentStep > 1 && !(isValidService && currentStep === 2);
+  const canGoBack = currentStep > 1;
 
   return (
     <div className="flex flex-col px-3 pb-3 pt-4 md:p-4 min-h-dvh">

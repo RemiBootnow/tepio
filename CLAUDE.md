@@ -1,8 +1,18 @@
 # Project Instructions for Claude
 
-## Golden Rule
+## Golden Rules
 
-**Always use existing components before creating new ones.** Check `src/components/ui/` for available components first. Never recreate functionality that already exists in the project.
+1. **Always use existing components before creating new ones.** Check `src/components/ui/` for available components first. Never recreate functionality that already exists in the project.
+
+2. **Always use `APP_NAME` for the app name.** Never hardcode "Tepio" - import from `@/lib/constants`.
+
+```tsx
+import { APP_NAME } from "@/lib/constants";
+
+// Use in JSX
+<title>{APP_NAME}</title>
+<p>Welcome to {APP_NAME}</p>
+```
 
 ### Available Components (`src/components/ui/`)
 - `button.tsx` - Button component

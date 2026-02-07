@@ -52,7 +52,7 @@ export default function HomePage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" asChild>
-              <Link href="/devis-gratuit">
+              <Link href="/estimation">
                 Demander un devis gratuit
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
@@ -232,7 +232,7 @@ export default function HomePage() {
                 className="bg-background text-primary hover:bg-background/90"
                 asChild
               >
-                <Link href="/devis-gratuit">
+                <Link href="/estimation">
                   Demander un devis gratuit
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>

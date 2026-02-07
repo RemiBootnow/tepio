@@ -1,18 +1,20 @@
+import { APP_NAME } from "@/lib/constants";
+
 export const siteConfig = {
-  name: "MonExpertRenov",
+  name: APP_NAME,
   description:
     "Experts en rénovation énergétique : pompes à chaleur, poêles à bois et granulés, climatisation. Devis gratuit et accompagnement personnalisé pour vos aides financières.",
-  url: process.env.NEXT_PUBLIC_SITE_URL || "https://www.monexpertrenov.fr",
+  url: process.env.NEXT_PUBLIC_SITE_URL || "https://tepio.fr",
   ogImage: "/images/og-default.jpg",
   locale: "fr_FR",
   language: "fr",
 
   // Business information for structured data
   business: {
-    name: "MonExpertRenov",
-    legalName: "MonExpertRenov SAS",
+    name: APP_NAME,
+    legalName: `${APP_NAME} SAS`,
     foundingDate: "2024",
-    email: "contact@monexpertrenov.fr",
+    email: "contact@tepio.fr",
     phone: "+33 1 23 45 67 89",
     address: {
       streetAddress: "123 Rue de la Rénovation",
@@ -31,9 +33,9 @@ export const siteConfig = {
 
   // Social links
   links: {
-    facebook: "https://facebook.com/monexpertrenov",
-    linkedin: "https://linkedin.com/company/monexpertrenov",
-    twitter: "https://twitter.com/monexpertrenov",
+    facebook: "https://facebook.com/tepio",
+    linkedin: "https://linkedin.com/company/tepio",
+    twitter: "https://twitter.com/tepio",
   },
 
   // Services for structured data

@@ -137,28 +137,3 @@
     font-family: var(--font-mabry), ui-sans-serif, system-ui, sans-serif;
   }
 }
-
-/* iOS-style smooth corners (squircle) */
-@supports (mask-image: paint(smooth-corners)) {
-  .smooth-corners {
-    mask-image: paint(smooth-corners);
-    --smooth-corners: 0.6;
-  }
-}
-
-/* Fallback for browsers without Paint API - subtle approximation */
-@layer utilities {
-  .rounded-smooth {
-    /* Slightly increased border-radius for smoother appearance */
-    --tw-border-spacing-x: 0px;
-    --tw-border-spacing-y: 0px;
-  }
-}
-
-/* Global smooth corners for all rounded elements */
-[class*="rounded-"] {
-  /* Webkit smooth corners */
-  -webkit-mask-box-image: none;
-  /* Subtle smoothing via box decoration */
-  box-decoration-break: clone;
-}
