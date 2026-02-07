@@ -47,16 +47,16 @@ export function DisqualificationModal({
 
             {/* Content */}
             <div className="text-center">
-              <div className="mx-auto mb-4 flex size-16 items-center justify-center rounded-full bg-primary/10">
+              <div className="mb-4 flex size-16 items-center justify-center rounded-full bg-primary/10">
                 <span className="text-3xl">🏠</span>
               </div>
 
               <Heading as="h3" className="mb-3">
-                Désolé, nous ne pouvons pas vous aider
+                Propriétaires de maison uniquement
               </Heading>
 
               <p className="mb-6 text-muted-foreground">
-                Tepio accompagne uniquement les <strong>propriétaires de maison</strong> dans leurs projets de rénovation énergétique.
+                Tepio accompagne uniquement les propriétaires de maison dans leurs projets de rénovation énergétique.
               </p>
 
               <Button onClick={onClose} className="w-full">
