@@ -89,30 +89,30 @@ export async function POST(request: NextRequest) {
 
     // Insert into Supabase if configured
     if (supabase) {
-      const { data: savedLead, error: dbError } = await supabase
+      const insertData = {
+        service: data.service,
+        housing_type: data.housingType,
+        house_age: data.houseAge,
+        ownership_type: data.ownershipType,
+        heating_type: data.heatingType,
+        heating_budget: data.heatingBudget,
+        first_name: data.contact.firstName,
+        last_name: data.contact.lastName,
+        email: data.contact.email,
+        phone: data.contact.phone,
+        postal_code: data.contact.postalCode,
+        city: data.contact.city,
+        consent: data.contact.consent,
+        status: "new",
+        source_url: data.sourceUrl || null,
+        utm_source: data.utmSource || null,
+        utm_medium: data.utmMedium || null,
+        utm_campaign: data.utmCampaign || null,
+      };
+
+      const { error: dbError } = await supabase
         .from("leads")
-        .insert({
-          service: data.service,
-          housing_type: data.housingType,
-          house_age: data.houseAge,
-          ownership_type: data.ownershipType,
-          heating_type: data.heatingType,
-          heating_budget: data.heatingBudget,
-          first_name: data.contact.firstName,
-          last_name: data.contact.lastName,
-          email: data.contact.email,
-          phone: data.contact.phone,
-          postal_code: data.contact.postalCode,
-          city: data.contact.city,
-          consent: data.contact.consent,
-          status: "new",
-          source_url: data.sourceUrl || null,
-          utm_source: data.utmSource || null,
-          utm_medium: data.utmMedium || null,
-          utm_campaign: data.utmCampaign || null,
-        })
-        .select()
-        .single();
+        .insert(insertData);
 
       if (dbError) {
         console.error("Supabase error:", dbError);
@@ -122,7 +122,7 @@ export async function POST(request: NextRequest) {
         );
       }
 
-      lead = savedLead;
+      lead = insertData;
     } else {
       // If Supabase not configured, create a mock lead for development
       lead = {
