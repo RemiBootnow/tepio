@@ -18,26 +18,26 @@ export function TrustSection() {
         </p>
 
         {/* Logo boxes */}
-        <div className="flex flex-wrap justify-center gap-2">
+        <div className="flex flex-wrap justify-center gap-1.5 md:gap-2">
           {/* République Française */}
-          <div className="flex h-12 items-center justify-center rounded-xl border border-border p-2">
-            <RepubliqueFrancaiseLogo />
+          <div className="flex h-9 items-center justify-center rounded-lg border border-border px-1.5 md:h-12 md:rounded-xl md:p-2">
+            <RepubliqueFrancaiseLogo className="h-6 w-auto md:h-8" />
           </div>
 
           {/* CEE */}
-          <div className="flex h-12 items-center justify-center rounded-xl border border-border p-2">
-            <CEELogo />
+          <div className="flex h-9 items-center justify-center rounded-lg border border-border px-1.5 md:h-12 md:rounded-xl md:p-2">
+            <CEELogo className="h-6 w-auto md:h-8" />
           </div>
 
           {/* Ma Prime Rénov' */}
-          <div className="flex h-12 items-center justify-center rounded-xl border border-border p-2">
-            <MaPrimeRenovLogo />
+          <div className="flex h-9 items-center justify-center rounded-lg border border-border px-1.5 md:h-12 md:rounded-xl md:p-2">
+            <MaPrimeRenovLogo className="h-5 w-auto md:h-7" />
           </div>
 
           {/* Trustpilot */}
-          <div className="flex h-12 items-center gap-2 rounded-xl border border-border px-2">
-            <TrustpilotLogo />
-            <span className="text-xs text-foreground">250+ Avis - 4,7</span>
+          <div className="flex h-9 items-center gap-1.5 rounded-lg border border-border px-1.5 md:h-12 md:gap-2 md:rounded-xl md:px-2">
+            <TrustpilotLogo className="h-4 w-auto md:h-6" />
+            <span className="text-[10px] text-foreground md:text-xs">250+ Avis - 4,7</span>
           </div>
         </div>
       </div>
