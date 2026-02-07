@@ -7,33 +7,42 @@ interface CommuneResult {
 export interface PostalCodeCity {
   name: string;
   code: string;
+  postalCode: string;
 }
 
 /**
- * Fetch cities from a French postal code using the geo.api.gouv.fr API
+ * Search French communes by postal code or city name using geo.api.gouv.fr
  */
-export async function fetchCitiesFromPostalCode(
-  postalCode: string
+export async function searchCommunes(
+  query: string
 ): Promise<PostalCodeCity[]> {
-  if (!/^\d{5}$/.test(postalCode)) {
-    return [];
-  }
+  const trimmed = query.trim();
+  if (trimmed.length < 2) return [];
 
   try {
-    const response = await fetch(
-      `https://geo.api.gouv.fr/communes?codePostal=${postalCode}&fields=nom,code,codesPostaux`
-    );
+    const isPostalCode = /^\d+$/.test(trimmed);
+    const url = isPostalCode
+      ? `https://geo.api.gouv.fr/communes?codePostal=${trimmed}&fields=nom,code,codesPostaux&limit=10`
+      : `https://geo.api.gouv.fr/communes?nom=${encodeURIComponent(trimmed)}&fields=nom,code,codesPostaux&boost=population&limit=7`;
 
-    if (!response.ok) {
-      return [];
-    }
+    const response = await fetch(url);
+    if (!response.ok) return [];
 
     const data: CommuneResult[] = await response.json();
 
-    return data.map((commune) => ({
-      name: commune.nom,
-      code: commune.code,
-    }));
+    // Flatten: one entry per postal code per commune
+    const results: PostalCodeCity[] = [];
+    for (const commune of data) {
+      for (const cp of commune.codesPostaux) {
+        results.push({
+          name: commune.nom,
+          code: commune.code,
+          postalCode: cp,
+        });
+      }
+    }
+
+    return results;
   } catch {
     return [];
   }

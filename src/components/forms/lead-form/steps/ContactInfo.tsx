@@ -1,15 +1,11 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Heading } from "@/components/ui/typography";
 import { FormField } from "../fields/FormField";
+import { CitySearch } from "../fields/CitySearch";
 import { ContactInfo as ContactInfoType } from "@/types/lead-form";
-import {
-  fetchCitiesFromPostalCode,
-  PostalCodeCity,
-} from "@/lib/api/postal-code";
 
 interface ContactInfoProps {
   value: ContactInfoType;
@@ -26,36 +22,12 @@ export function ContactInfo({
   errors = {},
   isSubmitting = false,
 }: ContactInfoProps) {
-  const [cities, setCities] = useState<PostalCodeCity[]>([]);
-  const [isLoadingCities, setIsLoadingCities] = useState(false);
-
   const updateField = <K extends keyof ContactInfoType>(
     field: K,
     fieldValue: ContactInfoType[K]
   ) => {
     onChange({ ...value, [field]: fieldValue });
   };
-
-  // Fetch cities when postal code changes
-  useEffect(() => {
-    const postalCode = value.postalCode;
-
-    if (postalCode.length !== 5) {
-      setCities([]);
-      return;
-    }
-
-    setIsLoadingCities(true);
-    fetchCitiesFromPostalCode(postalCode)
-      .then((result) => {
-        setCities(result);
-        // Auto-select if only one city
-        if (result.length === 1 && value.city !== result[0].name) {
-          updateField("city", result[0].name);
-        }
-      })
-      .finally(() => setIsLoadingCities(false));
-  }, [value.postalCode]);
 
   return (
     <div className="space-y-6">
@@ -139,72 +111,21 @@ export function ContactInfo({
           />
         </FormField>
 
-        {/* Postal code with city selection */}
+        {/* City search - single autocomplete for postal code + city */}
         <FormField
-          label="Code postal"
-          htmlFor="postalCode"
-          error={errors.postalCode}
+          label="Ville"
+          htmlFor="citySearch"
+          error={errors.postalCode || errors.city}
         >
-          <Input
-            id="postalCode"
-            type="text"
-            inputMode="numeric"
-            placeholder="75001"
-            maxLength={5}
-            value={value.postalCode}
-            onChange={(e) => {
-              updateField("postalCode", e.target.value);
-              // Reset city when postal code changes
-              if (e.target.value.length < 5) {
-                updateField("city", "");
-              }
+          <CitySearch
+            postalCode={value.postalCode}
+            city={value.city}
+            onSelect={(postalCode, city) => {
+              onChange({ ...value, postalCode, city });
             }}
-            autoComplete="postal-code"
-            aria-invalid={!!errors.postalCode}
+            error={errors.postalCode || errors.city}
           />
         </FormField>
-
-        {/* City selection - only show if we have cities */}
-        {value.postalCode.length === 5 && (
-          <FormField
-            label="Ville"
-            htmlFor="city"
-            error={errors.city}
-          >
-            {isLoadingCities ? (
-              <div className="h-10 flex items-center text-sm text-muted-foreground">
-                Recherche en cours...
-              </div>
-            ) : cities.length > 1 ? (
-              <select
-                id="city"
-                value={value.city}
-                onChange={(e) => updateField("city", e.target.value)}
-                className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                aria-invalid={!!errors.city}
-              >
-                <option value="">Sélectionnez votre ville</option>
-                {cities.map((city) => (
-                  <option key={city.code} value={city.name}>
-                    {city.name}
-                  </option>
-                ))}
-              </select>
-            ) : cities.length === 1 ? (
-              <Input
-                id="city"
-                type="text"
-                value={value.city}
-                readOnly
-                className="bg-muted"
-              />
-            ) : (
-              <div className="h-10 flex items-center text-sm text-destructive">
-                Code postal non trouvé
-              </div>
-            )}
-          </FormField>
-        )}
 
         {/* Consent checkbox */}
         <div className="pt-2">
