@@ -44,7 +44,7 @@ export default function HomePage() {
             Artisans RGE certifiés
           </Badge>
           <Heading as="h1" className="mb-6">
-            Votre projet de rénovation énergétique commence ici
+            Votre projet commence ici
           </Heading>
           <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
             Pompes à chaleur, poêles à bois et granulés, climatisation.
