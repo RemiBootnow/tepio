@@ -14,7 +14,7 @@ const checkItems = [
 
 export function HeroSection() {
   return (
-    <section className="relative w-full h-[110dvh] -mt-17 overflow-hidden">
+    <section className="relative w-full h-[120vh] -mt-17 overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0">
         {/* Desktop video */}
