@@ -6,6 +6,7 @@ import { Section } from "@/components/layout/Section";
 import { siteConfig } from "@/config/site";
 import { APP_NAME } from "@/lib/constants";
 import { HeroSection } from "@/components/blocks/HeroSection";
+import { ProcessSection } from "@/components/blocks/ProcessSection";
 import { FaqSection } from "@/components/blocks/FaqSection";
 import { ArrowRight, Phone } from "lucide-react";
 
@@ -30,6 +31,9 @@ export default function HomePage() {
     <>
       {/* Hero Section */}
       <HeroSection />
+
+      {/* Process Section */}
+      <ProcessSection />
 
       {/* FAQ Section */}
       <FaqSection />
