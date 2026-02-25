@@ -33,7 +33,7 @@ export function Section({
     <Component className={cn(background, wrapperClassName)}>
       <div
         className={cn(
-          "mx-auto w-full max-w-[1200px]",
+          "mx-auto w-full max-w-5xl",
           // Responsive padding: 16px → 20px (at 375px) → 24px (at 395px)
           "px-4 min-[375px]:px-5 min-[395px]:px-6",
           className

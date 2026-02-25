@@ -5,7 +5,7 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-semibold transition-all active:scale-[0.97] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full text-sm font-semibold transition-all active:scale-[0.97] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
   {
     variants: {
       variant: {
@@ -27,14 +27,14 @@ const buttonVariants = cva(
       },
       size: {
         // Figma Medium: 36px height, 12px padding, 6px radius, 14px text
-        default: "h-9 px-3 py-2 rounded-md text-sm has-[>svg]:px-2.5",
-        xs: "h-6 gap-1 rounded-md px-2 text-xs has-[>svg]:px-1.5 [&_svg:not([class*='size-'])]:size-3",
-        // Figma Small: 24px height, 6px padding, 6px radius, 14px text
-        sm: "h-6 rounded-md gap-1 px-1.5 text-sm has-[>svg]:px-1",
-        // Figma Large: 54px height, 32px padding, 12px radius, 16px text
-        lg: "h-[54px] rounded-xl px-8 text-base has-[>svg]:px-6",
+        default: "h-9 px-3 py-2 text-sm has-[>svg]:px-2.5",
+        xs: "h-6 gap-1 px-2 text-xs has-[>svg]:px-1.5 [&_svg:not([class*='size-'])]:size-3",
+        // Figma Small: 24px height, 6px padding, 14px text
+        sm: "h-6 gap-1 px-1.5 text-sm has-[>svg]:px-1",
+        // Figma Large: 54px height, 32px padding, 16px text
+        lg: "h-[54px] px-8 text-base has-[>svg]:px-6",
         icon: "size-9",
-        "icon-xs": "size-6 rounded-md [&_svg:not([class*='size-'])]:size-3",
+        "icon-xs": "size-6 [&_svg:not([class*='size-'])]:size-3",
         "icon-sm": "size-8",
         "icon-lg": "size-10",
       },
