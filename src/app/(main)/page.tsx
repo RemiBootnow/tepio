@@ -6,6 +6,8 @@ import { Section } from "@/components/layout/Section";
 import { siteConfig } from "@/config/site";
 import { APP_NAME } from "@/lib/constants";
 import { HeroSection } from "@/components/blocks/HeroSection";
+import { LogoSection } from "@/components/blocks/LogoSection";
+import { StatsSection } from "@/components/blocks/StatsSection";
 import { ProcessSection } from "@/components/blocks/ProcessSection";
 import { FaqSection } from "@/components/blocks/FaqSection";
 import { ArrowRight, Phone } from "lucide-react";
@@ -31,6 +33,12 @@ export default function HomePage() {
     <>
       {/* Hero Section */}
       <HeroSection />
+
+      {/* Logo Section */}
+      <LogoSection />
+
+      {/* Stats Section */}
+      <StatsSection />
 
       {/* Process Section */}
       <ProcessSection />
