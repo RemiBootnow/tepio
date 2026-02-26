@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Heading } from "@/components/ui/typography";
 import { Carousel } from "@/components/ui/carousel";
+import { Slider } from "@/components/ui/slider";
 
 export function StatsSection() {
   return (
@@ -52,6 +53,17 @@ export function StatsSection() {
           <div className="bg-blue-400 rounded-3xl w-full h-full" />
           <div className="bg-green-400 rounded-3xl w-full h-full" />
         </Carousel>
+      </div>
+
+      {/* Slider — CSS scroll snap on mobile */}
+      <div className="w-full">
+        <Slider variant="left-aligned">
+          <div className="bg-red-400 rounded-3xl w-full h-full" />
+          <div className="bg-blue-400 rounded-3xl w-full h-full" />
+          <div className="bg-green-400 rounded-3xl w-full h-full" />
+          <div className="bg-yellow-400 rounded-3xl w-full h-full" />
+          <div className="bg-purple-400 rounded-3xl w-full h-full" />
+        </Slider>
       </div>
 
     </section>
