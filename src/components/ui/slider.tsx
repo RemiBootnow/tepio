@@ -27,12 +27,13 @@ const CENTER_SIZES: Record<number, [number, number]> = {
 };
 
 // ── Variant "left-aligned" ──
+const LEFT_PAD = 20;
 const LEFT_X: Record<number, number> = {
-  "-2": 16,
-  "-1": 16,
-  0: 16 + ACTIVE_W + GAP,
-  1: 16 + ACTIVE_W + GAP + SIDE_W + GAP,
-  2: 16 + ACTIVE_W + GAP + SIDE_W + GAP,
+  "-2": LEFT_PAD,
+  "-1": LEFT_PAD,
+  0: LEFT_PAD + ACTIVE_W + GAP,
+  1: LEFT_PAD + ACTIVE_W + GAP + SIDE_W + GAP,
+  2: LEFT_PAD + ACTIVE_W + GAP + SIDE_W + GAP,
 };
 const LEFT_SIZES: Record<number, [number, number]> = {
   "-2": [HIDDEN_W, HIDDEN_H],
@@ -178,9 +179,9 @@ export function Slider({ children, className, variant = "center" }: SliderProps)
         style={{
           height: ACTIVE_H,
           gap: GAP,
-          paddingLeft: 16,
+          paddingLeft: LEFT_PAD,
           // Padding droit suffisant pour que la dernière card puisse snapper
-          paddingRight: `calc(100vw - ${16 + ACTIVE_W}px)`,
+          paddingRight: `calc(100vw - ${LEFT_PAD + ACTIVE_W}px)`,
           scrollSnapType: "x mandatory",
           WebkitOverflowScrolling: "touch",
           scrollbarWidth: "none",
@@ -215,7 +216,7 @@ export function Slider({ children, className, variant = "center" }: SliderProps)
       <div className="relative h-4">
         <div
           className="absolute md:hidden"
-          style={{ left: 16 + ACTIVE_W / 2, transform: "translateX(-50%)" }}
+          style={{ left: LEFT_PAD + ACTIVE_W / 2, transform: "translateX(-50%)" }}
         >
           <ProgressIndicator count={originalCount} active={dotActive} onDotClick={goToMobile} />
         </div>
