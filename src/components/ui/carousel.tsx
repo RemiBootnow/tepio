@@ -27,13 +27,12 @@ const CENTER_SIZES: Record<number, [number, number]> = {
 };
 
 // ── Variant "left-aligned" : référence left: 0, active à role -1 ──
-const LEFT_PAD = 20;
 const LEFT_X: Record<number, number> = {
-  "-2": LEFT_PAD,
-  "-1": LEFT_PAD,
-  0: LEFT_PAD + ACTIVE_W + GAP,
-  1: LEFT_PAD + ACTIVE_W + GAP + SIDE_W + GAP,
-  2: LEFT_PAD + ACTIVE_W + GAP + SIDE_W + GAP,
+  "-2": 16,
+  "-1": 16,
+  0: 16 + ACTIVE_W + GAP,
+  1: 16 + ACTIVE_W + GAP + SIDE_W + GAP,
+  2: 16 + ACTIVE_W + GAP + SIDE_W + GAP,
 };
 const LEFT_SIZES: Record<number, [number, number]> = {
   "-2": [HIDDEN_W, HIDDEN_H],

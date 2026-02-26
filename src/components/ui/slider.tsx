@@ -179,8 +179,9 @@ export function Slider({ children, className, variant = "center" }: SliderProps)
         style={{
           height: ACTIVE_H,
           gap: GAP,
-          paddingLeft: LEFT_PAD,
-          // Padding droit suffisant pour que la dernière card puisse snapper
+          // scrollPaddingLeft aligns snap to the spacer offset
+          scrollPaddingLeft: LEFT_PAD,
+          // paddingRight suffisant pour que la dernière card puisse snapper
           paddingRight: `calc(100vw - ${LEFT_PAD + ACTIVE_W}px)`,
           scrollSnapType: "x mandatory",
           WebkitOverflowScrolling: "touch",
@@ -192,6 +193,8 @@ export function Slider({ children, className, variant = "center" }: SliderProps)
           setCurrentIndex(Math.min(Math.max(idx, 0), originalCount - 1));
         }}
       >
+        {/* Spacer — remplace paddingLeft (ignoré par certains navigateurs sur flex scroll) */}
+        <div style={{ flexShrink: 0, width: LEFT_PAD }} />
         {originalItems.map((item, i) => (
           <div
             key={i}
@@ -216,7 +219,7 @@ export function Slider({ children, className, variant = "center" }: SliderProps)
       <div className="relative h-4">
         <div
           className="absolute md:hidden"
-          style={{ left: LEFT_PAD + ACTIVE_W / 2, transform: "translateX(-50%)" }}
+          style={{ left: 16 + ACTIVE_W / 2, transform: "translateX(-50%)" }}
         >
           <ProgressIndicator count={originalCount} active={dotActive} onDotClick={goToMobile} />
         </div>
