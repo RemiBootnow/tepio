@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { ProgressIndicator } from "./progress-indicator";
 
-interface SliderProps {
+interface CarouselProps {
   children: React.ReactNode;
   className?: string;
   variant?: "center" | "left-aligned";
@@ -16,7 +16,7 @@ const SIDE_W = 240, SIDE_H = 350;
 const HIDDEN_W = 200, HIDDEN_H = 290;
 const GAP = 12;
 
-// ── Variant "center" ──
+// ── Variant "center" : référence left: '50%' ──
 const CENTER_CENTERS: Record<number, number> = { 0: 0, "-1": -268, 1: 268, "-2": -268, 2: 268 };
 const CENTER_SIZES: Record<number, [number, number]> = {
   0: [ACTIVE_W, ACTIVE_H],
@@ -26,14 +26,13 @@ const CENTER_SIZES: Record<number, [number, number]> = {
   2: [HIDDEN_W, HIDDEN_H],
 };
 
-// ── Variant "left-aligned" ──
-const LEFT_PAD = 20;
+// ── Variant "left-aligned" : référence left: 0, active à role -1 ──
 const LEFT_X: Record<number, number> = {
-  "-2": LEFT_PAD,
-  "-1": LEFT_PAD,
-  0: LEFT_PAD + ACTIVE_W + GAP,
-  1: LEFT_PAD + ACTIVE_W + GAP + SIDE_W + GAP,
-  2: LEFT_PAD + ACTIVE_W + GAP + SIDE_W + GAP,
+  "-2": 16,
+  "-1": 16,
+  0: 16 + ACTIVE_W + GAP,
+  1: 16 + ACTIVE_W + GAP + SIDE_W + GAP,
+  2: 16 + ACTIVE_W + GAP + SIDE_W + GAP,
 };
 const LEFT_SIZES: Record<number, [number, number]> = {
   "-2": [HIDDEN_W, HIDDEN_H],
@@ -77,11 +76,12 @@ function getLeftStyle(role: number) {
 const LEFT_BASE = { position: "absolute" as const, left: 0 as const, top: "50%" };
 const CENTER_BASE = { position: "absolute" as const, left: "50%", top: "50%" };
 
-export function Slider({ children, className, variant = "center" }: SliderProps) {
+export function Carousel({ children, className, variant = "center" }: CarouselProps) {
   const originalItems = React.Children.toArray(children);
   const originalCount = originalItems.length;
 
-  // Desktop: always min 5 display items to avoid visible wrap-arounds
+  // Toujours au moins 5 items pour éviter les wrap-arounds sur cards visibles.
+  // displayCount = multiple de originalCount >= 5.
   const multiplier = originalCount < 5 ? Math.ceil(5 / originalCount) : 1;
   const items = originalCount < 5
     ? Array.from({ length: originalCount * multiplier }, (_, i) => originalItems[i % originalCount])
@@ -90,9 +90,13 @@ export function Slider({ children, className, variant = "center" }: SliderProps)
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const prevDesktopRoles = useRef<Record<number, number>>({});
+  const prevMobileRoles = useRef<Record<number, number>>({});
   const pendingTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const mobileScrollRef = useRef<HTMLDivElement>(null);
+  const touchStartX = useRef<number | null>(null);
 
+  // Mobile : toujours left-aligned, roleCenter décalé de +1
+  const mobileRoleCenter = (currentIndex + 1) % count;
+  // Desktop : selon variant
   const desktopRoleCenter = variant === "left-aligned"
     ? (currentIndex + 1) % count
     : currentIndex;
@@ -100,6 +104,7 @@ export function Slider({ children, className, variant = "center" }: SliderProps)
   useEffect(() => {
     items.forEach((_, i) => {
       prevDesktopRoles.current[i] = getRole(i, desktopRoleCenter, count);
+      prevMobileRoles.current[i] = getRole(i, mobileRoleCenter, count);
     });
   }, [currentIndex, count]);
 
@@ -110,11 +115,6 @@ export function Slider({ children, className, variant = "center" }: SliderProps)
   }, []);
 
   const goTo = (i: number) => setCurrentIndex(i);
-
-  const goToMobile = (i: number) => {
-    setCurrentIndex(i);
-    mobileScrollRef.current?.scrollTo({ left: i * (ACTIVE_W + GAP), behavior: "smooth" });
-  };
 
   const advanceTwice = () => {
     if (pendingTimeoutRef.current) clearTimeout(pendingTimeoutRef.current);
@@ -127,10 +127,11 @@ export function Slider({ children, className, variant = "center" }: SliderProps)
     }, 500);
   };
 
-  const renderDesktopCards = (
+  const renderCards = (
     roleCenter: number,
     prevRolesRef: React.MutableRefObject<Record<number, number>>,
     isLeft: boolean,
+    keyPrefix: string,
     interactive: boolean,
   ) =>
     items.map((item, i) => {
@@ -151,7 +152,7 @@ export function Slider({ children, className, variant = "center" }: SliderProps)
 
       return (
         <motion.div
-          key={`d-${i}`}
+          key={`${keyPrefix}-${i}`}
           style={isLeft ? LEFT_BASE : CENTER_BASE}
           animate={style}
           transition={jumped ? { duration: 0 } : { duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
@@ -172,57 +173,37 @@ export function Slider({ children, className, variant = "center" }: SliderProps)
 
   return (
     <div className={cn("flex flex-col gap-6", className)}>
-      {/* Mobile : CSS scroll snap, toutes les cards à taille active */}
+      {/* Mobile (< md) : toujours left-aligned, toujours interactif */}
       <div
-        ref={mobileScrollRef}
-        className="flex md:hidden overflow-x-auto"
-        style={{
-          height: ACTIVE_H,
-          gap: GAP,
-          // scrollPaddingLeft aligns snap to the spacer offset
-          scrollPaddingLeft: LEFT_PAD,
-          // paddingRight suffisant pour que la dernière card puisse snapper
-          paddingRight: `calc(100vw - ${LEFT_PAD + ACTIVE_W}px)`,
-          scrollSnapType: "x mandatory",
-          WebkitOverflowScrolling: "touch",
-          scrollbarWidth: "none",
-        }}
-        onScroll={() => {
-          if (!mobileScrollRef.current) return;
-          const idx = Math.round(mobileScrollRef.current.scrollLeft / (ACTIVE_W + GAP));
-          setCurrentIndex(Math.min(Math.max(idx, 0), originalCount - 1));
+        className="relative overflow-hidden md:hidden"
+        style={{ height: ACTIVE_H }}
+        onTouchStart={(e) => { touchStartX.current = e.touches[0].clientX; }}
+        onTouchEnd={(e) => {
+          if (touchStartX.current === null) return;
+          const delta = e.changedTouches[0].clientX - touchStartX.current;
+          if (Math.abs(delta) > 50) {
+            if (delta < 0) goTo((currentIndex + 1) % count);
+            else goTo((currentIndex - 1 + count) % count);
+          }
+          touchStartX.current = null;
         }}
       >
-        {/* Spacer — remplace paddingLeft (ignoré par certains navigateurs sur flex scroll) */}
-        <div style={{ flexShrink: 0, width: LEFT_PAD }} />
-        {originalItems.map((item, i) => (
-          <div
-            key={i}
-            style={{
-              width: ACTIVE_W,
-              height: ACTIVE_H,
-              flexShrink: 0,
-              scrollSnapAlign: "start",
-            }}
-          >
-            {item}
-          </div>
-        ))}
+        {renderCards(mobileRoleCenter, prevMobileRoles, true, "m", true)}
       </div>
-
-      {/* Desktop : même comportement que Carousel */}
+      {/* Desktop (≥ md) : selon variant, interactif seulement si originalCount > 3 en center */}
       <div className="relative overflow-hidden hidden md:block" style={{ height: ACTIVE_H }}>
-        {renderDesktopCards(desktopRoleCenter, prevDesktopRoles, isDesktopLeft, desktopInteractive)}
+        {renderCards(desktopRoleCenter, prevDesktopRoles, isDesktopLeft, "d", desktopInteractive)}
       </div>
-
       {/* Dots — centrés sous la card active */}
       <div className="relative h-4">
+        {/* Mobile : toujours left-aligned */}
         <div
           className="absolute md:hidden"
-          style={{ left: 16 + ACTIVE_W / 2, transform: "translateX(-50%)" }}
+          style={{ left: LEFT_X[-1] + ACTIVE_W / 2, transform: "translateX(-50%)" }}
         >
-          <ProgressIndicator count={originalCount} active={dotActive} onDotClick={goToMobile} />
+          <ProgressIndicator count={originalCount} active={dotActive} onDotClick={goTo} />
         </div>
+        {/* Desktop */}
         {desktopInteractive && (
           <div
             className="absolute hidden md:block"

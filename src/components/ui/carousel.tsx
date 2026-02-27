@@ -16,7 +16,7 @@ const SIDE_W = 240, SIDE_H = 350;
 const HIDDEN_W = 200, HIDDEN_H = 290;
 const GAP = 12;
 
-// ── Variant "center" : référence left: '50%' ──
+// ── Variant "center" ──
 const CENTER_CENTERS: Record<number, number> = { 0: 0, "-1": -268, 1: 268, "-2": -268, 2: 268 };
 const CENTER_SIZES: Record<number, [number, number]> = {
   0: [ACTIVE_W, ACTIVE_H],
@@ -26,13 +26,14 @@ const CENTER_SIZES: Record<number, [number, number]> = {
   2: [HIDDEN_W, HIDDEN_H],
 };
 
-// ── Variant "left-aligned" : référence left: 0, active à role -1 ──
+// ── Variant "left-aligned" ──
+const LEFT_PAD = 20;
 const LEFT_X: Record<number, number> = {
-  "-2": 16,
-  "-1": 16,
-  0: 16 + ACTIVE_W + GAP,
-  1: 16 + ACTIVE_W + GAP + SIDE_W + GAP,
-  2: 16 + ACTIVE_W + GAP + SIDE_W + GAP,
+  "-2": LEFT_PAD,
+  "-1": LEFT_PAD,
+  0: LEFT_PAD + ACTIVE_W + GAP,
+  1: LEFT_PAD + ACTIVE_W + GAP + SIDE_W + GAP,
+  2: LEFT_PAD + ACTIVE_W + GAP + SIDE_W + GAP,
 };
 const LEFT_SIZES: Record<number, [number, number]> = {
   "-2": [HIDDEN_W, HIDDEN_H],
@@ -80,8 +81,7 @@ export function Carousel({ children, className, variant = "center" }: CarouselPr
   const originalItems = React.Children.toArray(children);
   const originalCount = originalItems.length;
 
-  // Toujours au moins 5 items pour éviter les wrap-arounds sur cards visibles.
-  // displayCount = multiple de originalCount >= 5.
+  // Desktop: always min 5 display items to avoid visible wrap-arounds
   const multiplier = originalCount < 5 ? Math.ceil(5 / originalCount) : 1;
   const items = originalCount < 5
     ? Array.from({ length: originalCount * multiplier }, (_, i) => originalItems[i % originalCount])
@@ -90,13 +90,9 @@ export function Carousel({ children, className, variant = "center" }: CarouselPr
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const prevDesktopRoles = useRef<Record<number, number>>({});
-  const prevMobileRoles = useRef<Record<number, number>>({});
   const pendingTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const touchStartX = useRef<number | null>(null);
+  const mobileScrollRef = useRef<HTMLDivElement>(null);
 
-  // Mobile : toujours left-aligned, roleCenter décalé de +1
-  const mobileRoleCenter = (currentIndex + 1) % count;
-  // Desktop : selon variant
   const desktopRoleCenter = variant === "left-aligned"
     ? (currentIndex + 1) % count
     : currentIndex;
@@ -104,7 +100,6 @@ export function Carousel({ children, className, variant = "center" }: CarouselPr
   useEffect(() => {
     items.forEach((_, i) => {
       prevDesktopRoles.current[i] = getRole(i, desktopRoleCenter, count);
-      prevMobileRoles.current[i] = getRole(i, mobileRoleCenter, count);
     });
   }, [currentIndex, count]);
 
@@ -115,6 +110,11 @@ export function Carousel({ children, className, variant = "center" }: CarouselPr
   }, []);
 
   const goTo = (i: number) => setCurrentIndex(i);
+
+  const goToMobile = (i: number) => {
+    setCurrentIndex(i);
+    mobileScrollRef.current?.scrollTo({ left: i * (ACTIVE_W + GAP), behavior: "smooth" });
+  };
 
   const advanceTwice = () => {
     if (pendingTimeoutRef.current) clearTimeout(pendingTimeoutRef.current);
@@ -127,11 +127,10 @@ export function Carousel({ children, className, variant = "center" }: CarouselPr
     }, 500);
   };
 
-  const renderCards = (
+  const renderDesktopCards = (
     roleCenter: number,
     prevRolesRef: React.MutableRefObject<Record<number, number>>,
     isLeft: boolean,
-    keyPrefix: string,
     interactive: boolean,
   ) =>
     items.map((item, i) => {
@@ -152,7 +151,7 @@ export function Carousel({ children, className, variant = "center" }: CarouselPr
 
       return (
         <motion.div
-          key={`${keyPrefix}-${i}`}
+          key={`d-${i}`}
           style={isLeft ? LEFT_BASE : CENTER_BASE}
           animate={style}
           transition={jumped ? { duration: 0 } : { duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
@@ -173,37 +172,57 @@ export function Carousel({ children, className, variant = "center" }: CarouselPr
 
   return (
     <div className={cn("flex flex-col gap-6", className)}>
-      {/* Mobile (< md) : toujours left-aligned, toujours interactif */}
+      {/* Mobile : CSS scroll snap, toutes les cards à taille active */}
       <div
-        className="relative overflow-hidden md:hidden"
-        style={{ height: ACTIVE_H }}
-        onTouchStart={(e) => { touchStartX.current = e.touches[0].clientX; }}
-        onTouchEnd={(e) => {
-          if (touchStartX.current === null) return;
-          const delta = e.changedTouches[0].clientX - touchStartX.current;
-          if (Math.abs(delta) > 50) {
-            if (delta < 0) goTo((currentIndex + 1) % count);
-            else goTo((currentIndex - 1 + count) % count);
-          }
-          touchStartX.current = null;
+        ref={mobileScrollRef}
+        className="flex md:hidden overflow-x-auto"
+        style={{
+          height: ACTIVE_H,
+          gap: GAP,
+          // scrollPaddingLeft aligns snap to the spacer offset
+          scrollPaddingLeft: LEFT_PAD,
+          // paddingRight suffisant pour que la dernière card puisse snapper
+          paddingRight: `calc(100vw - ${LEFT_PAD + ACTIVE_W}px)`,
+          scrollSnapType: "x mandatory",
+          WebkitOverflowScrolling: "touch",
+          scrollbarWidth: "none",
+        }}
+        onScroll={() => {
+          if (!mobileScrollRef.current) return;
+          const idx = Math.round(mobileScrollRef.current.scrollLeft / (ACTIVE_W + GAP));
+          setCurrentIndex(Math.min(Math.max(idx, 0), originalCount - 1));
         }}
       >
-        {renderCards(mobileRoleCenter, prevMobileRoles, true, "m", true)}
+        {/* Spacer — remplace paddingLeft (ignoré par certains navigateurs sur flex scroll) */}
+        <div style={{ flexShrink: 0, width: LEFT_PAD }} />
+        {originalItems.map((item, i) => (
+          <div
+            key={i}
+            style={{
+              width: ACTIVE_W,
+              height: ACTIVE_H,
+              flexShrink: 0,
+              scrollSnapAlign: "start",
+            }}
+          >
+            {item}
+          </div>
+        ))}
       </div>
-      {/* Desktop (≥ md) : selon variant, interactif seulement si originalCount > 3 en center */}
+
+      {/* Desktop : même comportement que Carousel */}
       <div className="relative overflow-hidden hidden md:block" style={{ height: ACTIVE_H }}>
-        {renderCards(desktopRoleCenter, prevDesktopRoles, isDesktopLeft, "d", desktopInteractive)}
+        {renderDesktopCards(desktopRoleCenter, prevDesktopRoles, isDesktopLeft, desktopInteractive)}
       </div>
+
       {/* Dots — centrés sous la card active */}
       <div className="relative h-4">
-        {/* Mobile : toujours left-aligned */}
         <div
           className="absolute md:hidden"
-          style={{ left: LEFT_X[-1] + ACTIVE_W / 2, transform: "translateX(-50%)" }}
+          style={{ left: 16 + ACTIVE_W / 2, transform: "translateX(-50%)" }}
         >
-          <ProgressIndicator count={originalCount} active={dotActive} onDotClick={goTo} />
+          <ProgressIndicator count={originalCount} active={dotActive} onDotClick={goToMobile} />
         </div>
-        {/* Desktop */}
         {desktopInteractive && (
           <div
             className="absolute hidden md:block"
