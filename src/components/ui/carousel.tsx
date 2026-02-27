@@ -211,7 +211,14 @@ export function Carousel({ children, className, variant = "center" }: CarouselPr
       </div>
 
       {/* Desktop : même comportement que Carousel */}
-      <div className="relative overflow-hidden hidden md:block" style={{ height: ACTIVE_H }}>
+      {/* center: overflow-hidden clips symmetrically; left-aligned: section overflow-x-hidden handles the clip so cards can bleed right */}
+      <div
+        className={cn("relative hidden md:block", variant === "center" && "overflow-hidden")}
+        style={{
+          height: ACTIVE_H,
+          ...(variant === "center" ? { width: "100vw", marginLeft: "calc(-50vw + 50%)" } : {}),
+        }}
+      >
         {renderDesktopCards(desktopRoleCenter, prevDesktopRoles, isDesktopLeft, desktopInteractive)}
       </div>
 
@@ -219,7 +226,7 @@ export function Carousel({ children, className, variant = "center" }: CarouselPr
       <div className="relative h-4">
         <div
           className="absolute md:hidden"
-          style={{ left: 16 + ACTIVE_W / 2, transform: "translateX(-50%)" }}
+          style={{ left: LEFT_PAD + ACTIVE_W / 2, transform: "translateX(-50%)" }}
         >
           <ProgressIndicator count={originalCount} active={dotActive} onDotClick={goToMobile} />
         </div>
