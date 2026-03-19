@@ -35,7 +35,7 @@ export function TestimonialCard({
         }}
       />
       <div className="relative flex flex-col gap-4 text-white">
-        <p className="text-[22px] font-medium leading-8">
+        <p className="text-[22px] font-medium leading-7">
           &ldquo;{quote}&rdquo;
         </p>
         <div className="flex gap-2 text-sm">

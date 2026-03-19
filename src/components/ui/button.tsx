@@ -46,24 +46,32 @@ const buttonVariants = cva(
   }
 )
 
+const darkModeOverrides: Partial<Record<string, string>> = {
+  neutral: "bg-white text-foreground hover:bg-white/90",
+  outline: "border-white/40 text-white bg-transparent hover:bg-white/10 hover:text-white",
+}
+
 function Button({
   className,
   variant = "default",
   size = "default",
   asChild = false,
+  colorMode,
   ...props
 }: React.ComponentProps<"button"> &
   VariantProps<typeof buttonVariants> & {
     asChild?: boolean
+    colorMode?: "light" | "dark"
   }) {
   const Comp = asChild ? Slot : "button"
+  const darkOverride = colorMode === "dark" ? darkModeOverrides[variant ?? "default"] : undefined
 
   return (
     <Comp
       data-slot="button"
       data-variant={variant}
       data-size={size}
-      className={cn(buttonVariants({ variant, size, className }))}
+      className={cn(buttonVariants({ variant, size }), darkOverride, className)}
       {...props}
     />
   )

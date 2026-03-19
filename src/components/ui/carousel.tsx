@@ -27,20 +27,22 @@ const CENTER_SIZES: Record<number, [number, number]> = {
 };
 
 // ── Variant "left-aligned" ──
+const DESKTOP_LEFT_ACTIVE_W = 340, DESKTOP_LEFT_ACTIVE_H = 500;
+const DESKTOP_LEFT_SIDE_W = 300, DESKTOP_LEFT_SIDE_H = 440;
 const LEFT_PAD = 20;
 const LEFT_X: Record<number, number> = {
   "-2": LEFT_PAD,
   "-1": LEFT_PAD,
-  0: LEFT_PAD + ACTIVE_W + GAP,
-  1: LEFT_PAD + ACTIVE_W + GAP + SIDE_W + GAP,
-  2: LEFT_PAD + ACTIVE_W + GAP + SIDE_W + GAP,
+  0: LEFT_PAD + DESKTOP_LEFT_ACTIVE_W + GAP,
+  1: LEFT_PAD + DESKTOP_LEFT_ACTIVE_W + GAP + DESKTOP_LEFT_SIDE_W + GAP,
+  2: LEFT_PAD + DESKTOP_LEFT_ACTIVE_W + GAP + DESKTOP_LEFT_SIDE_W + GAP,
 };
 const LEFT_SIZES: Record<number, [number, number]> = {
   "-2": [HIDDEN_W, HIDDEN_H],
-  "-1": [ACTIVE_W, ACTIVE_H],
-  0: [SIDE_W, SIDE_H],
-  1: [SIDE_W, SIDE_H],
-  2: [SIDE_W, SIDE_H],
+  "-1": [DESKTOP_LEFT_ACTIVE_W, DESKTOP_LEFT_ACTIVE_H],
+  0: [DESKTOP_LEFT_SIDE_W, DESKTOP_LEFT_SIDE_H],
+  1: [DESKTOP_LEFT_SIDE_W, DESKTOP_LEFT_SIDE_H],
+  2: [DESKTOP_LEFT_SIDE_W, DESKTOP_LEFT_SIDE_H],
 };
 
 function getRole(i: number, cI: number, n: number): number {
@@ -215,7 +217,7 @@ export function Carousel({ children, className, variant = "center" }: CarouselPr
       <div
         className={cn("relative hidden md:block", variant === "center" && "overflow-hidden")}
         style={{
-          height: ACTIVE_H,
+          height: variant === "left-aligned" ? DESKTOP_LEFT_ACTIVE_H : ACTIVE_H,
           ...(variant === "center" ? { width: "100vw", marginLeft: "calc(-50vw + 50%)" } : {}),
         }}
       >
@@ -234,7 +236,7 @@ export function Carousel({ children, className, variant = "center" }: CarouselPr
           <div
             className="absolute hidden md:block"
             style={isDesktopLeft
-              ? { left: LEFT_X[-1] + ACTIVE_W / 2, transform: "translateX(-50%)" }
+              ? { left: LEFT_X[-1] + DESKTOP_LEFT_ACTIVE_W / 2, transform: "translateX(-50%)" }
               : { left: "50%", transform: "translateX(-50%)" }}
           >
             <ProgressIndicator count={originalCount} active={dotActive} onDotClick={goTo} />

@@ -8,112 +8,38 @@
 
 ```tsx
 import { APP_NAME } from "@/lib/constants";
-
-// Use in JSX
-<title>{APP_NAME}</title>
-<p>Welcome to {APP_NAME}</p>
 ```
 
-### Available Components (`src/components/ui/`)
-- `button.tsx` - Button component
-- `typography.tsx` - Heading component
-- `logo.tsx` - Logo component (icon or full, default or white color)
-- `card.tsx` - Card, CardContent, etc.
-- `badge.tsx` - Badge component
-- `input.tsx` - Input component
-- `label.tsx` - Label component
-- `select.tsx` - Select component
-- `textarea.tsx` - Textarea component
-- `tabs.tsx` - Tabs component
-- `separator.tsx` - Separator component
+## Component Inventory
 
-### Layout Components (`src/components/layout/`)
-- `Section.tsx` - Section layout component with max-width and responsive padding
+### UI (`src/components/ui/`)
+`button.tsx`, `typography.tsx` (Heading), `logo.tsx`, `card.tsx`, `badge.tsx`, `input.tsx`, `label.tsx`, `select.tsx`, `textarea.tsx`, `tabs.tsx`, `separator.tsx`, `feature-card.tsx`
 
-## Components Usage
+### Section layouts (`src/components/sections/`)
+`left-carousel-section.tsx`, `center-carousel-section.tsx`, `features-section.tsx`
 
-### Headings
-Always use the `<Heading>` component from `@/components/ui/typography` for all headings (h1, h2, h3, h4).
+### Layout (`src/components/layout/`)
+`Section.tsx` — max-width (1200px) wrapper with responsive padding, use for every section.
+
+## Icons
+
+Always use **Untitled UI Pro** icons — never Lucide React or custom SVGs.
 
 ```tsx
-import { Heading } from "@/components/ui/typography";
+// Line style (default for UI)
+import { ChevronDown, ArrowRight } from "@untitledui-pro/icons/line";
 
-<Heading as="h1">Title</Heading>
-<Heading as="h2">Subtitle</Heading>
+// Solid style (for feature cards and filled contexts)
+import { ShieldTick, CheckCircle } from "@untitledui-pro/icons/solid";
 ```
 
-### Buttons
-Always use the `<Button>` component from `@/components/ui/button`. Available variants: `default`, `primary`, `neutral`, `neutral-soft`, `secondary`, `destructive`, `outline`, `ghost`, `link`.
+The legacy `<Icon name="..." />` component (`src/components/ui/icons/`) still exists for `FeatureCard` — it now wraps Untitled UI Pro internally. For all other icon usage, import directly from `@untitledui-pro/icons/line` or `/solid`.
 
-### Sections
-Always use the `<Section>` component from `@/components/layout/Section` for page sections. It provides consistent max-width (1200px) and responsive padding.
-
-```tsx
-import { Section } from "@/components/layout/Section";
-
-// Basic usage
-<Section className="py-20">Content</Section>
-
-// With background color
-<Section background="bg-muted" className="py-20">Content</Section>
-
-// As different HTML element
-<Section as="header" background="bg-primary">Header content</Section>
-```
-
-**Responsive padding:**
-- <375px: 16px (px-4)
-- 375px-394px: 20px (px-5)
-- ≥395px: 24px (px-6)
+Only fall back to Lucide React for icons with no UUI equivalent: `Flame`, `Droplet`, `Leaf`, `TreePine`, `Euro`, `Loader2`.
 
 ## Styling
-- Use semantic color variables from `globals.css` instead of Tailwind color palette (e.g., `bg-muted` not `bg-slate-50`)
-- Font: Figtree for all text
-- Primary/Accent color: `#FDF180` (yellow)
+Use semantic color variables from `globals.css` — never raw Tailwind color palette (e.g. `bg-muted` not `bg-slate-50`). Primary/Accent: `#FDF180` (yellow) → `bg-primary`.
 
 ---
 
-## Figma Integration Rules
-
-### Icons
-**When reading Figma files, always try to use Lucide icons first.** The project uses `lucide-react` which has 1000+ icons. Only create custom icons in `src/components/ui/icons/` if no suitable Lucide icon exists.
-
-```tsx
-// Prefer this (Lucide)
-import { ChevronRight, Check, ArrowRight } from "lucide-react";
-
-// Only if no Lucide equivalent exists
-import { CustomIcon } from "@/components/ui/icons";
-```
-
-Browse Lucide icons: https://lucide.dev/icons
-
----
-
-## Figma → Code Token Mapping
-
-### Colors
-| Figma Token | CSS Variable | Tailwind Class |
-|-------------|--------------|----------------|
-| Accent/Background/Bold | `--primary` | `bg-primary` |
-| Neutral/Text/Bold | `--foreground` | `text-foreground` |
-| Neutral/Background/Soft | `--muted` | `bg-muted` |
-| Neutral/Background/Bold | `--neutral` | `bg-neutral` |
-| Danger | `--destructive` | `bg-destructive` |
-| Success | `--success` | `bg-success` |
-| Warning | `--warning` | `bg-warning` |
-
-### Typography (Figma → Heading component)
-| Figma Style | Component | Mobile | Desktop |
-|-------------|-----------|--------|---------|
-| Headline 1 | `<Heading as="h1">` | 40px/40px | 60px/60px |
-| Headline 2 | `<Heading as="h2">` | 32px/40px | 36px/40px |
-| Headline 3 | `<Heading as="h3">` | 20px/24px | 24px/28px |
-| Headline 4 | `<Heading as="h4">` | 20px/24px | 20px/24px |
-
-### Button Sizes (Figma → Button component)
-| Figma Size | Component Prop | Height | Padding | Radius |
-|------------|----------------|--------|---------|--------|
-| Large | `size="lg"` | 54px | 32px | 12px |
-| Medium | `size="default"` | 36px | 12px | 6px |
-| Small | `size="sm"` | 24px | 6px | 6px |
+> **Building pages or sections?** The `marketing-page` skill has detailed component usage, file structure conventions, and the Figma → code workflow.

@@ -1,13 +1,4 @@
-"use client";
-
-import { Section } from "@/components/layout/Section";
-import { Heading } from "@/components/ui/typography";
-import {
-  Accordion,
-  AccordionItem,
-  AccordionTrigger,
-  AccordionContent,
-} from "@/components/ui/accordion";
+import { FaqSection as FaqSectionBase } from "@/components/sections/faq-section";
 
 const faqItems = [
   {
@@ -34,25 +25,9 @@ const faqItems = [
 
 export function FaqSection() {
   return (
-    <Section background="bg-muted" className="py-20">
-      <div className="max-w-3xl mx-auto">
-        <div className="text-center mb-12">
-          <Heading as="h2" className="mb-4">
-            Questions fréquentes
-          </Heading>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Tout ce que vous devez savoir avant de vous lancer.
-          </p>
-        </div>
-        <Accordion type="single" collapsible>
-          {faqItems.map((item, index) => (
-            <AccordionItem key={index} value={`item-${index}`}>
-              <AccordionTrigger>{item.question}</AccordionTrigger>
-              <AccordionContent>{item.answer}</AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
-      </div>
-    </Section>
+    <FaqSectionBase
+      title="Questions posées régulièrement"
+      items={faqItems}
+    />
   );
 }

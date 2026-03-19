@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Heading } from "@/components/ui/typography";
-import { BadgeCheck, Building2, MapPin } from "lucide-react";
+import { Icon } from "@/components/ui/icons";
 
 export function NetworkSection() {
   return (
@@ -42,7 +42,7 @@ export function NetworkSection() {
 
           {/* Card 1 — Yellow */}
           <div className="flex-1 bg-primary rounded-3xl p-6 flex flex-col gap-6">
-            <BadgeCheck className="w-6 h-6 text-foreground shrink-0" />
+            <Icon name="check-verified" color="dark" size="big" className="shrink-0" />
             <div className="flex flex-col gap-4">
               <p className="font-medium text-[22px] leading-7 text-foreground">
                 Certification RGE
@@ -56,7 +56,7 @@ export function NetworkSection() {
 
           {/* Card 2 — Light blue */}
           <div className="flex-1 bg-[#d4eef0] rounded-3xl p-6 flex flex-col gap-6">
-            <Building2 className="w-6 h-6 text-foreground shrink-0" />
+            <Icon name="building" color="dark" size="big" className="shrink-0" />
             <div className="flex flex-col gap-2">
               <p className="font-medium text-[22px] leading-7 text-foreground">
                 Produits de qualité
@@ -70,7 +70,7 @@ export function NetworkSection() {
 
           {/* Card 3 — Dark green */}
           <div className="flex-1 bg-[#01322d] rounded-3xl p-6 flex flex-col gap-6">
-            <MapPin className="w-6 h-6 text-white shrink-0" />
+            <Icon name="map-pin" color="white" size="big" className="shrink-0" />
             <div className="flex flex-col gap-2">
               <p className="font-medium text-[22px] leading-7 text-white">
                 Réactivité
