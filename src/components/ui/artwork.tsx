@@ -1,9 +1,9 @@
 import { cn } from "@/lib/utils";
-import { LucideIcon } from "lucide-react";
+import { ComponentType, SVGProps } from "react";
 
 interface ArtworkProps {
-  /** The Lucide icon to display */
-  icon: LucideIcon;
+  /** The icon component to display */
+  icon: ComponentType<SVGProps<SVGSVGElement> & { className?: string }>;
   /** Size variant */
   size?: "sm" | "default" | "lg";
   /** Additional CSS classes */

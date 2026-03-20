@@ -3,11 +3,11 @@
 import { ChevronRight } from "@untitledui-pro/icons/line";
 import { cn } from "@/lib/utils";
 import { Artwork } from "./artwork";
-import { LucideIcon } from "lucide-react";
+import { ComponentType, SVGProps } from "react";
 
 interface SelectOptionProps {
-  /** The Lucide icon to display */
-  icon: LucideIcon;
+  /** The icon component to display */
+  icon: ComponentType<SVGProps<SVGSVGElement> & { className?: string }>;
   /** The label text */
   label: string;
   /** Optional description text */

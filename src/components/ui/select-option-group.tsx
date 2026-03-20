@@ -2,13 +2,13 @@
 
 import { cn } from "@/lib/utils";
 import { SelectOption } from "./select-option";
-import { LucideIcon } from "lucide-react";
+import { ComponentType, SVGProps } from "react";
 
 interface SelectOptionItem<T extends string> {
   value: T;
   label: string;
   description?: string;
-  icon: LucideIcon;
+  icon: ComponentType<SVGProps<SVGSVGElement> & { className?: string }>;
 }
 
 interface SelectOptionGroupProps<T extends string> {
