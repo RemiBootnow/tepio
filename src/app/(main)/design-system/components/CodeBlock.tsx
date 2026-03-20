@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Check, Copy } from "lucide-react";
+import { Check, Copy01 } from "@untitledui-pro/icons/line";
 
 interface CodeBlockProps {
   code: string;
@@ -29,7 +29,7 @@ export function CodeBlock({ code, language = "tsx" }: CodeBlockProps) {
         className="absolute top-2 right-2 h-8 w-8 text-slate-400 hover:text-slate-50 hover:bg-slate-800"
         onClick={copyToClipboard}
       >
-        {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
+        {copied ? <Check className="h-4 w-4" /> : <Copy01 className="h-4 w-4" />}
       </Button>
     </div>
   );

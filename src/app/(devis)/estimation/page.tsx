@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import { Flame, Thermometer, Wind, ChevronRight } from "lucide-react";
+import { ChevronRight } from "@untitledui-pro/icons/line";
+import { Flame, Thermometer, Wind } from "lucide-react";
 import { generatePageMetadata } from "@/lib/seo/metadata";
 import { Heading } from "@/components/ui/typography";
 import { Logo } from "@/components/ui/logo";

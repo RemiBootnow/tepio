@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { X } from "lucide-react";
+import { X } from "@untitledui-pro/icons/line";
 import { Button } from "@/components/ui/button";
 import { Heading } from "@/components/ui/typography";
 

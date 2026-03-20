@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronRight } from "lucide-react";
+import { ChevronRight } from "@untitledui-pro/icons/line";
 import { cn } from "@/lib/utils";
 import { Artwork } from "./artwork";
 import { LucideIcon } from "lucide-react";

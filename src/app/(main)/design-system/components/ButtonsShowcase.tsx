@@ -9,7 +9,8 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Phone, ArrowRight, Download, Loader2, Mail } from "lucide-react";
+import { Phone01, ArrowRight, Download01, Mail01 } from "@untitledui-pro/icons/line";
+import { Loader2 } from "lucide-react";
 import { CodeBlock } from "./CodeBlock";
 
 export function ButtonsShowcase() {
@@ -59,14 +60,14 @@ export function ButtonsShowcase() {
             <Button size="default">Normal</Button>
             <Button size="lg">Grand</Button>
             <Button size="icon">
-              <Phone className="h-4 w-4" />
+              <Phone01 className="h-4 w-4" />
             </Button>
           </div>
           <CodeBlock
             code={`<Button size="sm">Petit</Button>
 <Button size="default">Normal</Button>
 <Button size="lg">Grand</Button>
-<Button size="icon"><Phone className="h-4 w-4" /></Button>`}
+<Button size="icon"><Phone01 className="h-4 w-4" /></Button>`}
           />
         </CardContent>
       </Card>
@@ -82,7 +83,7 @@ export function ButtonsShowcase() {
         <CardContent className="space-y-4">
           <div className="flex flex-wrap gap-4">
             <Button>
-              <Phone className="mr-2 h-4 w-4" />
+              <Phone01 className="mr-2 h-4 w-4" />
               Nous appeler
             </Button>
             <Button variant="outline">
@@ -90,17 +91,17 @@ export function ButtonsShowcase() {
               <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
             <Button variant="secondary">
-              <Download className="mr-2 h-4 w-4" />
+              <Download01 className="mr-2 h-4 w-4" />
               Télécharger
             </Button>
             <Button variant="outline">
-              <Mail className="mr-2 h-4 w-4" />
+              <Mail01 className="mr-2 h-4 w-4" />
               Nous contacter
             </Button>
           </div>
           <CodeBlock
             code={`<Button>
-  <Phone className="mr-2 h-4 w-4" />
+  <Phone01 className="mr-2 h-4 w-4" />
   Nous appeler
 </Button>
 <Button variant="outline">
@@ -156,7 +157,7 @@ export function ButtonsShowcase() {
               size="lg"
               variant="outline"
             >
-              <Phone className="mr-2 h-5 w-5" />
+              <Phone01 className="mr-2 h-5 w-5" />
               01 23 45 67 89
             </Button>
           </div>
@@ -169,7 +170,7 @@ export function ButtonsShowcase() {
   size="lg"
   variant="outline"
 >
-  <Phone className="mr-2 h-5 w-5" />
+  <Phone01 className="mr-2 h-5 w-5" />
   01 23 45 67 89
 </Button>`}
           />

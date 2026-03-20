@@ -26,7 +26,7 @@ import { StepIndicator } from "./StepIndicator";
 import { TrustSection } from "./TrustSection";
 import { Button } from "@/components/ui/button";
 import { Logo } from "@/components/ui/logo";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft } from "@untitledui-pro/icons/line";
 
 interface LeadFormProps {
   service: ServiceType;

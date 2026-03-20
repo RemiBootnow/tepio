@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { KeyRound, Users } from "lucide-react";
+import { Key01, Users01 } from "@untitledui-pro/icons/line";
 import { Heading } from "@/components/ui/typography";
 import { SelectOptionGroup } from "@/components/ui/select-option-group";
 import { OwnershipType } from "@/types/lead-form";
@@ -15,8 +15,8 @@ interface OwnershipSelectProps {
 }
 
 const ownershipOptions = [
-  { value: "proprietaire" as const, label: "Propriétaire", icon: KeyRound },
-  { value: "locataire" as const, label: "Locataire", icon: Users },
+  { value: "proprietaire" as const, label: "Propriétaire", icon: Key01 },
+  { value: "locataire" as const, label: "Locataire", icon: Users01 },
 ];
 
 export function OwnershipSelect({

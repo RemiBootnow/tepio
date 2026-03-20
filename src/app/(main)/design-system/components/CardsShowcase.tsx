@@ -8,7 +8,8 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, Thermometer, Leaf, Euro, CheckCircle } from "lucide-react";
+import { ArrowRight, CheckCircle } from "@untitledui-pro/icons/line";
+import { Thermometer, Leaf, Euro } from "lucide-react";
 import { CodeBlock } from "./CodeBlock";
 
 export function CardsShowcase() {

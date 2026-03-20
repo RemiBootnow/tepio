@@ -1,6 +1,6 @@
 "use client";
 
-import { Calendar } from "lucide-react";
+import { Calendar } from "@untitledui-pro/icons/line";
 import { Heading } from "@/components/ui/typography";
 import { SelectOptionGroup } from "@/components/ui/select-option-group";
 import { HouseAgeType } from "@/types/lead-form";

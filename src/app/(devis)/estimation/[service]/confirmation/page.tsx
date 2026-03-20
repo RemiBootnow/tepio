@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { CheckCircle2, Phone, Mail, Home, Clock } from "lucide-react";
+import { CheckCircle, Phone01, Mail01, Home01, Clock } from "@untitledui-pro/icons/line";
 import { generatePageMetadata } from "@/lib/seo/metadata";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -54,13 +54,13 @@ const nextSteps = [
       "Un conseiller analyse votre demande et prépare une réponse personnalisée.",
   },
   {
-    icon: Phone,
+    icon: Phone01,
     title: "Appel de qualification",
     description:
       "Nous vous appelons pour affiner votre projet et répondre à vos questions.",
   },
   {
-    icon: Home,
+    icon: Home01,
     title: "Visite technique",
     description:
       "Un technicien se déplace gratuitement pour évaluer votre installation.",
@@ -83,7 +83,7 @@ export default async function ConfirmationPage({
           {/* Success message */}
           <div className="mb-8">
             <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-100 text-green-600 mb-6">
-              <CheckCircle2 className="w-8 h-8" />
+              <CheckCircle className="w-8 h-8" />
             </div>
             <Heading as="h1" className="mb-4">
               Demande envoyée avec succès !
@@ -127,13 +127,13 @@ export default async function ConfirmationPage({
                   <a
                     href={`tel:${siteConfig.business.phone.replace(/\s/g, "")}`}
                   >
-                    <Phone className="mr-2 h-4 w-4" />
+                    <Phone01 className="mr-2 h-4 w-4" />
                     {siteConfig.business.phone}
                   </a>
                 </Button>
                 <Button variant="outline" className="flex-1" asChild>
                   <a href={`mailto:${siteConfig.business.email}`}>
-                    <Mail className="mr-2 h-4 w-4" />
+                    <Mail01 className="mr-2 h-4 w-4" />
                     {siteConfig.business.email}
                   </a>
                 </Button>

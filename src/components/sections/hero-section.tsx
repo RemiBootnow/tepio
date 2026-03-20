@@ -70,6 +70,20 @@ export function HeroSection({
             <source src={videoMobileSrc} type="video/mp4" />
           </video>
         )}
+        {!videoSrc && posterSrc && (
+          <img
+            src={posterSrc}
+            alt=""
+            className={`absolute inset-0 w-full h-full object-cover ${hasMobileVideo ? "hidden md:block" : ""}`}
+          />
+        )}
+        {!videoSrc && !hasMobileVideo && posterMobileSrc && (
+          <img
+            src={posterMobileSrc}
+            alt=""
+            className="block md:hidden absolute inset-0 w-full h-full object-cover"
+          />
+        )}
         {/* Left-to-right gradient derived from bg-neutral (#01322d) */}
         <div
           className="hidden md:block absolute inset-0"

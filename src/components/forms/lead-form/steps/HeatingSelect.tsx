@@ -1,6 +1,7 @@
 "use client";
 
-import { Zap, Flame, Droplet, TreePine, HelpCircle } from "lucide-react";
+import { Zap, HelpCircle } from "@untitledui-pro/icons/line";
+import { Flame, Droplet, TreePine } from "lucide-react";
 import { Heading } from "@/components/ui/typography";
 import { SelectOptionGroup } from "@/components/ui/select-option-group";
 import { HeatingType } from "@/types/lead-form";

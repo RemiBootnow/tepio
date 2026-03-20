@@ -11,66 +11,60 @@ interface CarouselProps {
   variant?: "center" | "left-aligned";
 }
 
-const ACTIVE_W = 272, ACTIVE_H = 400;
-const SIDE_W = 240, SIDE_H = 350;
-const HIDDEN_W = 200, HIDDEN_H = 290;
-const GAP = 12;
+const CARD_W = 350, CARD_H = 500;
+const GAP = 24;
+const LEFT_PAD = 20;
+const SCALE_DOWN = 0.85;
+// Shrinkage on each side when a card is scaled down
+const SHRINK = CARD_W * (1 - SCALE_DOWN) / 2; // 32px
 
 // ── Variant "center" ──
-const CENTER_CENTERS: Record<number, number> = { 0: 0, "-1": -268, 1: 268, "-2": -268, 2: 268 };
-const CENTER_SIZES: Record<number, [number, number]> = {
-  0: [ACTIVE_W, ACTIVE_H],
-  "-1": [SIDE_W, SIDE_H],
-  1: [SIDE_W, SIDE_H],
-  "-2": [HIDDEN_W, HIDDEN_H],
-  2: [HIDDEN_W, HIDDEN_H],
+// CENTER_X[r] = offset of the card's visual center from the parent center.
+// Scale doesn't move the center, so compensate edge spacing for non-active cards.
+const CENTER_X: Record<number, number> = {
+  0: 0,
+  "-1": -(CARD_W / 2 + GAP + CARD_W * SCALE_DOWN / 2), // -300
+  1:    CARD_W / 2 + GAP + CARD_W * SCALE_DOWN / 2,     //  300
+  "-2": -(CARD_W / 2 + GAP + CARD_W * SCALE_DOWN / 2),
+  2:    CARD_W / 2 + GAP + CARD_W * SCALE_DOWN / 2,
 };
-
-// ── Variant "left-aligned" ──
-const DESKTOP_LEFT_ACTIVE_W = 340, DESKTOP_LEFT_ACTIVE_H = 500;
-const DESKTOP_LEFT_SIDE_W = 300, DESKTOP_LEFT_SIDE_H = 440;
-const LEFT_PAD = 20;
-const LEFT_X: Record<number, number> = {
-  "-2": LEFT_PAD,
-  "-1": LEFT_PAD,
-  0: LEFT_PAD + DESKTOP_LEFT_ACTIVE_W + GAP,
-  1: LEFT_PAD + DESKTOP_LEFT_ACTIVE_W + GAP + DESKTOP_LEFT_SIDE_W + GAP,
-  2: LEFT_PAD + DESKTOP_LEFT_ACTIVE_W + GAP + DESKTOP_LEFT_SIDE_W + GAP,
-};
-const LEFT_SIZES: Record<number, [number, number]> = {
-  "-2": [HIDDEN_W, HIDDEN_H],
-  "-1": [DESKTOP_LEFT_ACTIVE_W, DESKTOP_LEFT_ACTIVE_H],
-  0: [DESKTOP_LEFT_SIDE_W, DESKTOP_LEFT_SIDE_H],
-  1: [DESKTOP_LEFT_SIDE_W, DESKTOP_LEFT_SIDE_H],
-  2: [DESKTOP_LEFT_SIDE_W, DESKTOP_LEFT_SIDE_H],
-};
-
-function getRole(i: number, cI: number, n: number): number {
-  const raw = ((i - cI) % n + n) % n;
-  return raw > n / 2 ? raw - n : raw;
-}
 
 function getCenterStyle(role: number) {
   const r = Math.max(-2, Math.min(2, role));
-  const [w, h] = CENTER_SIZES[r];
   return {
-    x: CENTER_CENTERS[r] - w / 2,
-    y: -h / 2,
-    width: w,
-    height: h,
+    x: CENTER_X[r] - CARD_W / 2,
+    y: -CARD_H / 2,
+    width: CARD_W,
+    height: CARD_H,
+    scale: r === 0 ? 1 : SCALE_DOWN,
     opacity: Math.abs(r) <= 1 ? 1 : 0,
     zIndex: 3 - Math.abs(r),
   };
 }
 
+// ── Variant "left-aligned" ──
+// LEFT_X[r] = translate-x applied to the card (framer-motion).
+// For scale=1 (role -1): visual left = LEFT_X[r]
+// For scale=0.8 (others): visual left = LEFT_X[r] + SHRINK
+// We compute each position so visual gaps equal GAP.
+const LEFT_X: Record<number, number> = {
+  "-2": LEFT_PAD,
+  "-1": LEFT_PAD,
+  // visual left[0] = LEFT_PAD + CARD_W + GAP → LEFT_X[0] = that - SHRINK
+  0: LEFT_PAD + CARD_W + GAP - SHRINK,
+  // visual left[1] = visual right[0] + GAP = (LEFT_X[0] + SHRINK + CARD_W*SCALE_DOWN) + GAP
+  1: LEFT_PAD + CARD_W + GAP + CARD_W * SCALE_DOWN + GAP - SHRINK,
+  2: LEFT_PAD + CARD_W + GAP + CARD_W * SCALE_DOWN + GAP - SHRINK,
+};
+
 function getLeftStyle(role: number) {
   const r = Math.max(-2, Math.min(2, role));
-  const [w, h] = LEFT_SIZES[r];
   return {
     x: LEFT_X[r],
-    y: -h / 2,
-    width: w,
-    height: h,
+    y: -CARD_H / 2,
+    width: CARD_W,
+    height: CARD_H,
+    scale: r === -1 ? 1 : SCALE_DOWN,
     opacity: Math.abs(r) <= 1 ? 1 : 0,
     zIndex: r === -1 ? 3 : r === 0 ? 2 : 1,
   };
@@ -78,6 +72,11 @@ function getLeftStyle(role: number) {
 
 const LEFT_BASE = { position: "absolute" as const, left: 0 as const, top: "50%" };
 const CENTER_BASE = { position: "absolute" as const, left: "50%", top: "50%" };
+
+function getRole(i: number, cI: number, n: number): number {
+  const raw = ((i - cI) % n + n) % n;
+  return raw > n / 2 ? raw - n : raw;
+}
 
 export function Carousel({ children, className, variant = "center" }: CarouselProps) {
   const originalItems = React.Children.toArray(children);
@@ -115,7 +114,7 @@ export function Carousel({ children, className, variant = "center" }: CarouselPr
 
   const goToMobile = (i: number) => {
     setCurrentIndex(i);
-    mobileScrollRef.current?.scrollTo({ left: i * (ACTIVE_W + GAP), behavior: "smooth" });
+    mobileScrollRef.current?.scrollTo({ left: i * (CARD_W + GAP), behavior: "smooth" });
   };
 
   const advanceTwice = () => {
@@ -155,6 +154,7 @@ export function Carousel({ children, className, variant = "center" }: CarouselPr
         <motion.div
           key={`d-${i}`}
           style={isLeft ? LEFT_BASE : CENTER_BASE}
+          initial={false}
           animate={style}
           transition={jumped ? { duration: 0 } : { duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
           onClick={handleClick}
@@ -174,35 +174,32 @@ export function Carousel({ children, className, variant = "center" }: CarouselPr
 
   return (
     <div className={cn("flex flex-col gap-6", className)}>
-      {/* Mobile : CSS scroll snap, toutes les cards à taille active */}
+      {/* Mobile : CSS scroll snap */}
       <div
         ref={mobileScrollRef}
         className="flex md:hidden overflow-x-auto"
         style={{
-          height: ACTIVE_H,
+          height: CARD_H,
           gap: GAP,
-          // scrollPaddingLeft aligns snap to the spacer offset
           scrollPaddingLeft: LEFT_PAD,
-          // paddingRight suffisant pour que la dernière card puisse snapper
-          paddingRight: `calc(100vw - ${LEFT_PAD + ACTIVE_W}px)`,
+          paddingRight: `calc(100vw - ${LEFT_PAD + CARD_W}px)`,
           scrollSnapType: "x mandatory",
           WebkitOverflowScrolling: "touch",
           scrollbarWidth: "none",
         }}
         onScroll={() => {
           if (!mobileScrollRef.current) return;
-          const idx = Math.round(mobileScrollRef.current.scrollLeft / (ACTIVE_W + GAP));
+          const idx = Math.round(mobileScrollRef.current.scrollLeft / (CARD_W + GAP));
           setCurrentIndex(Math.min(Math.max(idx, 0), originalCount - 1));
         }}
       >
-        {/* Spacer — remplace paddingLeft (ignoré par certains navigateurs sur flex scroll) */}
         <div style={{ flexShrink: 0, width: LEFT_PAD }} />
         {originalItems.map((item, i) => (
           <div
             key={i}
             style={{
-              width: ACTIVE_W,
-              height: ACTIVE_H,
+              width: CARD_W,
+              height: CARD_H,
               flexShrink: 0,
               scrollSnapAlign: "start",
             }}
@@ -212,23 +209,22 @@ export function Carousel({ children, className, variant = "center" }: CarouselPr
         ))}
       </div>
 
-      {/* Desktop : même comportement que Carousel */}
-      {/* center: overflow-hidden clips symmetrically; left-aligned: section overflow-x-hidden handles the clip so cards can bleed right */}
+      {/* Desktop */}
       <div
         className={cn("relative hidden md:block", variant === "center" && "overflow-hidden")}
         style={{
-          height: variant === "left-aligned" ? DESKTOP_LEFT_ACTIVE_H : ACTIVE_H,
+          height: CARD_H,
           ...(variant === "center" ? { width: "100vw", marginLeft: "calc(-50vw + 50%)" } : {}),
         }}
       >
         {renderDesktopCards(desktopRoleCenter, prevDesktopRoles, isDesktopLeft, desktopInteractive)}
       </div>
 
-      {/* Dots — centrés sous la card active */}
+      {/* Dots */}
       <div className="relative h-4">
         <div
           className="absolute md:hidden"
-          style={{ left: LEFT_PAD + ACTIVE_W / 2, transform: "translateX(-50%)" }}
+          style={{ left: LEFT_PAD + CARD_W / 2, transform: "translateX(-50%)" }}
         >
           <ProgressIndicator count={originalCount} active={dotActive} onDotClick={goToMobile} />
         </div>
@@ -236,7 +232,7 @@ export function Carousel({ children, className, variant = "center" }: CarouselPr
           <div
             className="absolute hidden md:block"
             style={isDesktopLeft
-              ? { left: LEFT_X[-1] + DESKTOP_LEFT_ACTIVE_W / 2, transform: "translateX(-50%)" }
+              ? { left: LEFT_X[-1] + CARD_W / 2, transform: "translateX(-50%)" }
               : { left: "50%", transform: "translateX(-50%)" }}
           >
             <ProgressIndicator count={originalCount} active={dotActive} onDotClick={goTo} />

@@ -56,17 +56,16 @@ export function SplitSection({
           {/* Image panel */}
           <div
             className={cn(
-              "w-full md:flex-1 rounded-3xl overflow-hidden shrink-0",
+              "relative w-full md:flex-1 aspect-[3/4] rounded-3xl overflow-hidden shrink-0",
               imageBg
             )}
           >
             <Image
               src={imageSrc}
               alt={imageAlt}
-              width={0}
-              height={0}
+              fill
               sizes="(max-width: 768px) 100vw, 50vw"
-              className="w-full h-auto"
+              className="object-cover"
             />
           </div>
 

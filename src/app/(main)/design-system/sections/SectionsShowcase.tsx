@@ -10,6 +10,7 @@ import { CenterCarouselSection } from "@/components/sections/center-carousel-sec
 import { FeaturesSection } from "@/components/sections/features-section";
 import { FaqSection, type FaqItem } from "@/components/sections/faq-section";
 import { TestimonialsSection } from "@/components/sections/testimonials-section";
+import { CtaSection } from "@/components/sections/cta-section";
 import { testimonials as demoTestimonials } from "@/data/testimonials";
 import { FeatureCard } from "@/components/ui/feature-card";
 import { type IconName } from "@/components/ui/icons";
@@ -30,11 +31,8 @@ const CARD_COLORS = [
   "bg-[#01322d]",
 ];
 
-let colorIndex = 0;
-function nextColor() {
-  const color = CARD_COLORS[colorIndex % CARD_COLORS.length];
-  colorIndex++;
-  return color;
+function colorAt(i: number) {
+  return CARD_COLORS[i % CARD_COLORS.length];
 }
 
 function DemoCard({ color, index }: { color: string; index: number }) {
@@ -63,11 +61,8 @@ const FEATURE_ICONS: IconName[] = [
   "check-verified",
 ];
 
-let featureIndex = 0;
-function nextIcon(): IconName {
-  const icon = FEATURE_ICONS[featureIndex % FEATURE_ICONS.length];
-  featureIndex++;
-  return icon;
+function iconAt(i: number): IconName {
+  return FEATURE_ICONS[i % FEATURE_ICONS.length];
 }
 
 // ─── Controls primitives ──────────────────────────────────────────────────────
@@ -499,28 +494,21 @@ function LogoShowcase() {
 
 function LeftShowcase() {
   const [config, setConfig] = useState<BaseConfig>(BASE_DEFAULT);
-  const [cards, setCards] = useState<string[]>([nextColor(), nextColor(), nextColor()]);
+  const [cardCount, setCardCount] = useState(3);
 
   function patch(p: Partial<BaseConfig>) {
     setConfig((c) => ({ ...c, ...p }));
   }
 
-  function addCard() {
-    setCards((prev) => [...prev, nextColor()]);
-  }
-
-  function reset() {
-    setConfig(BASE_DEFAULT);
-    setCards([nextColor(), nextColor(), nextColor()]);
-  }
+  const cards = Array.from({ length: cardCount }, (_, i) => i);
 
   return (
     <ShowcaseShell
       title="LeftCarouselSection"
       items={cards}
       itemLabel="card"
-      onAddItem={addCard}
-      onReset={reset}
+      onAddItem={() => setCardCount((c) => c + 1)}
+      onReset={() => { setConfig(BASE_DEFAULT); setCardCount(3); }}
       controls={<BaseControls config={config} onChange={patch} />}
       preview={
         <LeftCarouselSection
@@ -535,8 +523,8 @@ function LeftShowcase() {
           secondaryButtonLink={config.secondaryButtonLink || undefined}
           colorMode={config.colorMode}
         >
-          {cards.map((color, i) => (
-            <DemoCard key={i} color={color} index={i} />
+          {cards.map((i) => (
+            <DemoCard key={i} color={colorAt(i)} index={i} />
           ))}
         </LeftCarouselSection>
       }
@@ -548,28 +536,21 @@ function LeftShowcase() {
 
 function CenterShowcase() {
   const [config, setConfig] = useState<BaseConfig>({ ...BASE_DEFAULT });
-  const [cards, setCards] = useState<string[]>([nextColor(), nextColor(), nextColor()]);
+  const [cardCount, setCardCount] = useState(3);
 
   function patch(p: Partial<BaseConfig>) {
     setConfig((c) => ({ ...c, ...p }));
   }
 
-  function addCard() {
-    setCards((prev) => [...prev, nextColor()]);
-  }
-
-  function reset() {
-    setConfig({ ...BASE_DEFAULT });
-    setCards([nextColor(), nextColor(), nextColor()]);
-  }
+  const cards = Array.from({ length: cardCount }, (_, i) => i);
 
   return (
     <ShowcaseShell
       title="CenterCarouselSection"
       items={cards}
       itemLabel="card"
-      onAddItem={addCard}
-      onReset={reset}
+      onAddItem={() => setCardCount((c) => c + 1)}
+      onReset={() => { setConfig({ ...BASE_DEFAULT }); setCardCount(3); }}
       controls={<BaseControls config={config} onChange={patch} />}
       preview={
         <CenterCarouselSection
@@ -584,8 +565,8 @@ function CenterShowcase() {
           secondaryButtonLink={config.secondaryButtonLink || undefined}
           colorMode={config.colorMode}
         >
-          {cards.map((color, i) => (
-            <DemoCard key={i} color={color} index={i} />
+          {cards.map((i) => (
+            <DemoCard key={i} color={colorAt(i)} index={i} />
           ))}
         </CenterCarouselSection>
       }
@@ -597,28 +578,21 @@ function CenterShowcase() {
 
 function FeaturesShowcase() {
   const [config, setConfig] = useState<BaseConfig>({ ...BASE_DEFAULT });
-  const [icons, setIcons] = useState<IconName[]>([nextIcon(), nextIcon(), nextIcon()]);
+  const [featureCount, setFeatureCount] = useState(3);
 
   function patch(p: Partial<BaseConfig>) {
     setConfig((c) => ({ ...c, ...p }));
   }
 
-  function addFeature() {
-    setIcons((prev) => [...prev, nextIcon()]);
-  }
-
-  function reset() {
-    setConfig({ ...BASE_DEFAULT });
-    setIcons([nextIcon(), nextIcon(), nextIcon()]);
-  }
+  const features = Array.from({ length: featureCount }, (_, i) => i);
 
   return (
     <ShowcaseShell
       title="FeaturesSection"
-      items={icons}
+      items={features}
       itemLabel="feature"
-      onAddItem={addFeature}
-      onReset={reset}
+      onAddItem={() => setFeatureCount((c) => c + 1)}
+      onReset={() => { setConfig({ ...BASE_DEFAULT }); setFeatureCount(3); }}
       controls={<BaseControls config={config} onChange={patch} />}
       preview={
         <FeaturesSection
@@ -633,10 +607,10 @@ function FeaturesShowcase() {
           secondaryButtonLink={config.secondaryButtonLink || undefined}
           colorMode={config.colorMode}
         >
-          {icons.map((icon, i) => (
+          {features.map((i) => (
             <FeatureCard
               key={i}
-              icon={icon}
+              icon={iconAt(i)}
               title={`Feature ${i + 1}`}
               description="Description courte de cette fonctionnalité ou avantage clé."
               colorMode={config.colorMode}
@@ -743,7 +717,6 @@ function TestimonialsShowcase() {
           testimonials={demoTestimonials}
           eyebrow={config.eyebrow || undefined}
           title={config.title}
-          titleLevel={config.titleLevel}
           subtitle={config.subtitle || undefined}
           primaryButtonLabel={config.primaryButtonLabel || undefined}
           primaryButtonLink={config.primaryButtonLink || undefined}
@@ -752,6 +725,93 @@ function TestimonialsShowcase() {
           secondaryButtonLink={config.secondaryButtonLink || undefined}
           colorMode={config.colorMode}
         />
+      }
+    />
+  );
+}
+
+// ─── CtaSection showcase ─────────────────────────────────────────────────────
+
+type CtaVariant = "background" | "image-below";
+
+type CtaConfig = BaseConfig & {
+  variant: CtaVariant;
+};
+
+function CtaShowcase() {
+  const [config, setConfig] = useState<CtaConfig>({
+    ...BASE_DEFAULT,
+    title: "Prêt à réduire vos factures d'énergie ?",
+    subtitle: "Estimez le coût de votre projet et les aides disponibles en 2 minutes.",
+    primaryButtonLabel: "Estimer mon projet",
+    primaryButtonColor: "primary",
+    variant: "image-below",
+  });
+
+  function patch(p: Partial<CtaConfig>) {
+    setConfig((c) => ({ ...c, ...p }));
+  }
+
+  function reset() {
+    setConfig({
+      ...BASE_DEFAULT,
+      title: "Prêt à réduire vos factures d'énergie ?",
+      subtitle: "Estimez le coût de votre projet et les aides disponibles en 2 minutes.",
+      primaryButtonLabel: "Estimer mon projet",
+      primaryButtonColor: "primary",
+      variant: "image-below",
+    });
+  }
+
+  const isBackground = config.variant === "background";
+
+  return (
+    <ShowcaseShell
+      title="CtaSection"
+      description="Section CTA finale — image en fond ou image en dessous"
+      onReset={reset}
+      controls={
+        <div className="flex flex-col gap-5">
+          <BaseControls config={config} onChange={patch} />
+          <Field label="variant" type='"background" | "image-below"'>
+            <SegmentedToggle
+              value={config.variant}
+              options={["background", "image-below"] as CtaVariant[]}
+              onChange={(v) => patch({ variant: v })}
+            />
+          </Field>
+        </div>
+      }
+      preview={
+        isBackground ? (
+          <CtaSection
+            backgroundSrc="/home/hero/hero-poster.jpg"
+            backgroundAlt="Image de fond CTA"
+            eyebrow={config.eyebrow || undefined}
+            title={config.title}
+            titleLevel={config.titleLevel}
+            subtitle={config.subtitle || undefined}
+            primaryButtonLabel={config.primaryButtonLabel || undefined}
+            primaryButtonLink={config.primaryButtonLink || undefined}
+            primaryButtonColor={config.primaryButtonColor}
+            secondaryButtonLabel={config.secondaryButtonLabel || undefined}
+            secondaryButtonLink={config.secondaryButtonLink || undefined}
+          />
+        ) : (
+          <CtaSection
+            imageSrc="/home/family.jpg"
+            imageAlt="Image CTA"
+            eyebrow={config.eyebrow || undefined}
+            title={config.title}
+            titleLevel={config.titleLevel}
+            subtitle={config.subtitle || undefined}
+            primaryButtonLabel={config.primaryButtonLabel || undefined}
+            primaryButtonLink={config.primaryButtonLink || undefined}
+            primaryButtonColor={config.primaryButtonColor}
+            secondaryButtonLabel={config.secondaryButtonLabel || undefined}
+            secondaryButtonLink={config.secondaryButtonLink || undefined}
+          />
+        )
       }
     />
   );
@@ -778,6 +838,7 @@ export function SectionsShowcase() {
       <FeaturesShowcase />
       <FaqShowcase />
       <TestimonialsShowcase />
+      <CtaShowcase />
     </div>
   );
 }

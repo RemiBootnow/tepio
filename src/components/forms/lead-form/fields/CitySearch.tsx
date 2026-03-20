@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect, useCallback } from "react";
 import { Input } from "@/components/ui/input";
-import { MapPin } from "lucide-react";
+import { MarkerPin01 } from "@untitledui-pro/icons/line";
 import { searchCommunes, PostalCodeCity } from "@/lib/api/postal-code";
 
 interface CitySearchProps {
@@ -139,7 +139,7 @@ export function CitySearch({ postalCode, city, onSelect, error }: CitySearchProp
                 }}
                 onMouseEnter={() => setActiveIndex(index)}
               >
-                <MapPin className="size-4 shrink-0 text-muted-foreground" />
+                <MarkerPin01 className="size-4 shrink-0 text-muted-foreground" />
                 <span>
                   <span className="font-medium">{item.name}</span>
                   <span className="ml-2 text-muted-foreground">

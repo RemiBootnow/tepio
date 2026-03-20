@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Home, Building2 } from "lucide-react";
+import { Home01, Building02 } from "@untitledui-pro/icons/line";
 import { Heading } from "@/components/ui/typography";
 import { SelectOptionGroup } from "@/components/ui/select-option-group";
 import { HousingType } from "@/types/lead-form";
@@ -15,8 +15,8 @@ interface HousingSelectProps {
 }
 
 const housingOptions = [
-  { value: "maison" as const, label: "Une maison", icon: Home },
-  { value: "appartement" as const, label: "Un appartement", icon: Building2 },
+  { value: "maison" as const, label: "Une maison", icon: Home01 },
+  { value: "appartement" as const, label: "Un appartement", icon: Building02 },
 ];
 
 export function HousingSelect({

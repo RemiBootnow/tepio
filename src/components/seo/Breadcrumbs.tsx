@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ChevronRight, Home } from "lucide-react";
+import { ChevronRight, Home01 } from "@untitledui-pro/icons/line";
 import { JsonLd } from "./JsonLd";
 import { getBreadcrumbSchema } from "@/lib/seo/schemas";
 import { siteConfig } from "@/config/site";
@@ -58,7 +58,7 @@ export function Breadcrumbs({ items }: BreadcrumbsProps) {
                 >
                   {index === 0 ? (
                     <span className="flex items-center">
-                      <Home className="h-4 w-4" aria-hidden="true" />
+                      <Home01 className="h-4 w-4" aria-hidden="true" />
                       <span className="sr-only">{item.label}</span>
                     </span>
                   ) : (
