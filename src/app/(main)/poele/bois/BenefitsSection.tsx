@@ -4,45 +4,38 @@ import { FeatureCard } from "@/components/ui/feature-card";
 export function BenefitsSection() {
   return (
     <FeaturesSection
-      title="Les avantages du chauffage au bois"
-      subtitle="Le poele a bois combine performance, economie et respect de l'environnement pour votre confort quotidien."
-      colorMode="dark"
+      title="Les avantages du poêle à bois"
+      subtitle="Un chauffage authentique qui conjugue économies, durabilité et plaisir du feu."
     >
       <FeatureCard
         icon="lightning"
-        title="Rendement jusqu'a 85 %"
-        description="Les poeles a bois modernes convertissent la quasi-totalite de l'energie du bois en chaleur utile pour votre logement."
-        colorMode="dark"
+        title="Le combustible le moins cher"
+        description="Le bois bûche est l'énergie de chauffage la plus économique en France. Il permet de réduire significativement votre facture par rapport au gaz ou à l'électricité."
       />
       <FeatureCard
         icon="shield-check"
-        title="Energie la moins chere"
-        description="Le bois buche reste le combustible le plus economique en France, avec un cout au kWh nettement inferieur au gaz ou a l'electricite."
-        colorMode="dark"
+        title="Aucune dépendance électrique"
+        description="Le poêle à bois fonctionne sans électricité. En cas de coupure de courant, vous conservez votre chauffage — un atout précieux en hiver."
       />
       <FeatureCard
         icon="check-circle"
-        title="Chauffage ecologique"
-        description="Le bois est une energie renouvelable et neutre en carbone. Vous chauffez votre maison sans alourdir votre empreinte environnementale."
-        colorMode="dark"
+        title="Flamme authentique et chaleur rayonnante"
+        description="Rien ne remplace le spectacle d'un vrai feu de bois. La chaleur rayonnante du poêle crée une ambiance chaleureuse et réconfortante dans votre intérieur."
       />
       <FeatureCard
         icon="clock"
-        title="Autonomie de 6 a 10 heures"
-        description="Une seule charge de buches suffit pour chauffer votre piece principale pendant une soiree entiere, sans intervention."
-        colorMode="dark"
+        title="Durée de vie exceptionnelle"
+        description="Un poêle à bois en fonte ou en acier de qualité dure 20 à 30 ans avec un entretien régulier. C'est un investissement durable pour votre logement."
       />
       <FeatureCard
         icon="building"
-        title="Compatible tout logement"
-        description="Maison ancienne, renovation ou construction neuve : le poele a bois s'adapte a toutes les configurations avec un conduit adapte."
-        colorMode="dark"
+        title="Éligible aux aides de l'État"
+        description="MaPrimeRénov', prime CEE, TVA à 5,5 % : plusieurs dispositifs cumulables réduisent significativement le coût de votre projet."
       />
       <FeatureCard
-        icon="check-verified"
-        title="Valorise votre bien"
-        description="L'installation d'un poele a bois ameliore votre DPE et augmente la valeur de revente de votre logement."
-        colorMode="dark"
+        icon="map-pin"
+        title="Installé en 1 journée"
+        description="Nos artisans RGE réalisent la pose et le raccordement en une seule intervention, sans gros travaux dans votre logement."
       />
     </FeaturesSection>
   );

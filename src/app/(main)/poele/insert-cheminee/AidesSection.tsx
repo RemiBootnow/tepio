@@ -1,31 +1,44 @@
-import { FeaturesSection } from "@/components/sections/features-section";
-import { FeatureCard } from "@/components/ui/feature-card";
+import { CenterCarouselSection } from "@/components/sections/center-carousel-section";
+import { FeatureCardImage } from "@/components/ui/feature-card-image";
+
+// @IMAGE aide-maprime.jpg (3:4, 1K)
+//   CONTEXT: Card image for MaPrimeRénov' aid. Solid green background, no documents.
+//   PROMPT: A close-up of a small stack of euro coins and a miniature wooden house model on a deep dark green surface (similar to #01322D), photographed from slightly above. The subject is composed in the lower two-thirds of the frame, leaving the upper third as empty dark green background. The background color is continuous and fills the entire image — the objects rest naturally on it. No visible text, no documents, no writing of any kind. 3:4 portrait aspect ratio. Photorealistic, editorial product photography, shallow depth of field, warm studio lighting, no text, no watermarks.
+
+// @IMAGE aide-cee.jpg (3:4, 1K)
+//   CONTEXT: Card image for CEE energy savings prime. Solid black background, no documents.
+//   PROMPT: A close-up of a ceramic piggy bank next to a split birch log on a pure black surface, photographed from slightly above. The subject is composed in the lower two-thirds of the frame, leaving the upper third as empty black background. The background color is continuous and fills the entire image — the objects rest naturally on it. No visible text, no documents, no writing of any kind. 3:4 portrait aspect ratio. Photorealistic, editorial product photography, shallow depth of field, warm studio lighting, no text, no watermarks.
+
+// @IMAGE aide-tva.jpg (3:4, 1K)
+//   CONTEXT: Card image for reduced VAT. Solid beige background, no documents.
+//   PROMPT: A close-up of a fireplace insert glass door handle and a small potted plant on a warm beige surface (similar to #FAF6F1), photographed from slightly above. The subject is composed in the lower two-thirds of the frame, leaving the upper third as empty beige background. The background color is continuous and fills the entire image — the objects rest naturally on it. No visible text, no documents, no writing of any kind. 3:4 portrait aspect ratio. Photorealistic, editorial product photography, shallow depth of field, warm studio lighting, no text, no watermarks.
 
 export function AidesSection() {
   return (
-    <FeaturesSection
-      title="Des aides pour financer votre insert cheminée"
-      subtitle="Plusieurs dispositifs réduisent le coût de votre projet. Un artisan RGE est indispensable pour en bénéficier."
-      colorMode="dark"
+    <CenterCarouselSection
+      title="Des aides pour réduire le coût de votre insert cheminée"
+      subtitle="Plusieurs dispositifs cumulables financent une partie de votre projet. Découvrez ceux auxquels vous avez droit."
+      primaryButtonLabel="Simuler mes aides"
+      primaryButtonLink="/estimation"
     >
-      <FeatureCard
-        icon="check-verified"
-        title="MaPrimeRénov'"
-        description="Une aide de l'État calculée selon vos revenus et le gain énergétique. Elle couvre une part importante du coût de l'insert et de la pose."
+      <FeatureCardImage
+        imageSrc="/poele/insert-cheminee/aide-maprime.jpg"
+        imageAlt="MaPrimeRénov' pour insert cheminée"
+        title="MaPrimeRénov' : jusqu'à 1 250 €"
         colorMode="dark"
       />
-      <FeatureCard
-        icon="lightning"
-        title="Prime CEE"
-        description="Les fournisseurs d'énergie financent une partie de vos travaux via les Certificats d'Économies d'Énergie. Cumulable avec MaPrimeRénov'."
+      <FeatureCardImage
+        imageSrc="/poele/insert-cheminee/aide-cee.jpg"
+        imageAlt="Prime CEE pour insert cheminée"
+        title="Prime CEE : jusqu'à 250 €"
         colorMode="dark"
       />
-      <FeatureCard
-        icon="building"
-        title="TVA réduite à 5,5 %"
-        description="La fourniture et la pose d'un insert par un professionnel RGE bénéficient d'une TVA à taux réduit, appliquée directement sur la facture."
-        colorMode="dark"
+      <FeatureCardImage
+        imageSrc="/poele/insert-cheminee/aide-tva.jpg"
+        imageAlt="TVA réduite pour insert cheminée"
+        title="TVA réduite à 5,5 % sur la pose"
+        colorMode="light"
       />
-    </FeaturesSection>
+    </CenterCarouselSection>
   );
 }

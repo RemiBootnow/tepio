@@ -2,28 +2,24 @@ import { Metadata } from "next";
 import { generatePageMetadata } from "@/lib/seo/metadata";
 import { HeroSection } from "./HeroSection";
 import { LogoSection } from "./LogoSection";
-import { WhatIsMprSection } from "./WhatIsMprSection";
-import { AmountsSection } from "./AmountsSection";
-import { EligibleStovesSection } from "./EligibleStovesSection";
-import { CumulAidesSection } from "./CumulAidesSection";
+import { WhatIsSection } from "./WhatIsSection";
+import { BenefitsSection } from "./BenefitsSection";
 import { ProcessSection } from "./ProcessSection";
-import { WhyUsSection } from "./WhyUsSection";
 import { TestimonialsSection } from "./TestimonialsSection";
 import { FaqSection } from "./FaqSection";
 import { CtaSection } from "./CtaSection";
 
 export const metadata: Metadata = generatePageMetadata({
-  title: "MaPrimeRénov' Poêle : Montants, Conditions et Démarches",
+  title: "MaPrimeRénov' poêle : montants et conditions en 2026",
   description:
-    "Découvrez les montants MaPrimeRénov' pour un poêle à bois ou à granulés selon vos revenus. Conditions d'éligibilité, démarches et cumul des aides expliqués.",
+    "MaPrimeRénov' 2026 pour poêle à bois ou granulés : jusqu'à 1 250 € d'aide. Conditions, montants par revenus et démarches. Estimez votre projet gratuitement.",
   keywords: [
-    "MaPrimeRénov poêle",
-    "MaPrimeRénov poêle à granulés",
-    "aide poêle à bois",
-    "prime poêle à granulés",
-    "MaPrimeRénov 2026",
-    "montant MaPrimeRénov poêle",
+    "MaPrimeRénov' poêle",
+    "aide poêle à granulés",
+    "MaPrimeRénov' 2026",
+    "prime poêle à bois",
     "aide installation poêle",
+    "ANAH poêle",
   ],
   canonical: "/aides/ma-prime-renov-poele",
 });
@@ -33,12 +29,9 @@ export default function MaPrimeRenovPoelePage() {
     <>
       <HeroSection />
       <LogoSection />
-      <WhatIsMprSection />
-      <AmountsSection />
-      <EligibleStovesSection />
-      <CumulAidesSection />
+      <WhatIsSection />
+      <BenefitsSection />
       <ProcessSection />
-      <WhyUsSection />
       <TestimonialsSection />
       <FaqSection />
       <CtaSection />

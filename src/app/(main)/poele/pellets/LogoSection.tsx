@@ -1,14 +1,12 @@
-import { LogoSection as LogoSectionComponent } from "@/components/sections/logo-section";
+import { LogoSection as LogoSectionBase, type LogoItem } from "@/components/sections/logo-section";
+
+const logos: LogoItem[] = [
+  { src: "/logo/logo-eco-pret-full-size.png", alt: "Éco-prêt à taux zéro", width: 169 },
+  { src: "/logo/logo-republique-francaise-full-sie.png", alt: "République Française", width: 108 },
+  { src: "/logo/logo-cee-full-size.png", alt: "CEE — Les certificats d'économies d'énergie", width: 138 },
+  { src: "/logo/logo-ma-prime-renov-full-size.png", alt: "MaPrimeRénov'", width: 206 },
+];
 
 export function LogoSection() {
-  return (
-    <LogoSectionComponent
-      logos={[
-        { src: "/icons/logo-rge.png", alt: "Certification RGE", width: 100 },
-        { src: "/icons/logo-maprimerenov.png", alt: "MaPrimeRénov'", width: 160 },
-        { src: "/icons/logo-france-renov.png", alt: "France Rénov'", width: 130 },
-        { src: "/icons/logo-qualibois.png", alt: "Qualibois", width: 100 },
-      ]}
-    />
-  );
+  return <LogoSectionBase logos={logos} />;
 }

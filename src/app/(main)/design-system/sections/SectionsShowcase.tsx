@@ -799,8 +799,8 @@ function CtaShowcase() {
           />
         ) : (
           <CtaSection
-            imageSrc="/home/family.jpg"
-            imageAlt="Image CTA"
+            backgroundSrc="/home/family.jpg"
+            backgroundAlt="Image CTA"
             eyebrow={config.eyebrow || undefined}
             title={config.title}
             titleLevel={config.titleLevel}

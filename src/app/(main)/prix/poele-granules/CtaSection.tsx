@@ -1,17 +1,17 @@
-import { CtaSection as CtaSectionComponent } from "@/components/sections/cta-section";
-import { APP_NAME } from "@/lib/constants";
+import { CtaSection as CtaSectionBase } from "@/components/sections/cta-section";
 
-// @IMAGE cta-background.jpg
-//   CONTEXT: Final CTA section closing the pricing page. Should evoke warmth, comfort, and the result of installing a pellet stove.
-//   PROMPT: Wide-angle photo of a cozy French living room in the evening, a pellet stove glowing with warm orange light in the center-right, a family blanket on a sofa, soft warm ambient lighting, large window showing winter dusk outside, aspirational lifestyle photography, 16:9 landscape format, warm color temperature
+// @IMAGE cta-bg.jpg (16:9, 2K)
+//   CONTEXT: Final CTA section for pellet stove pricing page. Interior scene, GREEN wall (matches gradientColor="green"), people centered in lower 2/3.
+//   PROMPT: A wide panoramic view of a cozy Scandinavian living room, camera facing the wall straight-on. The back wall is deep dark green (similar to #01322D). In the lower two-thirds of the frame, a young couple sitting on a light linen sofa, centered horizontally, enjoying the warmth of a modern pellet stove with a visible amber flame. The stove has a flue pipe going up. They face the camera but do not look into the lens. The upper third shows only the dark green wall — empty, no decoration. Light oak parquet floor with a white baseboard. No visible text, no documents, no writing of any kind. 16:9 landscape format. Shot on full-frame 50mm f/1.8, shallow depth of field, warm editorial color grading, slightly lifted blacks, subtle film grain, soft directional light from the right. Photorealistic.
 
 export function CtaSection() {
   return (
-    <CtaSectionComponent
-      backgroundSrc="/prix/poele-granules/cta-background.jpg"
-      backgroundAlt="Salon chaleureux avec poêle à granulés"
-      title={`Estimez le prix de votre poêle à granulés avec ${APP_NAME}`}
-      subtitle="Recevez une estimation personnalisée en 2 minutes, aides déduites. Nos conseillers vous accompagnent de A à Z."
+    <CtaSectionBase
+      backgroundSrc="/prix/poele-granules/cta-bg.jpg"
+      backgroundAlt="Salon chaleureux avec un poêle à granulés"
+      gradientColor="green"
+      title="Estimez le prix de votre poêle à granulés"
+      subtitle="Recevez une estimation personnalisée et découvrez les aides auxquelles vous avez droit en 2 minutes."
       primaryButtonLabel="Estimer mon projet"
       primaryButtonLink="/estimation"
       primaryButtonColor="primary"

@@ -1,47 +1,47 @@
-import { FaqSection as FaqSectionBase, type FaqItem } from "@/components/sections/faq-section";
+import { FaqSection as FaqSectionBase } from "@/components/sections/faq-section";
 
-const faqItems: FaqItem[] = [
+const faqItems = [
   {
-    question: "Peut-on utiliser l'éco-PTZ pour installer un poêle à granulés ?",
+    question: "Quel montant peut-on emprunter avec l'éco-PTZ pour un poêle ?",
     answer:
-      "Oui, l'installation d'un poêle à granulés fait partie des travaux éligibles à l'éco-PTZ, à condition qu'elle soit réalisée par un artisan certifié RGE. Vous pouvez emprunter jusqu'à 15 000 € pour cette seule action.",
+      "Pour une action simple comme l'installation d'un poêle, le montant maximal est de 15 000 €. Si vous combinez plusieurs travaux de rénovation énergétique, le plafond peut atteindre 50 000 €.",
   },
   {
-    question: "L'éco-PTZ est-il cumulable avec MaPrimeRénov' ?",
+    question: "L'éco-PTZ est-il accessible sans condition de revenus ?",
     answer:
-      "Oui, depuis 2022 l'éco-PTZ est pleinement cumulable avec MaPrimeRénov'. Vous pouvez même utiliser l'éco-PTZ pour financer votre reste à charge après déduction de MaPrimeRénov' et des primes CEE.",
+      "Oui, l'éco-PTZ est ouvert à tous les propriétaires (occupants ou bailleurs) sans aucune condition de ressources. C'est l'un de ses principaux avantages par rapport à d'autres aides.",
   },
   {
-    question: "Quelles sont les conditions d'éligibilité de l'éco-PTZ ?",
+    question: "Peut-on cumuler l'éco-PTZ avec MaPrimeRénov' ?",
     answer:
-      "Vous devez être propriétaire (occupant ou bailleur) d'un logement construit depuis plus de 2 ans, utilisé comme résidence principale. Aucune condition de revenus n'est exigée. Les travaux doivent être réalisés par un professionnel RGE.",
+      "Absolument. L'éco-PTZ est cumulable avec MaPrimeRénov', la prime énergie (CEE) et la TVA réduite à 5,5 %. Vous pouvez emprunter via l'éco-PTZ uniquement le reste à charge après déduction des autres aides.",
   },
   {
     question: "Quelle est la durée maximale de remboursement ?",
     answer:
-      "La durée de remboursement est de 15 ans pour la plupart des travaux, et peut aller jusqu'à 20 ans pour les bouquets de travaux ambitieux visant une performance énergétique globale.",
+      "La durée maximale de remboursement est de 20 ans. Vous pouvez choisir une durée plus courte selon vos capacités de remboursement, en accord avec votre banque.",
   },
   {
-    question: "Comment demander un éco-PTZ auprès de ma banque ?",
+    question: "Quelles banques proposent l'éco-PTZ ?",
     answer:
-      "Munissez-vous du devis de votre artisan RGE et du formulaire « emprunteur » (disponible en ligne). Présentez-les à une banque ayant signé une convention avec l'État. La réponse arrive généralement sous 30 jours.",
+      "L'éco-PTZ est disponible dans les banques ayant signé une convention avec l'État : Crédit Agricole, BNP Paribas, Banque Populaire, Caisse d'Épargne, Société Générale, Crédit Mutuel, entre autres.",
   },
   {
-    question: "Peut-on obtenir un deuxième éco-PTZ pour le même logement ?",
+    question: "Faut-il un artisan RGE pour bénéficier de l'éco-PTZ ?",
     answer:
-      "Oui, un éco-PTZ complémentaire est possible si le montant cumulé des deux prêts ne dépasse pas 50 000 €. Il faut que le premier prêt ait été émis depuis au moins un an pour pouvoir en solliciter un second.",
+      "Oui, les travaux doivent obligatoirement être réalisés par un professionnel certifié RGE (Reconnu Garant de l'Environnement). C'est une condition indispensable pour obtenir le prêt.",
   },
   {
-    question: "L'éco-PTZ est-il disponible en 2026 ?",
+    question: "Peut-on demander un éco-PTZ si on a déjà un crédit immobilier ?",
     answer:
-      "Oui, l'éco-PTZ a été prolongé jusqu'au 31 décembre 2027. Vous pouvez en faire la demande dès maintenant auprès d'une banque partenaire pour tous travaux éligibles.",
+      "Oui, l'éco-PTZ est indépendant de votre crédit immobilier. Il s'agit d'un prêt complémentaire spécifiquement dédié aux travaux de rénovation énergétique. Votre banque évaluera simplement votre capacité d'endettement globale.",
   },
 ];
 
 export function FaqSection() {
   return (
     <FaqSectionBase
-      title="Vos questions sur l'éco-prêt à taux zéro"
+      title="Vos questions sur l'éco-PTZ"
       items={faqItems}
     />
   );

@@ -6,8 +6,8 @@ export function TestimonialsSection() {
   return (
     <TestimonialsSectionBase
       testimonials={testimonials}
-      title={`Ils ont installé leur poêle avec ${APP_NAME}`}
-      subtitle="Des centaines de foyers ont déjà bénéficié de la prime CEE pour financer leur poêle."
+      title={`Ils ont bénéficié de la prime énergie avec ${APP_NAME}`}
+      subtitle="Découvrez les retours de nos clients ayant réduit le coût de leur poêle grâce à la prime CEE."
     />
   );
 }

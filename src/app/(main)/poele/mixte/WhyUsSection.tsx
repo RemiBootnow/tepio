@@ -5,23 +5,26 @@ import { APP_NAME } from "@/lib/constants";
 export function WhyUsSection() {
   return (
     <FeaturesSection
-      title={`Pourquoi installer votre poele mixte avec ${APP_NAME} ?`}
-      subtitle="Un accompagnement complet, de la premiere visite a la mise en service."
+      title={`Pourquoi choisir ${APP_NAME} pour votre poêle mixte ?`}
+      colorMode="dark"
     >
       <FeatureCard
-        icon="user-circle"
-        title="Visite technique gratuite"
-        description="Un technicien se deplace chez vous pour evaluer la faisabilite et dimensionner le poele adapte a votre logement."
+        icon="check-verified"
+        title="Artisans certifiés RGE"
+        description="Tous nos installateurs sont qualifiés RGE, condition indispensable pour bénéficier des aides de l'État."
+        colorMode="dark"
       />
       <FeatureCard
-        icon="check-verified"
-        title="Artisans certifies RGE"
-        description="Tous nos installateurs sont qualifies RGE, condition indispensable pour beneficier des aides de l'Etat."
+        icon="user-circle"
+        title="Un conseiller dédié"
+        description="De la simulation à la mise en service, un interlocuteur unique vous accompagne à chaque étape de votre projet."
+        colorMode="dark"
       />
       <FeatureCard
         icon="shield-check"
-        title="Aides deduites directement"
-        description="Nous deduisons MaPrimeRenov' et la prime CEE de votre facture. Vous ne payez que le reste a charge."
+        title="Garantie et SAV inclus"
+        description="Votre poêle est garanti par le fabricant et notre SAV reste disponible après l'installation."
+        colorMode="dark"
       />
     </FeaturesSection>
   );

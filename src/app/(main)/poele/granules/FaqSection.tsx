@@ -5,7 +5,7 @@ const faqItems: FaqItem[] = [
   {
     question: "Combien consomme un poêle à granulés par mois ?",
     answer:
-      "En moyenne, un poêle à granulés consomme entre 1 et 2 sacs de 15 kg par jour en plein hiver, soit environ 40 à 80 euros par mois selon la surface à chauffer et l'isolation du logement.",
+      "En moyenne, un poêle à granulés consomme entre 1 et 2 sacs de 15 kg par jour en plein hiver, soit environ 40 à 80 € par mois selon la surface à chauffer et l'isolation du logement.",
   },
   {
     question: "Quelle est la durée de vie d'un poêle à granulés ?",
@@ -25,17 +25,17 @@ const faqItems: FaqItem[] = [
   {
     question: "Quelles aides pour un poêle à granulés en 2026 ?",
     answer:
-      "En 2026, vous pouvez bénéficier de MaPrimeRénov' (jusqu'à 1 800 €), de la prime CEE, de la TVA réduite à 5,5 % et éventuellement de l'éco-prêt à taux zéro. Le montant dépend de vos revenus.",
+      "En 2026, vous pouvez bénéficier de MaPrimeRénov' (jusqu'à 1 250 €), de la prime CEE, de la TVA réduite à 5,5 % et de l'éco-prêt à taux zéro. Ces aides sont cumulables et le montant dépend de vos revenus.",
   },
   {
     question: "Un poêle à granulés peut-il chauffer toute la maison ?",
     answer:
-      "Un poêle à granulés peut chauffer une surface de 80 à 120 m² selon sa puissance. Pour les grandes maisons, il est souvent utilisé en chauffage principal dans les pièces de vie, complété par un autre système dans les chambres.",
+      "Un poêle à granulés peut chauffer 80 à 120 m² selon sa puissance (6 à 12 kW). Pour les grandes maisons, il est souvent utilisé en chauffage principal dans les pièces de vie, complété par un autre système dans les chambres.",
   },
   {
     question: "Un poêle à granulés est-il bruyant ?",
     answer:
-      "Les modèles récents fonctionnent à un niveau sonore de 30 à 40 dB, comparable à un réfrigérateur. Certains modèles à convection naturelle sont quasi silencieux, sans ventilateur.",
+      "Les modèles récents fonctionnent à 30-40 dB, comparable à un réfrigérateur. Certains modèles à convection naturelle sont quasi silencieux, sans ventilateur.",
   },
 ];
 

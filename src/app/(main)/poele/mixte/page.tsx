@@ -4,25 +4,24 @@ import { HeroSection } from "./HeroSection";
 import { LogoSection } from "./LogoSection";
 import { WhatIsSection } from "./WhatIsSection";
 import { BenefitsSection } from "./BenefitsSection";
-import { HowItWorksSection } from "./HowItWorksSection";
-import { AidsSection } from "./AidsSection";
-import { WhyUsSection } from "./WhyUsSection";
+import { InstallationSection } from "./InstallationSection";
+import { AidesSection } from "./AidesSection";
 import { TestimonialsSection } from "./TestimonialsSection";
+import { WhyUsSection } from "./WhyUsSection";
 import { FaqSection } from "./FaqSection";
 import { CtaSection } from "./CtaSection";
 
 export const metadata: Metadata = generatePageMetadata({
-  title: "Poele Mixte Bois et Granules : Guide, Aides et Installation",
+  title: "Poêle mixte : la polyvalence bois et granulés",
   description:
-    "Decouvrez le poele mixte bois et granules : fonctionnement, avantages, aides financieres (MaPrimeRenov', CEE) et installation par des artisans RGE. Estimez votre projet gratuitement.",
+    "Découvrez le poêle mixte bois-granulés : deux combustibles en un seul appareil, aides MaPrimeRénov' 2026 et installation par un artisan RGE. Estimez votre projet.",
   keywords: [
-    "poele mixte bois granules",
-    "poele mixte",
-    "poele bois et granules",
-    "poele hybride",
-    "chauffage bois granules",
-    "poele mixte aides",
-    "installation poele mixte",
+    "poêle mixte",
+    "poêle mixte bois granulés",
+    "poêle hybride",
+    "installation poêle mixte",
+    "aide poêle mixte",
+    "MaPrimeRénov poêle mixte",
   ],
   canonical: "/poele/mixte",
 });
@@ -34,8 +33,8 @@ export default function PoeleMixtePage() {
       <LogoSection />
       <WhatIsSection />
       <BenefitsSection />
-      <HowItWorksSection />
-      <AidsSection />
+      <InstallationSection />
+      <AidesSection />
       <TestimonialsSection />
       <WhyUsSection />
       <FaqSection />

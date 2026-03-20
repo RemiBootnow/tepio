@@ -3,36 +3,39 @@ import { FeatureCard } from "@/components/ui/feature-card";
 
 export function BenefitsSection() {
   return (
-    <FeaturesSection title="Pourquoi passer à un insert cheminée ?">
+    <FeaturesSection
+      title="Les avantages de l'insert cheminée"
+      subtitle="Transformez votre cheminée ouverte en un chauffage performant sans perdre son cachet."
+    >
       <FeatureCard
         icon="lightning"
-        title="Rendement jusqu'à 85 %"
-        description="Un insert récupère et redistribue la chaleur au lieu de la laisser filer dans le conduit. Vous chauffez plus avec moins de bois."
+        title="Rendement multiplié par 5"
+        description="Passez de 10-15 % de rendement avec un foyer ouvert à 70-85 % avec un insert. La chaleur reste dans votre maison au lieu de s'échapper par le conduit."
       />
       <FeatureCard
-        icon="building"
-        title="Économies sur le chauffage"
-        description="Moins de bois consommé pour plus de chaleur : votre facture de chauffage baisse sensiblement dès le premier hiver."
+        icon="check-circle"
+        title="Conservez le charme de votre cheminée"
+        description="L'insert s'intègre dans votre foyer existant et conserve l'esthétique de votre cheminée. Profitez de la flamme visible derrière la vitre."
       />
       <FeatureCard
         icon="shield-check"
         title="Sécurité renforcée"
-        description="La vitre fermée supprime les risques de projections de braises et limite les émissions de fumée dans votre pièce de vie."
-      />
-      <FeatureCard
-        icon="check-verified"
-        title="Respect de l'environnement"
-        description="Une combustion complète réduit les particules fines de 80 % par rapport à un foyer ouvert. Le bois reste une énergie renouvelable."
+        description="Le foyer fermé élimine les risques de projection de braises et de refoulement de fumée. Un chauffage plus sûr, surtout en présence d'enfants."
       />
       <FeatureCard
         icon="clock"
-        title="Autonomie prolongée"
-        description="Un chargement de bûches dure plusieurs heures grâce à la combustion contrôlée. Moins de rechargements, plus de confort."
+        title="Autonomie de chauffe prolongée"
+        description="La combustion contrôlée d'un insert permet une autonomie de 6 à 10 heures par chargement, bien supérieure à celle d'un foyer ouvert."
       />
       <FeatureCard
-        icon="check-circle"
-        title="Valorisation de votre bien"
-        description="Un insert moderne améliore le DPE de votre logement et le rend plus attractif à la revente ou à la location."
+        icon="building"
+        title="Éligible aux aides de l'État"
+        description="MaPrimeRénov', prime CEE, TVA à 5,5 % : plusieurs dispositifs cumulables réduisent significativement le coût de votre projet."
+      />
+      <FeatureCard
+        icon="map-pin"
+        title="Installation dans votre cheminée existante"
+        description="Nos artisans RGE encastrent l'insert dans votre foyer actuel et adaptent le conduit. Pas besoin de gros travaux de maçonnerie."
       />
     </FeaturesSection>
   );

@@ -6,8 +6,8 @@ export function TestimonialsSection() {
   return (
     <TestimonialsSectionBase
       testimonials={testimonials}
-      title={`Ce que nos clients disent de ${APP_NAME}`}
-      subtitle="Des centaines de foyers ont deja fait confiance a notre reseau pour leur installation de chauffage au bois."
+      title={`Ils ont installé un poêle avec ${APP_NAME}`}
+      subtitle="Découvrez les retours de nos clients après l'installation de leur poêle mixte."
     />
   );
 }

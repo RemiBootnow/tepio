@@ -2,28 +2,24 @@ import { Metadata } from "next";
 import { generatePageMetadata } from "@/lib/seo/metadata";
 import { HeroSection } from "./HeroSection";
 import { LogoSection } from "./LogoSection";
-import { PriceRangesSection } from "./PriceRangesSection";
+import { PriceFactorsSection } from "./PriceFactorsSection";
 import { StoveTypesSection } from "./StoveTypesSection";
-import { InstallationSection } from "./InstallationSection";
 import { AidesSection } from "./AidesSection";
-import { WhyUsSection } from "./WhyUsSection";
 import { TestimonialsSection } from "./TestimonialsSection";
 import { FaqSection } from "./FaqSection";
 import { CtaSection } from "./CtaSection";
 
 export const metadata: Metadata = generatePageMetadata({
-  title: "Prix d'un poêle : tarifs, installation et aides 2026",
+  title: "Prix d'un poêle : ce qui influence le coût de votre projet",
   description:
-    "Combien coûte un poêle à granulés, à bois, mixte ou un insert ? Découvrez les prix moyens, le coût d'installation et les aides financières disponibles en 2026.",
+    "Découvrez les facteurs qui influencent le prix d'un poêle à granulés, à bois ou mixte. Aides MaPrimeRénov' 2026, CEE, TVA réduite. Estimation gratuite.",
   keywords: [
     "prix poêle",
     "prix poêle à granulés",
     "prix poêle à bois",
     "coût installation poêle",
-    "prix insert cheminée",
-    "aide poêle à granulés",
+    "aide poêle",
     "MaPrimeRénov poêle",
-    "prix poêle mixte",
   ],
   canonical: "/prix",
 });
@@ -33,11 +29,9 @@ export default function PrixPage() {
     <>
       <HeroSection />
       <LogoSection />
-      <PriceRangesSection />
-      <InstallationSection />
+      <PriceFactorsSection />
       <StoveTypesSection />
       <AidesSection />
-      <WhyUsSection />
       <TestimonialsSection />
       <FaqSection />
       <CtaSection />

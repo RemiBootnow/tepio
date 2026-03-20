@@ -5,12 +5,14 @@ interface FeatureCardImageProps {
   imageSrc: string;
   imageAlt: string;
   title: string;
+  colorMode?: "light" | "dark";
 }
 
 export function FeatureCardImage({
   imageSrc,
   imageAlt,
   title,
+  colorMode = "dark",
 }: FeatureCardImageProps) {
   return (
     <div className="relative rounded-3xl overflow-hidden w-full h-full">
@@ -21,7 +23,10 @@ export function FeatureCardImage({
         className="object-cover"
       />
       <div className="relative z-10 h-full flex items-start p-8">
-        <Heading as="h3" className="text-white">
+        <Heading
+          as="h3"
+          className={colorMode === "dark" ? "text-white" : "text-foreground"}
+        >
           {title}
         </Heading>
       </div>

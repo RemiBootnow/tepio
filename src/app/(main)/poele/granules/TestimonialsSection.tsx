@@ -6,7 +6,7 @@ export function TestimonialsSection() {
   return (
     <TestimonialsSectionBase
       testimonials={testimonials}
-      title={`Ils ont installé un poêle à granulés avec ${APP_NAME}`}
+      title={`Ils ont installé un poêle avec ${APP_NAME}`}
       subtitle="Découvrez les retours de nos clients après l'installation de leur poêle à granulés."
     />
   );

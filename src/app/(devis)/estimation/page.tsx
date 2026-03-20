@@ -6,6 +6,7 @@ import { generatePageMetadata } from "@/lib/seo/metadata";
 import { Heading } from "@/components/ui/typography";
 import { Logo } from "@/components/ui/logo";
 import { TrustSection } from "@/components/forms/lead-form/TrustSection";
+import { BackToSiteButton } from "@/components/forms/lead-form/BackToSiteButton";
 import { serviceLabels, serviceDescriptions, ServiceType } from "@/types/lead-form";
 
 export const metadata: Metadata = generatePageMetadata({
@@ -51,8 +52,9 @@ const serviceOptions: {
 export default function DevisGratuitPage() {
   return (
     <div className="flex flex-col px-3 pb-3 pt-4 md:p-4 min-h-dvh">
-      {/* Header with logo */}
+      {/* Header with back button and logo */}
       <header className="relative flex h-9 items-center justify-center mb-4 px-2 shrink-0">
+        <BackToSiteButton />
         <Logo height={28} />
       </header>
 

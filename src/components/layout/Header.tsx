@@ -13,17 +13,17 @@ import { Logo } from "@/components/ui/logo";
 const transparentHeroRoutes: Record<string, "dark" | "light"> = {
   "/": "dark",
   "/poele/granules": "dark",
-  "/poele/bois": "dark",
+  "/poele/bois": "light",
   "/poele/insert-cheminee": "dark",
-  "/poele/pellets": "light",
-  "/poele/mixte": "light",
+  "/poele/pellets": "dark",
+  "/poele/mixte": "dark",
   "/aides/ma-prime-renov-poele": "light",
   "/aides/prime-energie-poele": "dark",
-  "/aides/eco-ptz": "light",
+  "/aides/eco-ptz": "dark",
   "/prix": "dark",
-  "/prix/poele-granules": "light",
-  "/prix/poele-bois": "dark",
-  "/installation/installateur-rge": "dark",
+  "/prix/poele-granules": "dark",
+  "/prix/poele-bois": "light",
+  "/installation/installateur-rge": "light",
 };
 
 const HIDE_THRESHOLD = 50;

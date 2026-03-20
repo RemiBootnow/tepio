@@ -2,26 +2,24 @@ import { Metadata } from "next";
 import { generatePageMetadata } from "@/lib/seo/metadata";
 import { HeroSection } from "./HeroSection";
 import { LogoSection } from "./LogoSection";
-import { CertificationSection } from "./CertificationSection";
-import { GarantiesSection } from "./GarantiesSection";
-import { DemarcheSection } from "./DemarcheSection";
-import { AidesSection } from "./AidesSection";
+import { WhatIsSection } from "./WhatIsSection";
+import { BenefitsSection } from "./BenefitsSection";
+import { ProcessSection } from "./ProcessSection";
 import { TestimonialsSection } from "./TestimonialsSection";
 import { FaqSection } from "./FaqSection";
 import { CtaSection } from "./CtaSection";
 
 export const metadata: Metadata = generatePageMetadata({
-  title: "Installateur RGE Poêle : Trouvez un Artisan Certifié",
+  title: "Installateur RGE poêle : trouvez un artisan certifié",
   description:
-    "Trouvez un installateur RGE qualifié pour votre poêle à granulés. Certification Qualibois, aides MaPrimeRénov' et CEE garanties. Devis gratuit et mise en relation rapide.",
+    "Un installateur RGE est indispensable pour bénéficier des aides. Découvrez la certification RGE, les garanties et trouvez votre artisan pour l'installation de votre poêle.",
   keywords: [
-    "installateur RGE poêle",
-    "artisan RGE poêle à granulés",
+    "installateur RGE",
+    "artisan RGE poêle",
     "certification RGE",
-    "Qualibois",
-    "installateur poêle certifié",
-    "poêle à granulés RGE",
-    "trouver artisan RGE",
+    "installateur poêle granulés",
+    "artisan certifié",
+    "RGE Qualibois",
   ],
   canonical: "/installation/installateur-rge",
 });
@@ -31,10 +29,9 @@ export default function InstallateurRgePage() {
     <>
       <HeroSection />
       <LogoSection />
-      <CertificationSection />
-      <GarantiesSection />
-      <DemarcheSection />
-      <AidesSection />
+      <WhatIsSection />
+      <BenefitsSection />
+      <ProcessSection />
       <TestimonialsSection />
       <FaqSection />
       <CtaSection />

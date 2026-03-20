@@ -1,17 +1,17 @@
 import { SplitSection } from "@/components/sections/split-section";
 
-// @IMAGE what-is.jpg
-//   CONTEXT: Comprehension section explaining what a mixed stove is. The visitor needs to see the product clearly in a home context.
-//   PROMPT: Medium shot of a modern dual-fuel stove in a French living room, glass door showing gentle flames, a bag of wood pellets and two split logs placed beside the stove on a stone hearth, light-colored wall behind, natural daylight from a side window, product-in-context photography, 3:4 aspect ratio portrait orientation, warm tones
+// @IMAGE what-is.jpg (3:4, 1K)
+//   CONTEXT: Comprehension section explaining what a hybrid stove is. Show the product in a real living room.
+//   PROMPT: A modern hybrid stove (poêle mixte) with a visible warm orange flame behind the glass door, placed in a cozy Scandinavian living room with light oak parquet floor. The stove has a black flue pipe going up. On one side, a basket of split birch logs; on the other, a small container of wood pellets. The background is softly blurred with creamy bokeh. No visible text, no documents, no writing of any kind. 3:4 portrait aspect ratio. Shot on full-frame 50mm f/1.8, shallow depth of field, warm editorial color grading, slightly lifted blacks, subtle film grain, soft natural window light. Photorealistic.
 
 export function WhatIsSection() {
   return (
     <SplitSection
       imageSrc="/poele/mixte/what-is.jpg"
-      imageAlt="Poele mixte bois et granules dans un salon"
+      imageAlt="Poêle mixte bois-granulés dans un salon moderne"
       imagePosition="left"
-      title="Qu'est-ce qu'un poele mixte bois et granules ?"
-      subtitle="Le poele mixte combine deux foyers ou un foyer hybride capable de bruler du bois buche et des granules de bois (pellets). Vous basculez d'un combustible a l'autre selon vos besoins : la flamme genereuse du bois le week-end, et le chauffage automatique aux granules en semaine."
+      title="Qu'est-ce qu'un poêle mixte ?"
+      subtitle="Le poêle mixte (ou poêle hybride) combine deux modes de combustion : bûches et granulés. Vous chargez des bûches pour profiter de la flamme authentique, puis l'appareil bascule automatiquement sur les granulés pour maintenir la chaleur sans intervention. C'est la solution idéale pour allier plaisir du feu de bois et confort d'un chauffage autonome."
       primaryButtonLabel="Estimer mon projet"
       primaryButtonLink="/estimation"
     />

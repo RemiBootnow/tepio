@@ -6,15 +6,15 @@ import { WhatIsSection } from "./WhatIsSection";
 import { BenefitsSection } from "./BenefitsSection";
 import { InstallationSection } from "./InstallationSection";
 import { AidesSection } from "./AidesSection";
-import { WhyUsSection } from "./WhyUsSection";
 import { TestimonialsSection } from "./TestimonialsSection";
+import { WhyUsSection } from "./WhyUsSection";
 import { FaqSection } from "./FaqSection";
 import { CtaSection } from "./CtaSection";
 
 export const metadata: Metadata = generatePageMetadata({
-  title: "Poêle à granulés : prix, aides et installation",
+  title: "Poêle à granulés : avantages, aides et installation",
   description:
-    "Découvrez le poêle à granulés : fonctionnement, avantages, aides financières (MaPrimeRénov', CEE) et installation par un artisan RGE. Estimez votre projet gratuitement.",
+    "Découvrez le poêle à granulés : rendement jusqu'à 95 %, aides MaPrimeRénov' 2026 et installation par un artisan RGE. Estimez votre projet gratuitement.",
   keywords: [
     "poêle à granulés",
     "poêle à pellets",
@@ -22,7 +22,6 @@ export const metadata: Metadata = generatePageMetadata({
     "aide poêle à granulés",
     "MaPrimeRénov poêle",
     "chauffage granulés bois",
-    "prix poêle à granulés",
   ],
   canonical: "/poele/granules",
 });

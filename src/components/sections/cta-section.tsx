@@ -1,7 +1,21 @@
-import Image from "next/image";
 import { TextContent } from "@/components/blocks/text-content";
 
-interface CtaSectionBaseProps {
+const GRADIENT_COLORS = {
+  green: "1,50,45",     // #01322D
+  black: "0,0,0",       // #000000
+  white: "255,255,255",  // #FFFFFF
+  beige: "250,246,241",  // #FAF6F1
+} as const;
+
+type GradientColor = keyof typeof GRADIENT_COLORS;
+
+interface CtaSectionProps {
+  // Background
+  backgroundSrc: string;
+  backgroundAlt: string;
+  /** Color of the gradient overlay and top block. Defaults to "green" (bg-neutral). */
+  gradientColor?: GradientColor;
+
   // TextContent
   eyebrow?: string;
   title: string;
@@ -15,89 +29,66 @@ interface CtaSectionBaseProps {
   colorMode?: "light" | "dark";
 }
 
-interface CtaSectionBackgroundProps extends CtaSectionBaseProps {
-  /** Background image — section becomes 100vh with text centered over the image. */
-  backgroundSrc: string;
-  backgroundAlt: string;
-  imageSrc?: never;
-  imageAlt?: never;
-}
+export function CtaSection({
+  backgroundSrc,
+  backgroundAlt,
+  gradientColor = "green",
+  eyebrow,
+  title,
+  titleLevel,
+  subtitle,
+  primaryButtonLabel,
+  primaryButtonLink,
+  primaryButtonColor,
+  secondaryButtonLabel,
+  secondaryButtonLink,
+  colorMode = "dark",
+}: CtaSectionProps) {
+  const rgb = GRADIENT_COLORS[gradientColor];
 
-interface CtaSectionImageBelowProps extends CtaSectionBaseProps {
-  /** Image below the text — full-width (100vw), 640px height. */
-  imageSrc: string;
-  imageAlt: string;
-  backgroundSrc?: never;
-  backgroundAlt?: never;
-}
-
-type CtaSectionProps = CtaSectionBackgroundProps | CtaSectionImageBelowProps;
-
-export function CtaSection(props: CtaSectionProps) {
-  const {
-    eyebrow,
-    title,
-    titleLevel,
-    subtitle,
-    primaryButtonLabel,
-    primaryButtonLink,
-    primaryButtonColor,
-    secondaryButtonLabel,
-    secondaryButtonLink,
-    colorMode = props.backgroundSrc ? "dark" : "light",
-  } = props;
-
-  const textContent = (
-    <TextContent
-      eyebrow={eyebrow}
-      title={title}
-      titleLevel={titleLevel}
-      subtitle={subtitle}
-      primaryButtonLabel={primaryButtonLabel}
-      primaryButtonLink={primaryButtonLink}
-      primaryButtonColor={primaryButtonColor}
-      secondaryButtonLabel={secondaryButtonLabel}
-      secondaryButtonLink={secondaryButtonLink}
-      colorMode={colorMode}
-      align="center"
-      className="max-w-2xl"
-    />
-  );
-
-  // Variant: background image — 100vh, text centered over image
-  if (props.backgroundSrc) {
-    return (
-      <section className="relative w-full h-screen overflow-hidden">
-        <Image
-          src={props.backgroundSrc}
-          alt={props.backgroundAlt}
-          fill
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-black/40" />
-        <div className="relative z-10 h-full flex items-start justify-center pt-20 px-5 min-[395px]:px-6">
-          {textContent}
-        </div>
-      </section>
-    );
-  }
-
-  // Variant: image below — text section + full-width image
   return (
-    <section className="bg-background overflow-hidden">
-      <div className="flex items-center justify-center px-5 min-[395px]:px-6 py-16 md:py-30">
-        {textContent}
-      </div>
-      {props.imageSrc && (
-        <div className="relative w-full h-[400px] md:h-[640px]">
-          <Image
-            src={props.imageSrc}
-            alt={props.imageAlt}
-            fill
-            className="object-cover"
+    <section className="relative overflow-hidden">
+      {/* ── Background layer ── */}
+      <div>
+        {/* Solid color block — mobile only */}
+        <div
+          className="h-80 md:hidden"
+          style={{ backgroundColor: `rgb(${rgb})` }}
+        />
+        {/* Image with gradient */}
+        <div className="relative">
+          <img
+            src={backgroundSrc}
+            alt={backgroundAlt}
+            className="w-full h-auto"
+          />
+          {/* Top gradient — solid at top, transparent at 30% */}
+          <div
+            className="absolute inset-x-0 top-0 h-full pointer-events-none"
+            style={{
+              background: `linear-gradient(180deg, rgba(${rgb},1) 0%, rgba(${rgb},0) 30%)`,
+            }}
           />
         </div>
-      )}
+      </div>
+
+      {/* ── Content layer: positioned over color block + image ── */}
+      <div className="absolute inset-x-0 top-0 z-10 flex items-start justify-center pt-16 md:pt-24 px-5 min-[395px]:px-6">
+        <TextContent
+          eyebrow={eyebrow}
+          title={title}
+          titleLevel={titleLevel}
+          subtitle={subtitle}
+          primaryButtonLabel={primaryButtonLabel}
+          primaryButtonLink={primaryButtonLink}
+          primaryButtonColor={primaryButtonColor}
+          secondaryButtonLabel={secondaryButtonLabel}
+          secondaryButtonLink={secondaryButtonLink}
+          colorMode={colorMode}
+          align="center"
+          className="max-w-2xl"
+        />
+      </div>
     </section>
   );
 }

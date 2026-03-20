@@ -1,20 +1,21 @@
-import { CtaSection as CtaSectionComponent } from "@/components/sections/cta-section";
+import { CtaSection as CtaSectionBase } from "@/components/sections/cta-section";
 
-// @IMAGE cta-insert.jpg
-//   CONTEXT: Final CTA section closing the page. Should evoke the result — a warm, comfortable home after installation.
-//   PROMPT: Wide panoramic photo of a cozy French family living room in winter evening, a modern fireplace insert glowing with warm fire behind glass in the background, a family relaxing on a large sofa with warm blankets, soft warm lighting from table lamps, holiday atmosphere, lifestyle photography, 16:9 wide aspect ratio, warm golden tones, shallow depth of field
+// @IMAGE cta-bg.jpg (16:9, 2K)
+//   CONTEXT: CTA for fireplace insert page. BEIGE wall (#FAF6F1). Subject in lower 2/3.
+//   PROMPT: A wide panoramic view of a cozy Scandinavian living room, camera facing the wall straight-on. The back wall is warm beige (#FAF6F1). In the lower two-thirds of the frame, a young couple sitting on a dark linen sofa, centered horizontally, enjoying the warmth of a modern fireplace insert with a wide rectangular glass front showing bright orange flames, built into the beige wall. They face the camera but do not look into the lens. The upper third shows only the beige wall — empty, no decoration. Light oak parquet floor with a white baseboard. No visible text, no documents, no writing of any kind. 16:9 landscape format. Shot on full-frame 50mm f/1.8, shallow depth of field, warm editorial color grading, slightly lifted blacks, subtle film grain, soft directional light from the right. Photorealistic.
 
 export function CtaSection() {
   return (
-    <CtaSectionComponent
-      imageSrc="/poele/insert-cheminee/cta-insert.jpg"
-      imageAlt="Famille profitant de la chaleur d'un insert cheminée dans leur salon"
-      title="Prêt à transformer votre cheminée ?"
-      subtitle="Estimez le coût de votre insert cheminée et les aides disponibles en 2 minutes."
+    <CtaSectionBase
+      backgroundSrc="/poele/insert-cheminee/cta-bg.jpg"
+      backgroundAlt="Couple dans un salon avec un insert cheminée"
+      gradientColor="black"
+      title="Prêt à moderniser votre cheminée ?"
+      subtitle="Estimez le coût de votre projet et découvrez les aides auxquelles vous avez droit en 2 minutes."
       primaryButtonLabel="Estimer mon projet"
       primaryButtonLink="/estimation"
       primaryButtonColor="primary"
-      colorMode="light"
+      colorMode="dark"
     />
   );
 }

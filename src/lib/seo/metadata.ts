@@ -125,11 +125,10 @@ export const defaultMetadata: Metadata = {
     },
   },
 
-  // Icons
+  // Icons — Next.js auto-discovers src/app/icon.png and src/app/apple-icon.png
   icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon-16x16.png",
-    apple: "/apple-touch-icon.png",
+    icon: "/icon.png",
+    apple: "/icon.png",
   },
 
   // Manifest

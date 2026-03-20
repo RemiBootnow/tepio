@@ -8,34 +8,31 @@ const footerColumns = [
   {
     title: "Poêles",
     links: [
-      { href: "/poele", label: "Tous nos poêles" },
       { href: "/poele/granules", label: "Poêle à granulés" },
+      { href: "/poele/pellets", label: "Poêle à pellets" },
       { href: "/poele/bois", label: "Poêle à bois" },
       { href: "/poele/mixte", label: "Poêle mixte" },
       { href: "/poele/insert-cheminee", label: "Insert cheminée" },
-      { href: "/poele/hydro", label: "Poêle hydro" },
     ],
   },
   {
-    title: "Aides & Guides",
+    title: "Aides",
     links: [
-      { href: "/aides", label: "Toutes les aides" },
       { href: "/aides/ma-prime-renov-poele", label: "MaPrimeRénov'" },
+      { href: "/aides/prime-energie-poele", label: "Prime énergie (CEE)" },
+      { href: "/aides/eco-ptz", label: "Éco-PTZ" },
       { href: "/aides/simulateur", label: "Simulateur d'aides" },
-      { href: "/guide", label: "Guide complet" },
-      { href: "/guide/comparatif-bois-granules", label: "Bois vs granulés" },
-      { href: "/guide/entretien-ramonage", label: "Entretien & ramonage" },
     ],
   },
   {
     title: "Prix & Installation",
     links: [
       { href: "/prix", label: "Prix d'un poêle" },
+      { href: "/prix/poele-granules", label: "Prix granulés" },
+      { href: "/prix/poele-bois", label: "Prix bois" },
       { href: "/devis", label: "Devis gratuit" },
-      { href: "/installation", label: "Installation" },
       { href: "/installation/installateur-rge", label: "Installateur RGE" },
-      { href: "/blog", label: "Blog" },
-      { href: "/faq", label: "FAQ" },
+      { href: "/actualites", label: "Actualités" },
     ],
   },
 ];
@@ -51,13 +48,13 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <Section as="footer" background="bg-neutral" className="py-16">
+    <Section as="footer" background="bg-background" className="py-16">
       {/* Main grid */}
       <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1fr]">
         {/* Brand column */}
         <div className="flex flex-col gap-6">
-          <Logo color="white" />
-          <p className="text-sm text-white/60 leading-relaxed">
+          <Logo color="default" />
+          <p className="text-sm text-muted-foreground leading-relaxed">
             Trouvez l'installateur RGE certifié QualiBois le plus proche pour
             votre poêle à bois ou à granulés.
           </p>
@@ -69,13 +66,13 @@ export function Footer() {
         {/* Nav columns */}
         {footerColumns.map((col) => (
           <div key={col.title} className="flex flex-col gap-4">
-            <p className="text-sm font-semibold text-white">{col.title}</p>
+            <p className="text-sm font-semibold text-foreground">{col.title}</p>
             <ul className="flex flex-col gap-2.5">
               {col.links.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-white/60 hover:text-white transition-colors"
+                    className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -87,8 +84,8 @@ export function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="mt-16 pt-8 border-t border-white/10 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <p className="text-sm text-white/40">
+      <div className="mt-16 pt-8 border-t border-border flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <p className="text-sm text-muted-foreground">
           © {currentYear} {APP_NAME}. Tous droits réservés.
         </p>
         <div className="flex flex-wrap gap-x-6 gap-y-2">
@@ -96,7 +93,7 @@ export function Footer() {
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm text-white/40 hover:text-white/70 transition-colors"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
             >
               {link.label}
             </Link>

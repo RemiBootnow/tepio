@@ -5,9 +5,9 @@ import { APP_NAME } from "@/lib/constants";
 export function TestimonialsSection() {
   return (
     <TestimonialsSectionBase
-      title={`Ils ont rénové avec ${APP_NAME}`}
-      subtitle="Nos clients témoignent de leur expérience de rénovation énergétique, de l'accompagnement aux aides financières."
       testimonials={testimonials}
+      title={`Ils ont financé leur poêle avec ${APP_NAME}`}
+      subtitle="Découvrez les retours de nos clients ayant bénéficié de l'éco-PTZ pour leur installation."
     />
   );
 }

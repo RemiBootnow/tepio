@@ -27,6 +27,7 @@ import { TrustSection } from "./TrustSection";
 import { Button } from "@/components/ui/button";
 import { Logo } from "@/components/ui/logo";
 import { ArrowLeft } from "@untitledui-pro/icons/line";
+import { BackToSiteButton } from "./BackToSiteButton";
 
 interface LeadFormProps {
   service: ServiceType;
@@ -228,7 +229,7 @@ export function LeadForm({ service }: LeadFormProps) {
     <div className="flex flex-col px-3 pb-3 pt-4 md:p-4 min-h-dvh">
       {/* Header with logo and back button */}
       <header className="relative flex h-9 items-center justify-center mb-4 px-2 shrink-0">
-        {canGoBack && (
+        {canGoBack ? (
           <Button
             type="button"
             variant="ghost"
@@ -238,6 +239,8 @@ export function LeadForm({ service }: LeadFormProps) {
             <ArrowLeft className="size-5" />
             Retour
           </Button>
+        ) : (
+          <BackToSiteButton />
         )}
         <Logo height={28} />
       </header>

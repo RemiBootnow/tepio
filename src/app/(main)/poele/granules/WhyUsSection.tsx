@@ -17,13 +17,13 @@ export function WhyUsSection() {
       <FeatureCard
         icon="user-circle"
         title="Un conseiller dédié"
-        description="De la première simulation à la mise en service, un interlocuteur unique vous accompagne à chaque étape."
+        description="De la simulation à la mise en service, un interlocuteur unique vous accompagne à chaque étape de votre projet."
         colorMode="dark"
       />
       <FeatureCard
         icon="shield-check"
         title="Garantie et SAV inclus"
-        description="Votre poêle est garanti par le fabricant et notre service après-vente reste disponible après l'installation."
+        description="Votre poêle est garanti par le fabricant et notre SAV reste disponible après l'installation."
         colorMode="dark"
       />
     </FeaturesSection>

@@ -6,8 +6,8 @@ export function TestimonialsSection() {
   return (
     <TestimonialsSectionBase
       testimonials={testimonials}
-      title={`Ils ont installé leur poêle avec ${APP_NAME}`}
-      subtitle="Découvrez les retours de nos clients qui ont bénéficié de MaPrimeRénov' pour leur poêle."
+      title={`Ils ont bénéficié de MaPrimeRénov' avec ${APP_NAME}`}
+      subtitle="Découvrez les retours de nos clients ayant financé leur poêle grâce à MaPrimeRénov'."
     />
   );
 }

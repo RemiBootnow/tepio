@@ -2,39 +2,39 @@ import { FaqSection as FaqSectionBase, type FaqItem } from "@/components/section
 
 const faqItems: FaqItem[] = [
   {
-    question: "Quel est le prix moyen d'un poêle à granulés avec installation ?",
-    answer: "Le prix moyen d'un poêle à granulés installé se situe entre 3 000 € et 7 000 €, selon la puissance, la marque et la complexité de l'installation (conduit existant ou à créer).",
+    question: "Quel est le prix moyen d'un poêle ?",
+    answer: "Le prix dépend du modèle, de la puissance et de la complexité d'installation. Un devis personnalisé est la meilleure façon d'obtenir une estimation précise adaptée à votre logement.",
   },
   {
-    question: "Un poêle à bois coûte-t-il moins cher qu'un poêle à granulés ?",
-    answer: "En général oui. Un poêle à bois coûte entre 2 500 € et 6 000 € posé, contre 3 000 € à 7 000 € pour un poêle à granulés. Le combustible bûches est aussi moins cher que les granulés.",
+    question: "Le prix du poêle inclut-il l'installation ?",
+    answer: "Cela dépend du devis. Chez nous, le prix inclut toujours la fourniture de l'appareil, la pose par un artisan RGE certifié et la mise en service. Les travaux de fumisterie sont également compris.",
   },
   {
-    question: "Quelles aides financières pour l'achat d'un poêle ?",
-    answer: "MaPrimeRénov' peut financer jusqu'à 2 500 €, la prime CEE de 200 à 800 €, et la TVA est réduite à 5,5 %. Ces aides sont cumulables et réservées aux installations par un artisan RGE.",
+    question: "Quelles aides puis-je obtenir pour réduire le coût ?",
+    answer: "Vous pouvez bénéficier de MaPrimeRénov' (jusqu'à 1 250 € en 2026), des Certificats d'Économies d'Énergie (CEE), de la TVA à 5,5 % et de l'éco-prêt à taux zéro. Ces aides sont cumulables.",
   },
   {
-    question: "Combien coûte la création d'un conduit de cheminée ?",
-    answer: "La création d'un conduit de fumée coûte entre 1 500 € et 3 000 € selon la hauteur et la configuration. Le tubage d'un conduit existant revient entre 1 000 € et 2 000 €.",
+    question: "Un poêle à granulés coûte-t-il plus cher qu'un poêle à bois ?",
+    answer: "En règle générale, un poêle à granulés représente un investissement initial plus élevé qu'un poêle à bois, en raison de sa technologie de programmation et d'alimentation automatique. Cependant, il offre un meilleur rendement et un confort d'utilisation supérieur.",
   },
   {
-    question: "Le prix d'un insert est-il plus avantageux qu'un poêle ?",
-    answer: "Un insert coûte entre 2 000 € et 5 500 € posé, souvent moins cher qu'un poêle car il utilise le conduit existant de votre cheminée. C'est une option économique pour valoriser un foyer ouvert.",
+    question: "Le conduit de cheminée est-il inclus dans le prix ?",
+    answer: "Les travaux de fumisterie (création ou tubage du conduit) sont inclus dans nos devis. Le coût varie selon la configuration de votre logement : distance entre le poêle et la sortie de toit, nombre de coudes nécessaires, etc.",
   },
   {
-    question: "Quel est le coût annuel de chauffage avec un poêle ?",
-    answer: "Comptez 600 à 1 000 €/an en granulés et 400 à 800 €/an en bûches pour une maison de 100 m². C'est 2 à 3 fois moins cher que le chauffage électrique.",
+    question: "Peut-on payer un poêle en plusieurs fois ?",
+    answer: "Oui, l'éco-prêt à taux zéro vous permet de financer votre projet sans intérêts, jusqu'à 50 000 €. Nous vous accompagnons dans le montage de votre dossier de financement.",
   },
   {
-    question: "Un poêle mixte vaut-il son prix plus élevé ?",
-    answer: "Le poêle mixte (4 000 à 8 000 €) offre la flexibilité de deux combustibles. Il est rentable si vous souhaitez alterner entre bûches (moins chères) et granulés (plus pratiques, programmables).",
+    question: "Combien de temps faut-il pour rentabiliser l'investissement ?",
+    answer: "La rentabilité dépend de votre consommation actuelle et du type de poêle choisi. En moyenne, les économies d'énergie permettent de rentabiliser l'investissement en quelques années, d'autant plus que les aides réduisent significativement le reste à charge.",
   },
 ];
 
 export function FaqSection() {
   return (
     <FaqSectionBase
-      title="Vos questions sur le prix des poêles"
+      title="Vos questions sur le prix d'un poêle"
       items={faqItems}
     />
   );

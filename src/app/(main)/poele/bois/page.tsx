@@ -2,42 +2,41 @@ import { Metadata } from "next";
 import { generatePageMetadata } from "@/lib/seo/metadata";
 import { HeroSection } from "./HeroSection";
 import { LogoSection } from "./LogoSection";
-import { OverviewSection } from "./OverviewSection";
+import { WhatIsSection } from "./WhatIsSection";
 import { BenefitsSection } from "./BenefitsSection";
-import { TypesSection } from "./TypesSection";
+import { InstallationSection } from "./InstallationSection";
 import { AidesSection } from "./AidesSection";
-import { WhyUsSection } from "./WhyUsSection";
 import { TestimonialsSection } from "./TestimonialsSection";
+import { WhyUsSection } from "./WhyUsSection";
 import { FaqSection } from "./FaqSection";
 import { CtaSection } from "./CtaSection";
 
 export const metadata: Metadata = generatePageMetadata({
-  title: "Poêle à bois : guide complet et installation",
+  title: "Poêle à bois : le charme du feu, la performance en plus",
   description:
-    "Decouvrez tout sur le poele a bois : fonctionnement, avantages, types de poeles, aides financieres et installation par des artisans RGE. Estimez votre projet gratuitement.",
+    "Découvrez le poêle à bois : flamme authentique, combustible économique et aides MaPrimeRénov' 2026. Installation par un artisan RGE. Estimez votre projet.",
   keywords: [
-    "poele a bois",
-    "poele a bois prix",
-    "installation poele a bois",
-    "poele a bois buches",
+    "poêle à bois",
+    "poêle bois bûches",
+    "installation poêle à bois",
+    "aide poêle à bois",
+    "MaPrimeRénov poêle bois",
     "chauffage bois",
-    "aide poele a bois",
-    "poele a bois RGE",
   ],
   canonical: "/poele/bois",
 });
 
-export default function PoeleABoisPage() {
+export default function PoeleBoisPage() {
   return (
     <>
       <HeroSection />
       <LogoSection />
-      <OverviewSection />
+      <WhatIsSection />
       <BenefitsSection />
-      <TypesSection />
+      <InstallationSection />
       <AidesSection />
-      <WhyUsSection />
       <TestimonialsSection />
+      <WhyUsSection />
       <FaqSection />
       <CtaSection />
     </>

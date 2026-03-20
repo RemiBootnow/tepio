@@ -1,46 +1,47 @@
-import { FaqSection as FaqSectionComponent } from "@/components/sections/faq-section";
+import { FaqSection as FaqSectionBase } from "@/components/sections/faq-section";
+import type { FaqItem } from "@/components/sections/faq-section";
 
-const faqItems = [
+const faqItems: FaqItem[] = [
+  {
+    question: "Peut-on installer un insert dans n'importe quelle cheminée ?",
+    answer:
+      "La plupart des cheminées à foyer ouvert peuvent accueillir un insert, à condition que le conduit soit en bon état et aux normes. Votre artisan RGE vérifie la faisabilité lors de la visite technique et adapte le tubage si nécessaire.",
+  },
   {
     question: "Quelle est la différence entre un insert et un foyer fermé ?",
     answer:
-      "L'insert s'encastre dans une cheminée existante, tandis que le foyer fermé est conçu pour une installation neuve. En rénovation, l'insert est la solution la plus courante car il s'adapte à votre conduit et habillage actuels.",
+      "L'insert s'encastre dans une cheminée existante, tandis que le foyer fermé est un appareil neuf intégré dans un habillage de cheminée construit sur mesure. L'insert est la solution idéale si vous avez déjà une cheminée ouverte.",
   },
   {
-    question: "Mon conduit de cheminée est-il compatible avec un insert ?",
+    question: "Quel est le rendement d'un insert cheminée ?",
     answer:
-      "Dans la grande majorité des cas, oui. Un artisan RGE réalise un diagnostic préalable pour vérifier l'état du conduit. Si nécessaire, un tubage inox est posé pour garantir l'étanchéité et la sécurité.",
+      "Un insert cheminée moderne atteint un rendement de 70 à 85 %, contre seulement 10 à 15 % pour une cheminée ouverte. Vous utilisez donc 5 à 6 fois moins de bois pour la même chaleur.",
   },
   {
-    question: "Combien de temps dure l'installation d'un insert cheminée ?",
+    question: "Un insert peut-il chauffer toute la maison ?",
     answer:
-      "L'installation prend généralement une journée, tubage compris. Les travaux sont peu invasifs : pas besoin de casser de murs ni de gros travaux de maçonnerie dans la plupart des cas.",
+      "Un insert peut chauffer 60 à 120 m² selon sa puissance. Pour diffuser la chaleur dans les pièces éloignées, des gaines de distribution d'air chaud peuvent être ajoutées lors de l'installation.",
   },
   {
-    question: "Un insert cheminée chauffe-t-il toute la maison ?",
+    question: "Quelles aides pour un insert cheminée en 2026 ?",
     answer:
-      "Un insert chauffe efficacement la pièce principale et les espaces ouverts adjacents. Pour diffuser la chaleur dans d'autres pièces, un système de distribution d'air chaud par gainages peut être ajouté.",
+      "En 2026, vous pouvez bénéficier de MaPrimeRénov' (jusqu'à 1 250 €), de la prime CEE, de la TVA réduite à 5,5 % et de l'éco-prêt à taux zéro. Ces aides sont cumulables et le montant dépend de vos revenus.",
   },
   {
-    question: "Quelles aides financières pour l'installation d'un insert ?",
+    question: "Faut-il tuber le conduit de cheminée ?",
     answer:
-      "Vous pouvez bénéficier de MaPrimeRénov', de la prime CEE et de la TVA à 5,5 %. Ces aides sont cumulables et conditionnées à l'intervention d'un artisan certifié RGE.",
+      "Oui, le tubage du conduit est obligatoire lors de l'installation d'un insert. Il garantit l'étanchéité et la sécurité du système. Votre artisan RGE réalise le tubage le jour de la pose.",
   },
   {
-    question: "Quel entretien pour un insert cheminée ?",
+    question: "Quelle est la durée de vie d'un insert cheminée ?",
     answer:
-      "Un ramonage obligatoire deux fois par an (dont une en période de chauffe), un nettoyage régulier de la vitre et une vérification annuelle des joints. Un insert bien entretenu dure plus de 20 ans.",
-  },
-  {
-    question: "Insert à bûches ou insert à granulés : lequel choisir ?",
-    answer:
-      "L'insert à bûches offre le plaisir du feu traditionnel et un coût de combustible faible. L'insert à granulés apporte un confort d'utilisation supérieur avec un chargement automatique et une programmation de la température.",
+      "Un insert cheminée de qualité dure 20 à 30 ans avec un entretien régulier. Le ramonage deux fois par an et un entretien annuel par un professionnel sont recommandés pour maintenir ses performances et sa sécurité.",
   },
 ];
 
 export function FaqSection() {
   return (
-    <FaqSectionComponent
+    <FaqSectionBase
       title="Vos questions sur l'insert cheminée"
       items={faqItems}
     />

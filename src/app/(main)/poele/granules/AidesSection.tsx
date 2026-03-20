@@ -1,40 +1,43 @@
 import { CenterCarouselSection } from "@/components/sections/center-carousel-section";
 import { FeatureCardImage } from "@/components/ui/feature-card-image";
 
-// @IMAGE aide-maprime.jpg
-//   CONTEXT: Card image for MaPrimeRénov' aid. Part of a 3-card carousel about financial aids.
-//   PROMPT: Close-up of a French government document with the MaPrimeRénov logo, placed on a wooden desk next to a pen and reading glasses, soft natural light, clean and official atmosphere, product photography, 4:3 aspect ratio
+// @IMAGE aide-maprime.jpg (3:4)
+//   CONTEXT: Card image for MaPrimeRénov' aid. No documents — tangible objects evoking financial aid.
+//   PROMPT: A close-up of a small stack of euro coins and a miniature wooden house model on a deep dark green surface (similar to #01322D), photographed from slightly above. The subject is composed in the lower two-thirds of the frame, leaving the upper third as empty dark green background. The background color is continuous and fills the entire image — the objects rest naturally on it. No visible text, no documents, no writing of any kind. 3:4 portrait aspect ratio. Photorealistic, editorial product photography, shallow depth of field, warm studio lighting, no text, no watermarks.
 
-// @IMAGE aide-cee.jpg
-//   CONTEXT: Card image for CEE prime. Part of a 3-card carousel about financial aids.
-//   PROMPT: A person holding a utility bill showing energy savings next to a calculator on a kitchen table, warm indoor lighting, lifestyle photography, 4:3 aspect ratio
+// @IMAGE aide-cee.jpg (3:4)
+//   CONTEXT: Card image for CEE energy savings prime. No documents — objects evoking savings.
+//   PROMPT: A close-up of a ceramic piggy bank next to a small pile of wood pellets on a pure black surface, photographed from slightly above. The subject is composed in the lower two-thirds of the frame, leaving the upper third as empty black background. The background color is continuous and fills the entire image — the objects rest naturally on it. No visible text, no documents, no writing of any kind. 3:4 portrait aspect ratio. Photorealistic, editorial product photography, shallow depth of field, warm studio lighting, no text, no watermarks.
 
-// @IMAGE aide-tva.jpg
-//   CONTEXT: Card image for reduced VAT. Part of a 3-card carousel about financial aids.
-//   PROMPT: Close-up of a professional invoice on a desk showing a line item with reduced pricing, next to a cup of coffee, clean minimalist setting, warm soft light, documentary photography, 4:3 aspect ratio
+// @IMAGE aide-tva.jpg (3:4)
+//   CONTEXT: Card image for reduced VAT. No documents — objects evoking affordable installation.
+//   PROMPT: A close-up of a modern pellet stove thermostat dial and a small potted plant on a warm beige surface (similar to #FAF6F1), photographed from slightly above. The subject is composed in the lower two-thirds of the frame, leaving the upper third as empty beige background. The background color is continuous and fills the entire image — the objects rest naturally on it. No visible text, no documents, no writing of any kind. 3:4 portrait aspect ratio. Photorealistic, editorial product photography, shallow depth of field, warm studio lighting, no text, no watermarks.
 
 export function AidesSection() {
   return (
     <CenterCarouselSection
-      title="Des aides pour réduire le coût de votre poêle à granulés"
-      subtitle="Plusieurs dispositifs de l'État et des fournisseurs d'énergie financent une partie de votre projet. Découvrez ceux auxquels vous avez droit."
+      title="Des aides pour réduire le coût de votre poêle"
+      subtitle="Plusieurs dispositifs cumulables financent une partie de votre projet. Découvrez ceux auxquels vous avez droit."
       primaryButtonLabel="Simuler mes aides"
       primaryButtonLink="/estimation"
     >
       <FeatureCardImage
         imageSrc="/poele/granules/aide-maprime.jpg"
         imageAlt="MaPrimeRénov' pour poêle à granulés"
-        title="MaPrimeRénov' : jusqu'à 1 800 €"
+        title="MaPrimeRénov' : jusqu'à 1 250 €"
+        colorMode="dark"
       />
       <FeatureCardImage
         imageSrc="/poele/granules/aide-cee.jpg"
         imageAlt="Prime CEE pour poêle à granulés"
         title="Prime CEE : jusqu'à 250 €"
+        colorMode="dark"
       />
       <FeatureCardImage
         imageSrc="/poele/granules/aide-tva.jpg"
         imageAlt="TVA réduite pour poêle à granulés"
         title="TVA réduite à 5,5 % sur la pose"
+        colorMode="light"
       />
     </CenterCarouselSection>
   );

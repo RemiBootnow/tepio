@@ -4,45 +4,38 @@ import { FeatureCard } from "@/components/ui/feature-card";
 export function BenefitsSection() {
   return (
     <FeaturesSection
-      title="Pourquoi chauffer au bois en 2026 ?"
-      subtitle="Le bois reste l'énergie de chauffage la moins chère en France. Un poêle à bois performant réduit vos factures tout en valorisant votre logement."
-      colorMode="dark"
+      title="Les éléments qui composent votre budget"
+      subtitle="Chaque critère influence le coût final de votre projet de poêle à bois."
     >
       <FeatureCard
         icon="lightning"
-        title="Rendement jusqu'à 85 %"
-        description="Les poêles modernes à double combustion extraient un maximum de chaleur de chaque bûche, pour un confort optimal."
-        colorMode="dark"
-      />
-      <FeatureCard
-        icon="shield-check"
-        title="Énergie la moins chère"
-        description="Le bois-bûche coûte entre 70 et 100 € le stère. Comptez 500 à 1 000 € par an pour chauffer votre maison."
-        colorMode="dark"
-      />
-      <FeatureCard
-        icon="check-verified"
-        title="Éligible aux aides"
-        description="MaPrimeRénov', CEE, TVA à 5,5 % et éco-PTZ : jusqu'à 4 000 € d'aides cumulées pour réduire votre investissement."
-        colorMode="dark"
+        title="La puissance de chauffe"
+        description="La puissance se détermine en fonction de la surface à chauffer et de l'isolation de votre logement. Un poêle plus puissant représente un investissement plus important."
       />
       <FeatureCard
         icon="building"
-        title="Valorise votre bien"
-        description="Un poêle à bois améliore votre DPE et augmente la valeur de votre logement à la revente."
-        colorMode="dark"
+        title="Le matériau"
+        description="Fonte, acier ou pierre ollaire : chaque matériau a ses avantages. La pierre ollaire stocke la chaleur plus longtemps, la fonte offre une excellente durabilité, l'acier chauffe rapidement."
+      />
+      <FeatureCard
+        icon="check-verified"
+        title="La marque et le design"
+        description="Les poêles design et les marques haut de gamme proposent des finitions soignées et des performances supérieures. Les modèles classiques restent accessibles et fiables."
       />
       <FeatureCard
         icon="clock"
-        title="Installation en 1 journée"
-        description="Un artisan RGE installe votre poêle et réalise le tubage en une seule journée, sans travaux lourds."
-        colorMode="dark"
+        title="Le type de combustion"
+        description="Les poêles à double combustion ou à postcombustion offrent un meilleur rendement et consomment moins de bois. Cette technologie influence le prix à l'achat mais réduit les coûts à l'usage."
       />
       <FeatureCard
-        icon="check-circle"
-        title="Énergie renouvelable"
-        description="Le bois est une ressource renouvelable et neutre en carbone. Vous chauffez votre maison sans alourdir votre empreinte."
-        colorMode="dark"
+        icon="map-pin"
+        title="Le conduit de fumée"
+        description="La création ou le tubage d'un conduit de cheminée représente une part variable du budget. La hauteur du conduit et le nombre de coudes impactent le coût des travaux."
+      />
+      <FeatureCard
+        icon="shield-check"
+        title="L'entretien annuel"
+        description="Un ramonage obligatoire deux fois par an et un nettoyage régulier du cendrier garantissent la sécurité et les performances de votre poêle à bois dans la durée."
       />
     </FeaturesSection>
   );

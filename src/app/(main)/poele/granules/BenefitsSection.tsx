@@ -9,13 +9,13 @@ export function BenefitsSection() {
     >
       <FeatureCard
         icon="lightning"
-        title="Jusqu'à 90 % de rendement"
-        description="Les granulés brûlent de manière optimale grâce à une combustion contrôlée par électronique, limitant les pertes d'énergie."
+        title="Rendement de 85 à 95 %"
+        description="Les granulés brûlent de manière optimale grâce à une combustion contrôlée électroniquement, limitant les pertes d'énergie au minimum."
       />
       <FeatureCard
         icon="clock"
         title="Autonomie jusqu'à 72 h"
-        description="Un réservoir de granulés alimente automatiquement le foyer. Vous programmez la température et le poêle gère le reste."
+        description="Le réservoir alimente automatiquement le foyer. Programmez la température souhaitée et le poêle gère le reste."
       />
       <FeatureCard
         icon="shield-check"
@@ -25,12 +25,12 @@ export function BenefitsSection() {
       <FeatureCard
         icon="check-circle"
         title="Éligible aux aides de l'État"
-        description="MaPrimeRénov', prime CEE, TVA réduite à 5,5 % : plusieurs dispositifs réduisent significativement le coût de votre projet."
+        description="MaPrimeRénov', prime CEE, TVA à 5,5 % : plusieurs dispositifs cumulables réduisent significativement le coût de votre projet."
       />
       <FeatureCard
         icon="building"
-        title="S'adapte à tout type de logement"
-        description="Maison individuelle, appartement, neuf ou rénovation : il existe un modèle de poêle à granulés adapté à chaque configuration."
+        title="S'adapte à tout logement"
+        description="Maison individuelle, appartement, neuf ou rénovation : il existe un modèle adapté à chaque configuration et chaque surface."
       />
       <FeatureCard
         icon="map-pin"

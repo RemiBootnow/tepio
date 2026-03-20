@@ -1,45 +1,52 @@
 import { CenterCarouselSection } from "@/components/sections/center-carousel-section";
 import { FeatureCardImage } from "@/components/ui/feature-card-image";
 
+// @IMAGE stove-type-granules.jpg (3:4, 1K)
+//   CONTEXT: FeatureCardImage — pellet stove type card. Solid dark green background filling entire image, subject in lower 2/3.
+//   PROMPT: A sleek modern cylindrical pellet stove with a visible warm amber flame behind its glass door, placed in the lower two-thirds of the frame against a solid deep dark green background (similar to #01322D) that fills the entire image uniformly. The stove has clean lines and a matte-black finish. No floor, no room context — just the stove floating on the solid color. No visible text, no documents, no writing of any kind. 3:4 portrait format. Shot on full-frame 50mm f/1.8, shallow depth of field, warm editorial color grading, slightly lifted blacks, subtle film grain, soft directional light. Photorealistic.
+
+// @IMAGE stove-type-bois.jpg (3:4, 1K)
+//   CONTEXT: FeatureCardImage — wood stove type card. Solid muted beige background filling entire image, subject in lower 2/3.
+//   PROMPT: A traditional cast-iron wood-burning stove with a visible warm orange flame behind its glass door, placed in the lower two-thirds of the frame against a solid warm beige background that fills the entire image uniformly. The stove has a classic rounded design with a black matte finish. No floor, no room context — just the stove on the solid color. No visible text, no documents, no writing of any kind. 3:4 portrait format. Shot on full-frame 50mm f/1.8, shallow depth of field, warm editorial color grading, slightly lifted blacks, subtle film grain, soft directional light. Photorealistic.
+
+// @IMAGE stove-type-mixte.jpg (3:4, 1K)
+//   CONTEXT: FeatureCardImage — hybrid stove type card. Solid dark background filling entire image, subject in lower 2/3.
+//   PROMPT: A modern hybrid stove (wood and pellet combined) with a warm amber flame visible behind a large glass door, placed in the lower two-thirds of the frame against a solid charcoal dark background that fills the entire image uniformly. The stove has a contemporary rectangular design with a matte-black steel body. No floor, no room context — just the stove on the solid color. No visible text, no documents, no writing of any kind. 3:4 portrait format. Shot on full-frame 50mm f/1.8, shallow depth of field, warm editorial color grading, slightly lifted blacks, subtle film grain, soft directional light. Photorealistic.
+
+// @IMAGE stove-type-insert.jpg (3:4, 1K)
+//   CONTEXT: FeatureCardImage — fireplace insert type card. Solid dark green background filling entire image, subject in lower 2/3.
+//   PROMPT: A modern fireplace insert with a wide panoramic glass front showing a warm orange flame, placed in the lower two-thirds of the frame against a solid deep dark green background (similar to #01322D) that fills the entire image uniformly. The insert has a sleek rectangular steel frame with a black finish. No wall, no mantelpiece — just the insert on the solid color. No visible text, no documents, no writing of any kind. 3:4 portrait format. Shot on full-frame 50mm f/1.8, shallow depth of field, warm editorial color grading, slightly lifted blacks, subtle film grain, soft directional light. Photorealistic.
+
 export function StoveTypesSection() {
   return (
     <CenterCarouselSection
-      title="Quel type de poêle choisir selon votre budget ?"
-      subtitle="Chaque type de poêle offre un rapport qualité-prix différent. Comparez les options pour trouver celle qui correspond à votre logement et à votre budget."
-      primaryButtonLabel="Estimer mon projet"
-      primaryButtonLink="/estimation"
+      eyebrow="Types de poêles"
+      title="Quel type de poêle pour votre logement ?"
+      subtitle="Chaque type de poêle a ses caractéristiques et son budget. Explorez les options pour trouver celle qui correspond à vos besoins."
     >
-      {/* @IMAGE poele-granules.jpg
-          CONTEXT: Carousel card showing a pellet stove. Part of a 4-card series comparing stove types by price.
-          PROMPT: Close-up of a modern cylindrical pellet stove with visible orange flame behind glass door, minimalist white wall behind, warm ambient light from the fire, product photography style, 4:3 aspect ratio */}
       <FeatureCardImage
-        imageSrc="/prix/poele-granules.jpg"
+        imageSrc="/prix/stove-type-granules.jpg"
         imageAlt="Poêle à granulés moderne"
-        title="Poêle à granulés : 3 000 – 7 000 €"
+        title="Poêle à granulés"
+        colorMode="dark"
       />
-      {/* @IMAGE poele-bois.jpg
-          CONTEXT: Carousel card showing a wood stove. Part of a 4-card series comparing stove types by price.
-          PROMPT: A freestanding cast-iron wood stove with visible dancing flames, rustic-modern living room with stone accent wall, warm evening light, product photography style, 4:3 aspect ratio */}
       <FeatureCardImage
-        imageSrc="/prix/poele-bois.jpg"
+        imageSrc="/prix/stove-type-bois.jpg"
         imageAlt="Poêle à bois traditionnel"
-        title="Poêle à bois : 2 500 – 6 000 €"
+        title="Poêle à bois"
+        colorMode="light"
       />
-      {/* @IMAGE poele-mixte.jpg
-          CONTEXT: Carousel card showing a mixed stove. Part of a 4-card series comparing stove types by price.
-          PROMPT: A modern dual-fuel wood and pellet stove in a contemporary French living room, sleek dark metal design with glass front showing flames, light wood floor, natural daylight, product photography style, 4:3 aspect ratio */}
       <FeatureCardImage
-        imageSrc="/prix/poele-mixte.jpg"
+        imageSrc="/prix/stove-type-mixte.jpg"
         imageAlt="Poêle mixte bois et granulés"
-        title="Poêle mixte : 4 000 – 8 000 €"
+        title="Poêle mixte"
+        colorMode="dark"
       />
-      {/* @IMAGE insert-cheminee.jpg
-          CONTEXT: Carousel card showing a fireplace insert. Part of a 4-card series comparing stove types by price.
-          PROMPT: A built-in fireplace insert with visible warm flames set into a contemporary white mantel surround, clean minimalist lines, soft natural light from nearby window, product photography style, 4:3 aspect ratio */}
       <FeatureCardImage
-        imageSrc="/prix/insert-cheminee.jpg"
-        imageAlt="Insert de cheminée encastré"
-        title="Insert cheminée : 2 000 – 5 500 €"
+        imageSrc="/prix/stove-type-insert.jpg"
+        imageAlt="Insert de cheminée moderne"
+        title="Insert cheminée"
+        colorMode="dark"
       />
     </CenterCarouselSection>
   );
