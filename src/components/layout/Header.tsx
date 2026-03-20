@@ -8,8 +8,23 @@ import { Section } from "@/components/layout/Section";
 import { Button } from "@/components/ui/button";
 import { Logo } from "@/components/ui/logo";
 
-// Pages where the header starts in dark/transparent mode
-const darkModeRoutes = ["/"];
+// Pages where the header starts transparent over the hero.
+// "dark" = white text (dark wall behind), "light" = dark text (light wall behind).
+const transparentHeroRoutes: Record<string, "dark" | "light"> = {
+  "/": "dark",
+  "/poele/granules": "dark",
+  "/poele/bois": "dark",
+  "/poele/insert-cheminee": "dark",
+  "/poele/pellets": "light",
+  "/poele/mixte": "light",
+  "/aides/ma-prime-renov-poele": "light",
+  "/aides/prime-energie-poele": "dark",
+  "/aides/eco-ptz": "light",
+  "/prix": "dark",
+  "/prix/poele-granules": "light",
+  "/prix/poele-bois": "dark",
+  "/installation/installateur-rge": "dark",
+};
 
 const HIDE_THRESHOLD = 50;
 
@@ -21,30 +36,17 @@ const navItems: NavItem[] = [
     label: "Poêles",
     href: "/poele",
     children: [
-      { href: "/poele", label: "Tous nos poêles" },
       { href: "/poele/granules", label: "Poêle à granulés" },
+      { href: "/poele/pellets", label: "Poêle à pellets" },
       { href: "/poele/bois", label: "Poêle à bois" },
       { href: "/poele/mixte", label: "Poêle mixte" },
       { href: "/poele/insert-cheminee", label: "Insert cheminée" },
-      { href: "/poele/hydro", label: "Poêle hydro" },
-    ],
-  },
-  {
-    label: "Guides",
-    href: "/guide",
-    children: [
-      { href: "/guide", label: "Guide complet" },
-      { href: "/guide/comparatif-bois-granules", label: "Bois vs granulés" },
-      { href: "/guide/calculer-puissance-poele", label: "Calculer la puissance" },
-      { href: "/guide/rendement-poele", label: "Rendement" },
-      { href: "/guide/entretien-ramonage", label: "Entretien & ramonage" },
     ],
   },
   {
     label: "Aides",
     href: "/aides",
     children: [
-      { href: "/aides", label: "Toutes les aides" },
       { href: "/aides/ma-prime-renov-poele", label: "MaPrimeRénov'" },
       { href: "/aides/prime-energie-poele", label: "Prime énergie (CEE)" },
       { href: "/aides/eco-ptz", label: "Éco-PTZ" },
@@ -59,7 +61,6 @@ const navItems: NavItem[] = [
       { href: "/prix/poele-granules", label: "Prix granulés" },
       { href: "/prix/poele-bois", label: "Prix bois" },
       { href: "/devis", label: "Devis gratuit" },
-      { href: "/installation", label: "Installation" },
       { href: "/installation/installateur-rge", label: "Installateur RGE" },
     ],
   },
@@ -69,9 +70,10 @@ const navItems: NavItem[] = [
   },
 ];
 
-const ctaLinks = [
-  { href: "/espace-pro", label: "Espace Pro" },
-];
+// TODO: Faire la page Espace Pro
+// const ctaLinks = [
+//   { href: "/espace-pro", label: "Espace Pro" },
+// ];
 
 export function Header() {
   const pathname = usePathname();
@@ -79,16 +81,19 @@ export function Header() {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [openMobileSection, setOpenMobileSection] = useState<string | null>(null);
 
-  const isDarkRoute = darkModeRoutes.includes(pathname);
+  const heroMode = transparentHeroRoutes[pathname]; // "dark" | "light" | undefined
+  const isHeroRoute = heroMode !== undefined;
   const [isVisible, setIsVisible] = useState(true);
-  const [isCurrentlyDark, setIsCurrentlyDark] = useState(isDarkRoute);
+  const [isTransparent, setIsTransparent] = useState(isHeroRoute);
+  const [isWhiteText, setIsWhiteText] = useState(heroMode === "dark");
   const prevScrollY = useRef(0);
   const dropdownTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
-    setIsCurrentlyDark(isDarkRoute);
+    setIsTransparent(isHeroRoute);
+    setIsWhiteText(heroMode === "dark");
     setIsVisible(true);
-  }, [pathname, isDarkRoute]);
+  }, [pathname, isHeroRoute, heroMode]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -97,14 +102,16 @@ export function Header() {
 
       if (!scrolled) {
         setIsVisible(true);
-        setIsCurrentlyDark(isDarkRoute);
+        setIsTransparent(isHeroRoute);
+        setIsWhiteText(heroMode === "dark");
       } else if (currentScrollY > prevScrollY.current) {
         setIsVisible(false);
         if (isMenuOpen) setIsMenuOpen(false);
         setActiveDropdown(null);
       } else {
         setIsVisible(true);
-        setIsCurrentlyDark(false);
+        setIsTransparent(false);
+        setIsWhiteText(false);
       }
 
       prevScrollY.current = currentScrollY;
@@ -112,7 +119,7 @@ export function Header() {
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [isDarkRoute, isMenuOpen]);
+  }, [isHeroRoute, heroMode, isMenuOpen]);
 
   const handleDropdownEnter = (label: string) => {
     if (dropdownTimeoutRef.current) clearTimeout(dropdownTimeoutRef.current);
@@ -134,13 +141,13 @@ export function Header() {
           as="header"
           className="flex h-17 items-center justify-between"
           wrapperClassName={`transition-colors duration-300 ${
-            isCurrentlyDark ? "bg-transparent" : "bg-background"
+            isTransparent ? "bg-transparent" : "bg-background"
           }`}
         >
           {/* Left: Logo + Nav */}
           <div className="flex items-center gap-8">
             <Link href="/" className="flex items-center">
-              <Logo color={isCurrentlyDark ? "white" : "default"} />
+              <Logo color={isWhiteText ? "white" : "default"} />
             </Link>
 
             {/* Desktop nav */}
@@ -153,12 +160,10 @@ export function Header() {
                   onMouseLeave={handleDropdownLeave}
                 >
                   {item.children ? (
-                    <button
-                      className={`inline-flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
-                        isCurrentlyDark
-                          ? "text-white hover:bg-white/10"
-                          : "text-foreground hover:bg-muted"
-                      }`}
+                    <Button
+                      variant="ghost"
+                      size="default"
+                      className={isWhiteText ? "text-white hover:bg-white/10 hover:text-white" : ""}
                     >
                       {item.label}
                       <ChevronDown
@@ -166,12 +171,12 @@ export function Header() {
                           activeDropdown === item.label ? "rotate-180" : ""
                         }`}
                       />
-                    </button>
+                    </Button>
                   ) : (
                     <Button
                       variant="ghost"
                       size="default"
-                      className={isCurrentlyDark ? "text-white hover:bg-white/10 hover:text-white" : ""}
+                      className={isWhiteText ? "text-white hover:bg-white/10 hover:text-white" : ""}
                       asChild
                     >
                       <Link href={item.href}>{item.label}</Link>
@@ -208,24 +213,26 @@ export function Header() {
 
           {/* Right: CTAs */}
           <div className="flex items-center gap-3">
+            {/* TODO: Espace Pro button
             {ctaLinks.map((link) => (
               <Button
                 key={link.href}
-                variant={isCurrentlyDark ? "ghost" : "neutral-soft"}
+                variant={isWhiteText ? "ghost" : "neutral-soft"}
                 size="default"
                 className={`hidden lg:inline-flex ${
-                  isCurrentlyDark ? "text-white hover:bg-white/10 hover:text-white" : ""
+                  isWhiteText ? "text-white hover:bg-white/10 hover:text-white" : ""
                 }`}
                 asChild
               >
                 <Link href={link.href}>{link.label}</Link>
               </Button>
             ))}
+            */}
 
             <Button
-              variant={isCurrentlyDark ? "ghost" : "neutral"}
+              variant={isWhiteText ? "ghost" : "neutral"}
               size="default"
-              className={isCurrentlyDark ? "bg-white text-foreground hover:bg-white/90" : ""}
+              className={isWhiteText ? "bg-white text-foreground hover:bg-white/90" : ""}
               asChild
             >
               <Link href="/estimation">Estimer</Link>
@@ -233,10 +240,10 @@ export function Header() {
 
             {/* Mobile menu toggle */}
             <Button
-              variant={isCurrentlyDark ? "ghost" : "neutral-soft"}
+              variant={isWhiteText ? "ghost" : "neutral-soft"}
               size="default"
               className={`lg:hidden ${
-                isCurrentlyDark ? "bg-white/15 text-white hover:bg-white/20 hover:text-white" : ""
+                isWhiteText ? "bg-white/15 text-white hover:bg-white/20 hover:text-white" : ""
               }`}
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
@@ -316,6 +323,7 @@ export function Header() {
             </div>
           ))}
 
+          {/* TODO: Espace Pro link mobile
           {ctaLinks.map((link) => (
             <Link
               key={link.href}
@@ -326,6 +334,7 @@ export function Header() {
               {link.label}
             </Link>
           ))}
+          */}
         </nav>
       </div>
     </>

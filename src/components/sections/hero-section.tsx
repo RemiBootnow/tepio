@@ -1,5 +1,14 @@
 import { TextContent } from "@/components/blocks/text-content";
 
+const GRADIENT_COLORS = {
+  green: "1,50,45",    // #01322D
+  black: "0,0,0",      // #000000
+  white: "255,255,255", // #FFFFFF
+  beige: "250,246,241", // #FAF6F1
+} as const;
+
+type GradientColor = keyof typeof GRADIENT_COLORS;
+
 interface HeroSectionProps {
   // Background media
   videoSrc?: string;
@@ -19,6 +28,8 @@ interface HeroSectionProps {
   secondaryButtonLabel?: string;
   secondaryButtonLink?: string;
   colorMode?: "light" | "dark";
+  /** Color of the left-to-right gradient overlay. Defaults to "green". */
+  gradientColor?: GradientColor;
   /** Slot rendered between subtitle and buttons — e.g. a checklist */
   children?: React.ReactNode;
 }
@@ -38,14 +49,18 @@ export function HeroSection({
   secondaryButtonLabel,
   secondaryButtonLink,
   colorMode = "dark",
+  gradientColor = "green",
   children,
 }: HeroSectionProps) {
   const hasMobileVideo = !!videoMobileSrc;
+  const hasMobilePoster = !hasMobileVideo && !!posterMobileSrc;
+  const hasMobileOverride = hasMobileVideo || hasMobilePoster;
+  const rgb = GRADIENT_COLORS[gradientColor];
 
   return (
     <section className="relative w-full h-[120vh] md:h-screen -mt-17 overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0">
+      {/* ── Desktop background (absolute, full-cover) ── */}
+      <div className="hidden md:block absolute inset-0">
         {videoSrc && (
           <video
             autoPlay
@@ -53,11 +68,30 @@ export function HeroSection({
             loop
             playsInline
             poster={posterSrc}
-            className={`absolute inset-0 w-full h-full object-cover ${hasMobileVideo ? "hidden md:block" : ""}`}
+            className="absolute inset-0 w-full h-full object-cover"
           >
             <source src={videoSrc} type="video/mp4" />
           </video>
         )}
+        {!videoSrc && posterSrc && (
+          <img
+            src={posterSrc}
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+        )}
+        {/* Left-to-right gradient overlay */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              `linear-gradient(89deg, rgba(${rgb},0.85) 0%, rgba(${rgb},0.7) 37%, rgba(${rgb},0.1) 65%, rgba(${rgb},0) 80%)`,
+          }}
+        />
+      </div>
+
+      {/* ── Mobile background ── */}
+      <div className="md:hidden absolute inset-0">
         {hasMobileVideo && (
           <video
             autoPlay
@@ -65,33 +99,46 @@ export function HeroSection({
             loop
             playsInline
             poster={posterMobileSrc ?? posterSrc}
-            className="block md:hidden absolute inset-0 w-full h-full object-cover"
+            className="absolute inset-0 w-full h-full object-cover"
           >
             <source src={videoMobileSrc} type="video/mp4" />
           </video>
         )}
-        {!videoSrc && posterSrc && (
-          <img
-            src={posterSrc}
-            alt=""
-            className={`absolute inset-0 w-full h-full object-cover ${hasMobileVideo ? "hidden md:block" : ""}`}
-          />
+        {!hasMobileVideo && videoSrc && !hasMobilePoster && (
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            poster={posterSrc}
+            className="absolute inset-0 w-full h-full object-cover"
+          >
+            <source src={videoSrc} type="video/mp4" />
+          </video>
         )}
-        {!videoSrc && !hasMobileVideo && posterMobileSrc && (
-          <img
-            src={posterMobileSrc}
-            alt=""
-            className="block md:hidden absolute inset-0 w-full h-full object-cover"
-          />
+        {hasMobilePoster && (
+          <>
+            {/* Solid color block at the top */}
+            <div
+              className="absolute inset-x-0 top-0 h-95"
+              style={{ backgroundColor: `rgb(${rgb})` }}
+            />
+            {/* Mobile image below the color block */}
+            <img
+              src={posterMobileSrc}
+              alt=""
+              className="absolute inset-x-0 top-95 w-full h-[calc(100%-380px)] object-cover object-top"
+            />
+            {/* Top-down gradient on the image: solid at top → transparent at 1/3 */}
+            <div
+              className="absolute inset-x-0 top-95 w-full h-[calc(100%-380px)]"
+              style={{
+                background:
+                  `linear-gradient(180deg, rgba(${rgb},1) 0%, rgba(${rgb},0) 33%)`,
+              }}
+            />
+          </>
         )}
-        {/* Left-to-right gradient derived from bg-neutral (#01322d) */}
-        <div
-          className="hidden md:block absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(89deg, rgba(1,50,45,0.85) 0%, rgba(1,50,45,0.7) 37%, rgba(1,50,45,0.1) 65%, rgba(1,50,45,0) 80%)",
-          }}
-        />
       </div>
 
       {/* Content */}

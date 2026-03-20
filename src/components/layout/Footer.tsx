@@ -41,10 +41,10 @@ const footerColumns = [
 ];
 
 const legalLinks = [
-  { href: "/a-propos", label: "À propos" },
-  { href: "/comment-ca-marche", label: "Comment ça marche" },
   { href: "/mentions-legales", label: "Mentions légales" },
-  { href: "/politique-confidentialite", label: "Politique de confidentialité" },
+  { href: "/politique-de-confidentialite", label: "Politique de confidentialité" },
+  { href: "/politique-cookies", label: "Politique de cookies" },
+  { href: "/cgv", label: "CGV" },
 ];
 
 export function Footer() {
