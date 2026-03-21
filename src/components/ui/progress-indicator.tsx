@@ -20,11 +20,15 @@ export function ProgressIndicator({
           key={i}
           onClick={() => onDotClick?.(i)}
           aria-label={`Go to item ${i + 1}`}
-          className={cn(
-            "size-2 rounded-full transition-all duration-300",
-            i === active ? "bg-foreground" : "bg-muted"
-          )}
-        />
+          className="p-2"
+        >
+          <span
+            className={cn(
+              "block size-2 rounded-full transition-all duration-300",
+              i === active ? "bg-foreground" : "bg-muted"
+            )}
+          />
+        </button>
       ))}
     </div>
   );

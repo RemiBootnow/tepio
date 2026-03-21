@@ -23,7 +23,7 @@ export function FaqSection({ label = "FAQ", title, items }: FaqSectionProps) {
 
           {/* Left: eyebrow + heading */}
           <div className="flex flex-col gap-8 md:flex-1">
-            <p className="text-[#678481] opacity-70 text-2xl font-medium leading-6">{label}</p>
+            <p className="text-foreground text-2xl font-medium leading-6">{label}</p>
             <Heading as="h2">{title}</Heading>
           </div>
 
@@ -48,7 +48,7 @@ export function FaqSection({ label = "FAQ", title, items }: FaqSectionProps) {
                     </AccordionPrimitive.Trigger>
                   </AccordionPrimitive.Header>
                   <AccordionPrimitive.Content className="overflow-hidden data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down">
-                    <p className="pl-11 pb-5 text-[#678481] text-base leading-6">
+                    <p className="pl-11 pb-5 text-foreground text-base leading-6">
                       {item.answer}
                     </p>
                   </AccordionPrimitive.Content>

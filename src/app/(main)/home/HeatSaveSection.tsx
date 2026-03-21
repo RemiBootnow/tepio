@@ -14,7 +14,7 @@ export function HeatSaveSection() {
             <Heading as="h2">
               Chauffez mieux.<br />Dépensez moins.
             </Heading>
-            <p className="text-base text-[#678481] leading-6">
+            <p className="text-base text-foreground leading-6">
               Dans 80% des cas, les économies sur vos factures d&apos;énergie
               couvrent le montant des mensualités de votre installation.
             </p>

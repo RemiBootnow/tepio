@@ -14,7 +14,7 @@ export function ServiceSection() {
           <div className="flex flex-col gap-8">
             <div className="flex flex-col gap-4">
               <Heading as="h2">Le service {APP_NAME}</Heading>
-              <p className="text-base text-[#678481] leading-6">
+              <p className="text-base text-foreground leading-6">
                 Pas de multiples appels. Un conseiller analyse votre situation,
                 vous explique les options disponibles et calcule les aides
                 auxquelles vous avez droit. Entièrement gratuit.

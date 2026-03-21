@@ -15,7 +15,7 @@ export function NetworkSection() {
             <Heading as="h2">
               Un réseau d&apos;entreprises locales ultra-qualifiés
             </Heading>
-            <p className="text-base md:text-xl text-[#678481] leading-6 md:leading-7">
+            <p className="text-base md:text-xl text-foreground leading-6 md:leading-7">
               Une fois votre projet défini, nous vous mettons en relation avec 2 à
               3 artisans RGE certifiés, sélectionnés dans votre région, pour
               obtenir des devis adaptés et comparables.
