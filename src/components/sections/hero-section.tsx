@@ -59,7 +59,10 @@ export function HeroSection({
   const rgb = GRADIENT_COLORS[gradientColor];
 
   return (
-    <section className="relative w-full h-[120vh] md:h-screen -mt-17 overflow-hidden">
+    <section
+      className="relative w-full h-[120vh] md:h-screen -mt-17 overflow-hidden"
+      style={{ backgroundColor: `rgb(${rgb})` }}
+    >
       {/* ── Desktop background (absolute, full-cover) ── */}
       <div className="hidden md:block absolute inset-0">
         {videoSrc && (
