@@ -9,6 +9,7 @@ export function HeroSection() {
   return (
     <HeroSectionBase
       posterSrc="/prix/poele-bois/hero-poster.jpg"
+      posterMobileSrc="/prix/poele-bois/hero-poster-mobile.jpg"
       eyebrow={
         <Eyebrow variant="rating" rating={4.7} reviewCount={255} colorMode="light" />
       }
