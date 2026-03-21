@@ -5,7 +5,7 @@ export default function DevisLayout({
 }) {
   return (
     <div className="min-h-screen bg-muted">
-      <main className="mx-auto md:max-w-424 min-h-dvh">
+      <main className="mx-auto md:max-w-424 min-h-dvh pb-[env(safe-area-inset-bottom)]">
         {children}
       </main>
     </div>
