@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { TextContent } from "@/components/blocks/text-content";
 
 const GRADIENT_COLORS = {
@@ -74,10 +75,13 @@ export function HeroSection({
           </video>
         )}
         {!videoSrc && posterSrc && (
-          <img
+          <Image
             src={posterSrc}
             alt=""
-            className="absolute inset-0 w-full h-full object-cover"
+            fill
+            className="object-cover"
+            sizes="100vw"
+            priority
           />
         )}
         {/* Left-to-right gradient overlay */}
@@ -124,10 +128,13 @@ export function HeroSection({
               style={{ backgroundColor: `rgb(${rgb})` }}
             />
             {/* Mobile image below the color block */}
-            <img
+            <Image
               src={posterMobileSrc}
               alt=""
-              className="absolute inset-x-0 top-95 w-full h-[calc(100%-380px)] object-cover object-top"
+              fill
+              className="object-cover object-top top-95! h-[calc(100%-380px)]!"
+              sizes="100vw"
+              priority
             />
             {/* Top-down gradient on the image: solid at top → transparent at 1/3 */}
             <div

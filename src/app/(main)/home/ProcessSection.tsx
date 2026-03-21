@@ -133,6 +133,7 @@ export function ProcessSection() {
               alt={steps[activeStep].title}
               fill
               className="object-cover object-top md:hidden"
+              sizes="100vw"
               priority={activeStep === 0}
             />
             {/* Desktop image */}
@@ -141,6 +142,7 @@ export function ProcessSection() {
               alt={steps[activeStep].title}
               fill
               className="object-cover hidden md:block"
+              sizes="100vw"
               priority={activeStep === 0}
             />
           </motion.div>

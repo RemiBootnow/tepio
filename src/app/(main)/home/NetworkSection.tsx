@@ -33,6 +33,7 @@ export function NetworkSection() {
             alt="Artisan RGE certifié rencontrant ses clients"
             fill
             className="object-cover object-center"
+            sizes="(max-width: 768px) 100vw, 1024px"
           />
 
         </div>

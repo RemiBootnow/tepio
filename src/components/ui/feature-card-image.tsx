@@ -21,6 +21,7 @@ export function FeatureCardImage({
         alt={imageAlt}
         fill
         className="object-cover"
+        sizes="(max-width: 768px) 100vw, 33vw"
       />
       <div className="relative z-10 h-full flex items-start p-8">
         <Heading

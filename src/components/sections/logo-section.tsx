@@ -26,7 +26,7 @@ export function LogoSection({ logos, className }: LogoSectionProps) {
         {logos.map((logo) => (
           <div key={logo.alt} className="flex items-center justify-center">
             <div className="relative h-12 w-full">
-              <Image src={logo.src} alt={logo.alt} fill className="object-contain" />
+              <Image src={logo.src} alt={logo.alt} fill className="object-contain" sizes="128px" />
             </div>
           </div>
         ))}
@@ -36,7 +36,7 @@ export function LogoSection({ logos, className }: LogoSectionProps) {
       <div className="hidden md:flex items-center justify-between mx-auto w-full max-w-5xl">
         {logos.map((logo) => (
           <div key={logo.alt} className="relative h-[60px]" style={{ width: logo.width }}>
-            <Image src={logo.src} alt={logo.alt} fill className="object-contain" />
+            <Image src={logo.src} alt={logo.alt} fill className="object-contain" sizes="128px" />
           </div>
         ))}
       </div>

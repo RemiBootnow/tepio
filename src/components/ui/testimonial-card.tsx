@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 interface TestimonialCardProps {
@@ -22,10 +23,12 @@ export function TestimonialCard({
         className,
       )}
     >
-      <img
+      <Image
         src={image}
         alt={`Témoignage de ${author}`}
-        className="absolute inset-0 w-full h-full object-cover"
+        fill
+        className="object-cover"
+        sizes="(max-width: 768px) 100vw, 33vw"
       />
       <div
         className="absolute inset-0"

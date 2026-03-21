@@ -17,6 +17,7 @@ interface TextContentProps {
   align?: "left" | "center";
   colorMode?: "light" | "dark";
   className?: string;
+  subtitleClassName?: string;
   /** Optional slot rendered between the text group and the buttons. */
   children?: React.ReactNode;
 }
@@ -34,6 +35,7 @@ export function TextContent({
   align = "left",
   colorMode = "light",
   className,
+  subtitleClassName,
   children,
 }: TextContentProps) {
   const isCenter = align === "center";
@@ -66,7 +68,9 @@ export function TextContent({
           <p
             className={cn(
               "text-base leading-6",
-              isDark ? "text-white/70" : "text-muted-foreground"
+              isDark ? "text-white/70" : "text-foreground/70",
+              isCenter ? "max-w-120 mx-auto" : "max-w-110",
+              subtitleClassName
             )}
           >
             {subtitle}

@@ -51,6 +51,7 @@ export function ServiceSection() {
                 alt={`Conseiller ${APP_NAME} à son bureau`}
                 fill
                 className="object-cover object-top"
+                sizes="50vw"
               />
             </div>
           </div>

@@ -72,6 +72,7 @@ export function FeaturesSection({
           colorMode={colorMode}
           align="left"
           className="md:items-center md:text-center w-full md:max-w-[600px]"
+          subtitleClassName="md:max-w-120 md:mx-auto"
         />
 
         <div className="grid grid-cols-6 gap-5 w-full">

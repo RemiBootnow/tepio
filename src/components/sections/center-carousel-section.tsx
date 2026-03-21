@@ -54,6 +54,7 @@ export function CenterCarouselSection({
           colorMode={colorMode}
           align="left"
           className="md:items-center md:text-center md:max-w-2xl"
+          subtitleClassName="md:max-w-120 md:mx-auto"
         />
       </div>
 

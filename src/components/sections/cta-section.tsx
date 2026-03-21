@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { TextContent } from "@/components/blocks/text-content";
 
 const GRADIENT_COLORS = {
@@ -57,16 +58,19 @@ export function CtaSection({
         />
         {/* Image with gradient */}
         <div className="relative">
-          <img
+          <Image
             src={backgroundSrc}
             alt={backgroundAlt}
+            width={1920}
+            height={1080}
             className="w-full h-auto"
+            sizes="100vw"
           />
           {/* Top gradient — solid at top, transparent at 30% */}
           <div
             className="absolute inset-x-0 top-0 h-full pointer-events-none"
             style={{
-              background: `linear-gradient(180deg, rgba(${rgb},1) 0%, rgba(${rgb},0) 30%)`,
+              background: `linear-gradient(180deg, rgba(${rgb},1) 0%, rgba(${rgb},0) 50%)`,
             }}
           />
         </div>
