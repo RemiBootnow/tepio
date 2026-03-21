@@ -76,7 +76,7 @@ function StepCard({
               transition={{ duration: 0.3, ease: "easeInOut" }}
               className="overflow-hidden"
             >
-              <p className="mt-2 text-base text-muted-foreground leading-6">
+              <p className="mt-2 text-base text-foreground leading-6">
                 {step.description}
               </p>
             </motion.div>

@@ -120,7 +120,7 @@ export function ArticleLayout({
                 <Heading as="h3" className="text-white text-lg leading-snug">
                   {ctaTitle}
                 </Heading>
-                <p className="text-white/70 text-sm leading-6">
+                <p className="text-white text-sm leading-6">
                   {ctaDescription}
                 </p>
               </div>
@@ -138,7 +138,7 @@ export function ArticleLayout({
           <Heading as="h3" className="text-white text-lg">
             {ctaTitle}
           </Heading>
-          <p className="text-white/70 text-sm leading-6">{ctaDescription}</p>
+          <p className="text-white text-sm leading-6">{ctaDescription}</p>
           <Button asChild size="lg" variant="default">
             <Link href={ctaHref}>{ctaLabel}</Link>
           </Button>

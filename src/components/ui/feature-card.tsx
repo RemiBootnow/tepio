@@ -35,7 +35,7 @@ export function FeatureCard({
         <p
           className={cn(
             "text-base leading-6",
-            isDark ? "text-white/70" : "text-muted-foreground"
+            isDark ? "text-white" : "text-foreground"
           )}
         >
           {description}

@@ -68,7 +68,7 @@ export function TextContent({
           <p
             className={cn(
               "text-base leading-6",
-              isDark ? "text-white/70" : "text-foreground/70",
+              isDark ? "text-white" : "text-foreground",
               isCenter ? "max-w-120 mx-auto" : "max-w-110",
               subtitleClassName
             )}
