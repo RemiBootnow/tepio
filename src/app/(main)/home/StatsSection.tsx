@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { CenterCarouselSection } from "@/components/sections/center-carousel-section";
 
 function StatCardYellow() {
@@ -34,10 +35,12 @@ function StatCardBlue() {
 function PhotoCard() {
   return (
     <div className="relative rounded-3xl overflow-hidden w-full h-full bg-foreground">
-      <img
+      <Image
         src="/home/mom-and-son.jpg"
         alt="Famille heureuse dans leur maison rénovée"
-        className="absolute inset-0 w-full h-full object-cover"
+        fill
+        className="object-cover"
+        sizes="(max-width: 768px) 100vw, 340px"
       />
     </div>
   );
@@ -49,10 +52,12 @@ const desktopGrid = (
       <StatCardYellow />
     </div>
     <div className="relative h-125 w-85 shrink-0 rounded-3xl overflow-hidden bg-foreground">
-      <img
+      <Image
         src="/home/mom-and-son.jpg"
         alt="Famille heureuse dans leur maison rénovée"
-        className="absolute inset-0 w-full h-full object-cover"
+        fill
+        className="object-cover"
+        sizes="(max-width: 768px) 100vw, 340px"
       />
     </div>
     <div className="flex-1 flex items-center py-10">
