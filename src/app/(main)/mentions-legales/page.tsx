@@ -17,14 +17,13 @@ export default function MentionsLegalesPage() {
         Le site <strong>{APP_NAME}</strong> est édité par :
       </p>
       <ul>
-        <li><strong>Raison sociale :</strong> Bootnow</li>
+        <li><strong>Raison sociale :</strong> Opla</li>
         <li><strong>Forme juridique :</strong> SAS (Société par Actions Simplifiée)</li>
-        <li><strong>Capital social :</strong> 10 000 €</li>
-        <li><strong>Siège social :</strong> 6 rue Aegerter, 68120 Pfastatt</li>
-        <li><strong>SIRET :</strong> 845 205 194 00044</li>
-        <li><strong>RCS :</strong> Mulhouse B 845 205 194</li>
-        <li><strong>N° TVA intracommunautaire :</strong> FR92845205194</li>
-        <li><strong>Directeur de la publication :</strong> Rémi Maringer</li>
+        <li><strong>Siège social :</strong> 9 rue des primevères, 68120 Richwiller</li>
+        <li><strong>Immatriculation :</strong> RCS de Mulhouse sous le numéro 84221927100017</li>
+        <li><strong>N° TVA intracommunautaire :</strong> FR79842219271</li>
+        <li><strong>Directeur de la publication :</strong> Mathieu Hoffarth-Knecht, Président</li>
+        <li><strong>Téléphone :</strong> <a href="tel:+33783708347">+33 7 83 70 83 47</a></li>
         <li><strong>Email :</strong> <a href="mailto:contact@tepio.fr">contact@tepio.fr</a></li>
       </ul>
 

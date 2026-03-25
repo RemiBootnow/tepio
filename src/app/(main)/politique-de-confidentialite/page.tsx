@@ -17,10 +17,11 @@ export default function PolitiqueConfidentialitePage() {
         Le responsable du traitement des données collectées sur le site <strong>{APP_NAME}</strong> est :
       </p>
       <ul>
-        <li><strong>Bootnow</strong>, SAS au capital de 10 000 €</li>
-        <li>6 rue Aegerter, 68120 Pfastatt</li>
-        <li>SIRET : 845 205 194 00044</li>
-        <li>Contact : <a href="mailto:contact@tepio.fr">contact@tepio.fr</a></li>
+        <li><strong>Opla</strong>, SAS</li>
+        <li>9 rue des primevères, 68120 Richwiller</li>
+        <li>RCS de Mulhouse sous le numéro 84221927100017</li>
+        <li>N° TVA intracommunautaire : FR79842219271</li>
+        <li>Contact : <a href="mailto:contact@tepio.fr">contact@tepio.fr</a> — Tél : <a href="tel:+33783708347">+33 7 83 70 83 47</a></li>
       </ul>
 
       <h2>Données collectées</h2>

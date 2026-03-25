@@ -14,7 +14,7 @@ export default function CgvPage() {
     <LegalPageLayout title="Conditions générales de vente" lastUpdated="20 mars 2026">
       <h2>Objet</h2>
       <p>
-        Les présentes conditions générales de vente (CGV) définissent les droits et obligations des parties dans le cadre du service de mise en relation proposé par la société Bootnow, SAS au capital de 10 000 €, dont le siège social est situé au 6 rue Aegerter, 68120 Pfastatt, immatriculée au RCS de Mulhouse sous le numéro 845 205 194, ci-après dénommée « <strong>{APP_NAME}</strong> ».
+        Les présentes conditions générales de vente (CGV) définissent les droits et obligations des parties dans le cadre du service de mise en relation proposé par la société Opla, SAS dont le siège social est situé au 9 rue des primevères, 68120 Richwiller, immatriculée au RCS de Mulhouse sous le numéro 84221927100017, ci-après dénommée « <strong>{APP_NAME}</strong> ».
       </p>
 
       <h2>Description du service</h2>
@@ -81,7 +81,7 @@ export default function CgvPage() {
 
       <h2>Propriété intellectuelle</h2>
       <p>
-        L'ensemble des éléments du site {APP_NAME} (textes, images, logo, graphismes, logiciels) sont la propriété exclusive de Bootnow et sont protégés par le droit de la propriété intellectuelle. Toute reproduction sans autorisation est interdite.
+        L'ensemble des éléments du site {APP_NAME} (textes, images, logo, graphismes, logiciels) sont la propriété exclusive d'Opla et sont protégés par le droit de la propriété intellectuelle. Toute reproduction sans autorisation est interdite.
       </p>
 
       {/* TODO: Désigner un médiateur de la consommation (obligatoire B2C, ~50-200€/an)
